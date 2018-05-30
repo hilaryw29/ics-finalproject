@@ -1,6 +1,5 @@
 package icsFinalProject;
-
-public class PINNotMatchException extends Exception {
+public class PINNotMatchException extends Exception{
 	private String message;
 	private String enteredPIN;
 	public PINNotMatchException(String message, String PIN) {
