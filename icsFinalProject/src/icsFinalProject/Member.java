@@ -14,7 +14,7 @@ public class Member {
 		this.name = name;
 		this.income = income;
 		this.budget = budget;
-		this.percentage = percentage;
+		this.percentage = percentage; 
 	}
 	
 	public boolean updateBalance (int accountId, double newBalance) {
