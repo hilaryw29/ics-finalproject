@@ -1,8 +1,6 @@
 package icsFinalProject;
 
-import javax.swing.*;
-
-public class Main extends JPanel {
+public class Main {
 
 	public static void main(String[] args) {
 	}
