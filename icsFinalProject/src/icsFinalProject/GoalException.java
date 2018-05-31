@@ -1,6 +1,6 @@
 package icsFinalProject;
 
-public class GoalEception extends Exception {
+public class GoalException extends Exception {
 	private boolean nameNotFound, goalExisted, reachChildrenLimit;
 
 	public GoalException(boolean nameNotFound, boolean goalExisted, boolean reachChildrenLimit) {
