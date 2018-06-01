@@ -6,7 +6,7 @@ public class FirstMainMenu {
 
 	//public FirstMainMenu () {
 	//	isFirstRun();
-	//}
+	//}/
 	
 	public boolean isFirstRun () {
 		try {
