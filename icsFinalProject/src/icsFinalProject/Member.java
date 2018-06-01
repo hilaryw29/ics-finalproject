@@ -3,13 +3,13 @@ package icsFinalProject;
 import java.util.*;
 
 public class Member {
-	String name;
-	double income;
-	double budget;
-	double expense;
-	double balance;
-	LinkedList<Account> accountList;
-	double percentage;
+	protected String name;
+	protected double income;
+	protected double budget;
+	protected double expense;
+	protected double balance;
+	protected LinkedList<Account> accountList;
+	protected double percentage;
 
 	public Member(String name, double income, double budget, double percentage) {
 		this.name = name;
@@ -46,6 +46,10 @@ public class Member {
 		} else {
 			return false;
 		}
+	}
+	
+	public boolean assignBudget (double newBudget) {
+		
 	}
 
 }
