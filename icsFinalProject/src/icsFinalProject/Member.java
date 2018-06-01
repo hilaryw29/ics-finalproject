@@ -1,4 +1,5 @@
 package icsFinalProject;
+
 import java.util.*;
 
 public class Member {
@@ -7,19 +8,44 @@ public class Member {
 	double budget;
 	double expense;
 	double balance;
-	LinkedList<Account> accountlist;
+	LinkedList<Account> accountList;
 	double percentage;
-	
-	public Member (String name, double income, double budget, double percentage) {
+
+	public Member(String name, double income, double budget, double percentage) {
 		this.name = name;
 		this.income = income;
 		this.budget = budget;
-		this.percentage = percentage; 
+		this.percentage = percentage;
 	}
-	
-	public boolean updateBalance (int accountId, double newBalance) {
-		
+
+	private Account findAccount(int accountId) {
+		int bottom = 0;
+		int top = accountList.size()-1;
+		boolean found = false;
+		int middle;
+
+		while (bottom <= top && found == false) {
+			middle = (bottom + top) / 2;
+			if ((accountList.get(middle)).getId == accountId) {
+				return accountList.get(middle);
+			} else if (accountId > (accountList.get(middle)).getId) {
+				bottom = middle + 1;
+			} else {
+				top = middle - 1;
+			}
+
+		}
+		return null;
 	}
-	
-	
+
+	public boolean updateBalance(int accountId, double newBalance) {
+		Account account = findAccount(accountId);
+		if (account != null) {
+			account.setBalance (newBalance);
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 }
