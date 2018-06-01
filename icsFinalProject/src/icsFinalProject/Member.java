@@ -26,12 +26,12 @@ public class Member {
 
 		while (bottom <= top && found == false) {
 			middle = (bottom + top) / 2;
-			if ((accountList.get(middle)).getId == accountId) {
+			if ((accountList.get(middle)).getId() == accountId) {
 				return accountList.get(middle);
-			} else if (accountId > (accountList.get(middle)).getId) {
+			} else if (accountId > (accountList.get(middle)).getId()) {
 				bottom = middle + 1;
 			} else {
-				top = middle - 1;
+				top = middle - 1; 
 			}
 
 		}
