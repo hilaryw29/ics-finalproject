@@ -5,11 +5,10 @@ import java.io.*;
 
 public class RegularMainMenu {
 	Scanner sc = new Scanner(System.in);
+	FamilyBudgetManagement family;
 	
-	public RegularMainMenu() {
-		//FamilyBudgetManagement family = new FamilyBudgetManagement();
-		//family.readfromsavefile
-		
+
+	public RegularMainMenu() {		
 		intakePin();
 	}
 	
@@ -17,7 +16,9 @@ public class RegularMainMenu {
 		String input, answer;
 		
 		System.out.println("Please enter password: ");
-		try {
+		family = new FamilyBudgetManagement(sc.nextLine(), FileConstant.MEMBERINFO);
+		
+		/*try {
 			BufferedReader in = new BufferedReader(new FileReader(FileConstant.PIN));
 			
 			answer = in.readLine();
@@ -29,7 +30,7 @@ public class RegularMainMenu {
 			}
 			
 		} catch (IOException iox) {
-		}
+		}*/
 		System.out.println("Password verified");
 	}
 }

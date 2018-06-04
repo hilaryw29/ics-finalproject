@@ -44,8 +44,7 @@ public class FirstMainMenu {
 		
 		// Family member info is entered
 		for (int i = 0; i < numMember; i++) {
-			System.out.println("Enter the name of family member #" + (i + 1));
-			if ((intakeRole().equalsIgnoreCase("a")) {
+			if (intakeRole().equalsIgnoreCase("a")) {
 				family.addFamilyMember(new Adult(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
 			} else {
 				family.addFamilyMember(new Child(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
@@ -62,7 +61,7 @@ public class FirstMainMenu {
 		family = new FamilyBudgetManagement(pin);
 	}
 	
-	private void intakeRole() {
+	private String intakeRole() {
 		boolean finished = false;
 		String input;
 		
@@ -73,6 +72,7 @@ public class FirstMainMenu {
 				finished = true;
 			}
 		}
+		return input;
 	}
 	
 	private void writeDefaults() {
@@ -92,6 +92,7 @@ public class FirstMainMenu {
 	
 	private String intakeName () {
 		// Prompts user for member name
+		System.out.println("Enter the name of family member #" + (i + 1));
 		return sc.nextLine();
 	}
 	
