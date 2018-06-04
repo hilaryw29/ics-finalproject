@@ -28,7 +28,6 @@ public class Adult extends Member {
 			out.close();
 		} catch (IOException iox) {
 		}
-
 	}
 
 }

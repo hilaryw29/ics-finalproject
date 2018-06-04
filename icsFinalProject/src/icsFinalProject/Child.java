@@ -26,7 +26,7 @@ public class Child extends Member {
 			out.newLine();
 			out.write("0");				// wtf is balance lol
 			out.newLine();
-			out.write("a");
+			out.write("c");
 			out.newLine();
 			out.close();
 		} catch (IOException iox) {

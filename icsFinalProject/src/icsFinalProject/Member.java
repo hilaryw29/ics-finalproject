@@ -1,8 +1,9 @@
 package icsFinalProject;
 
 import java.util.*;
+import java.io.*;
 
-public class Member {
+public abstract class Member {
 	protected String name;
 	protected double income;
 	protected double budget;
@@ -118,5 +119,5 @@ public class Member {
 		return accountList;
 	}
 	
-
+	public abstract void writeFile ();
 }
