@@ -112,7 +112,7 @@ public class FirstMainMenu {
 		
 		while (input > 100) {
 			System.out.println("Invalid input. Enter a number under 100.");
-			input - intakeDoube();
+			input = intakeDouble();
 		}
 		return input;
 	}
