@@ -14,7 +14,7 @@ public class FirstMainMenu {
 		} else {
 			RegularMainMenu regMenu = new RegularMainMenu();
 		}
-	}
+	}//
 	
 	public void displayMenu () {
 		int numMember = 0;			// Number of family members
