@@ -58,6 +58,8 @@ public abstract class Member {
 		}
 		return -1;
 	}
+	
+	abstract boolean setGoal (Goal goal) throws GoalException;
 
 	public boolean updateBalance(int accountId, double newBalance) {
 		Account account = findAccount(accountId);
@@ -73,7 +75,6 @@ public abstract class Member {
 	//Isn't this just like a setter? Why do we need to return a boolean? (When would it be false?)
 	public void setBudget (double newBudget) {
 		budget = newBudget;
-		return true;
 	}
 	
 	public double getBudget () {
@@ -96,7 +97,6 @@ public abstract class Member {
 		throw new AccountException(false, name);
 	}
 	
-	//NOT DONE (are we supposed to generate the account id in this method?)
 	public int addAccount (Account account) { 
 		int id = accountList.getLast().id+1;
 		accountList.add(new Account(account, id));
