@@ -70,20 +70,20 @@ public class Member {
 	
 	//Aren't the methods listed in the section below all getters and setters?
 	//Isn't this just like a setter? Why do we need to return a boolean? (When would it be false?)
-	public boolean assignBudget (double newBudget) {
+	public void setBudget (double newBudget) {
 		budget = newBudget;
 		return true;
 	}
 	
-	public double checkBudget () {
+	public double getBudget () {
 		return budget;
 	}
 	
-	public void updateBalance (double newBalance) {
-		balance = newBalance;
+	public void updateBalance (double amount) {
+		balance =balance + amount;
 	}
 	
-	public boolean checkAccountBalance (String name, int accountId, double lowestBalance) {
+	public boolean checkAccountBalance (String name, int accountId, double lowestBalance) throws AccountException {
 		Account account = findAccount (accountId);
 		if (account != null) {
 			if (account.getBalance() >= lowestBalance) {
@@ -92,15 +92,15 @@ public class Member {
 				return false;
 			}
 		}
-		// Should throw exception?
-		return false;
+		throw new AccountException(false, name);
 	}
 	
 	//NOT DONE (are we supposed to generate the account id in this method?)
-//	public int addAccount (Account account) {
-//		accountList.add(account);
-//		return -1;
-//	}
+	public int addAccount (Account account) {
+		int id = accountList.getLast().id+1;
+		accountList.add(new Account(account, id));
+		return id;
+	}
 	
 	//Why do you need the name of the member as part of the parameters?
 	public boolean deleteAccount (String name, int accountId) {
@@ -113,7 +113,6 @@ public class Member {
 		return false;
 	}
 	
-	//Check, like this?
 	public LinkedList<Account> listAccount (){
 		return accountList;
 	}
