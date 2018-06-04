@@ -16,17 +16,17 @@ public class Child extends Member {
 		// TODO Auto-generated method stub
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.MEMBERINFO));
-			out.write(name);
+			out.write("<Name>" + name + "</Name>");
 			out.newLine();
-			out.write(income + "");
+			out.write("<Income>" + income + "</Income>");
 			out.newLine();
-			out.write("-1");
+			out.write("<Budget>-1</Budget>");
 			out.newLine();
-			out.write("0");
+			out.write("<Expense>0</Expense>");
 			out.newLine();
-			out.write("0");				// wtf is balance lol
+			out.write("<Balance>0</Balance>");				// wtf is balance lol
 			out.newLine();
-			out.write("c");
+			out.write("<Role>c</Role>");
 			out.newLine();
 			out.close();
 		} catch (IOException iox) {

@@ -5,7 +5,9 @@ import java.io.*;
 
 public class FirstMainMenu {
 	Scanner sc = new Scanner(System.in);
-
+	String pin;
+	FamilyBudgetManagement family;
+	
 	public FirstMainMenu () {
 		if (isFirstRun()) {
 			displayMenu();	// Displays the info intake menu
@@ -17,6 +19,7 @@ public class FirstMainMenu {
 	public void displayMenu () {
 		int numMember = 0;			// Number of family members
 		boolean finished = false;	// Used for input mismatch checking
+		String roleInput;
 		
 		// Outputs greeting
 		System.out.println("Welcome to first time setup. Please input the following info.");
@@ -42,10 +45,11 @@ public class FirstMainMenu {
 		// Family member info is entered
 		for (int i = 0; i < numMember; i++) {
 			System.out.println("Enter the name of family member #" + (i + 1));
-			intakeName();
-			intakeIncome();
-			writeDefaults();
-			intakeRole();
+			if ((intakeRole().equalsIgnoreCase("a")) {
+				family.addFamilyMember(new Adult(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
+			} else {
+				family.addFamilyMember(new Child(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
+			}
 		}
 		System.out.println("Thank you for setting up. Let's continue to the main menu.");
 		RegularMainMenu regMenu = new RegularMainMenu();
@@ -53,14 +57,9 @@ public class FirstMainMenu {
 	
 	private void intakePassword () {
 		// Prompts user for pin and writes it to file
-				try {
-					BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.PIN));
-					System.out.println("Please choose a password: ");
-					out.write(sc.nextLine());
-					out.newLine();
-					out.close();
-				} catch (IOException iox) {
-				}
+		System.out.println("Please choose a password: ");
+		pin = sc.nextLine();
+		family = new FamilyBudgetManagement(pin);
 	}
 	
 	private void intakeRole() {
@@ -69,17 +68,9 @@ public class FirstMainMenu {
 		
 		// Prompts user for member role and writes it to the file
 		while (!finished) {
-			try {
-				BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.MEMBERINFO, true));
-				
-				System.out.println("Please enter the name of their role in the family. Enter 'a' for adult or 'c' for child: ");
-				if ((input = sc.nextLine()).equalsIgnoreCase("a") || input.equalsIgnoreCase("c")) {
-					out.write(input);
-					out.newLine();
-					finished = true;
-				}
-				out.close();
-			} catch (IOException iox) {
+			System.out.println("Please enter the name of their role in the family. Enter 'a' for adult or 'c' for child: ");
+			if ((input = sc.nextLine()).equalsIgnoreCase("a") || input.equalsIgnoreCase("c")) {
+				finished = true;
 			}
 		}
 	}
@@ -99,37 +90,50 @@ public class FirstMainMenu {
 		}
 	}
 	
-	private void intakeName () {
-		// Prompts user for member name and writes it to file
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.MEMBERINFO, true));
-			out.write(sc.nextLine());
-			out.newLine();
-			out.close();
-		} catch (IOException iox) {
-		}
+	private String intakeName () {
+		// Prompts user for member name
+		return sc.nextLine();
 	}
 	
-	private void intakeIncome() {
+	private double intakeIncome() {
+		System.out.print("Enter their monthly income in dollars: ");
+		return intakeDouble();
+	}
+	
+	private double intakeBudget () {
+		System.out.print("Enter their monthly budget in dollars: ");
+		return intakeDouble();
+	}
+	
+	private double intakePercentage () {
+		double input;
+		System.out.print("Enter the percentage of income that is to be allocated to savings automatically: ");
+		input = intakeDouble();
+		
+		while (input > 100) {
+			System.out.println("Invalid input. Enter a number under 100.");
+			input - intakeDoube();
+		}
+		return input;
+	}
+	
+	private double intakeDouble() {
 		boolean finished = false; 
+		double input;
 		
 		// Prompts user for member income and writes it to file
 		while (!finished) {
-			try {
-				BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.MEMBERINFO, true));
-				
+			try {				
 				System.out.println("Please enter the name of their monthly income in dollars: ");
-				out.write(sc.nextDouble() + "");
-				out.newLine();
-				sc.nextLine();
+				input = sc.nextDouble();
 				finished = true;
-				out.close();
 			} catch (InputMismatchException e) {
 				sc.nextLine();
 				System.out.println("Invalid input. Please try again.");
 			} catch (IOException iox) {
 			}
 		}
+		return input;
 	}
 	
 	public boolean isFirstRun () {
