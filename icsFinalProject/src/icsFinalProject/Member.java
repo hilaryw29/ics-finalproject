@@ -97,7 +97,7 @@ public abstract class Member {
 	}
 	
 	//NOT DONE (are we supposed to generate the account id in this method?)
-	public int addAccount (Account account) {
+	public int addAccount (Account account) { 
 		int id = accountList.getLast().id+1;
 		accountList.add(new Account(account, id));
 		return id;
