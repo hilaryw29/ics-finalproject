@@ -7,6 +7,9 @@ public class RegularMainMenu {
 	Scanner sc = new Scanner(System.in);
 	
 	public RegularMainMenu() {
+		//FamilyBudgetManagement family = new FamilyBudgetManagement();
+		//family.readfromsavefile
+		
 		intakePin();
 	}
 	
