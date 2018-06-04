@@ -1,4 +1,4 @@
-public class Transaction{
+public class Transaction implements Comparable<Transaction>{
 	private int amount;
 	private String payer, payee;
 	private int payerAccountID, payeeAccountID;
@@ -24,5 +24,9 @@ public class Transaction{
 		this.description = t1.description;
 		this.date = t1.date;
 		this.id = id;
+	}
+	
+	public int compareTo(Transaction other) {
+		return amount - other.amount;
 	}
 }
