@@ -6,7 +6,7 @@ public class FamilyBudgetManagement {
 	private double minHouseHoldBalance;
 	private Thread DateManager;
 
-	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException {
+	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException {
 		
 	}
 	
