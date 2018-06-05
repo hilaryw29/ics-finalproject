@@ -15,4 +15,18 @@ public class RecurringBillsList {
 	public RecurringBillsList() {
 		billList = new LinkedList();
 	}
+	
+	
+	
+	public LinkedList<RecurringBill> getUnpaidList() {
+		Iterator listInterator = billList.iterator();
+		LinkedList<RecurringBill> unpaidList = new LinkedList<>();
+		while (listInterator.hasNext()) {
+			RecurringBill current = (RecurringBill) listInterator.next();
+			if (!current.pay()) {
+				unpaidList.add(current);
+			}
+		}
+		return unpaidList;
+	}
 }
