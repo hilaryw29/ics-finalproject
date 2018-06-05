@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Child extends Member {
-	final double MAX_GOAL_AMOUNT = 5000;
+	private final double MAX_GOAL_AMOUNT = 5000;
 
 	public Child(String name, double income, double budget, double percentage) {
 		super(name, income, budget, percentage);
