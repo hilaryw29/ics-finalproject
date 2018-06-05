@@ -8,5 +8,20 @@ public class Goal {
 		this.amount = amount;
 		this.description = description;
 	}
+	
+	public double getAmount () {
+		return amount;
+	}
+	
+	public String getDescription () {
+		return description;
+	}
+	
+	public boolean goalAchieved (double balance) {
+		if (balance >= amount) {
+			return true;
+		}
+		return false;
+	}
 
 }

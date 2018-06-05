@@ -11,6 +11,7 @@ public abstract class Member {
 	protected double balance;
 	protected LinkedList<Account> accountList;
 	protected double percentage;
+	protected Goal goal;	
 
 	public Member(String name, double income, double budget, double percentage) {
 		this.name = name;

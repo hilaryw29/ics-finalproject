@@ -5,10 +5,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Child extends Member {
+	final double MAX_GOAL_AMOUNT = 5000;
 
 	public Child(String name, double income, double budget, double percentage) {
 		super(name, income, budget, percentage);
 		// TODO Auto-generated constructor stub
+	}
+	
+	public boolean setGoal (Goal childGoal) throws GoalException {
+		if (goal == null) {
+			if (childGoal.getAmount() <= MAX_GOAL_AMOUNT) {
+				goal = childGoal; 
+				return true;
+			} else {
+				throw new GoalException (false, false, true);
+			}
+		} else {
+			throw new GoalException(false, true, false); 
+		}
 	}
 
 	@Override

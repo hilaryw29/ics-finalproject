@@ -8,7 +8,17 @@ public class Adult extends Member {
 		super(name, income, budget, percentage);
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public boolean setGoal (Goal adultGoal) throws GoalException {
+		if (goal == null) {
+			goal = adultGoal;
+			return true;
+		} else {
+			throw new GoalException (false, true, false);
+		}
+	}
+	
+	
 	@Override
 	public void writeFile() {
 		try {
