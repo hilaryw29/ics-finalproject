@@ -9,7 +9,7 @@ public class FamilyBudgetManagement {
 	private FamilyMemberList memberlist;
 	private TransactionList transactionList;
 	private RecurringBillsList billList;
-
+	static 
 	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException {
 		
 	}
