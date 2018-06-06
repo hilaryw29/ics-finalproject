@@ -20,7 +20,7 @@ public abstract class Member {
 		this.percentage = percentage;
 	}
 
-	private Account findAccount(int accountId) {
+	public Account findAccount(int accountId) {
 		int bottom = 0;
 		int top = accountList.size()-1;
 		boolean found = false;
@@ -102,17 +102,6 @@ public abstract class Member {
 		int id = accountList.getLast().id+1;
 		accountList.add(new Account(account, id));
 		return id;
-	}
-	
-	//Why do you need the name of the member as part of the parameters?
-	public boolean deleteAccount (String name, int accountId) {
-		int index = findAccountIndex (accountId);
-		
-		if (index != -1) {
-			accountList.remove(index);
-			return true;
-		}
-		return false;
 	}
 	
 	public LinkedList<Account> listAccount (){
