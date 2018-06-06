@@ -26,7 +26,50 @@ public class Transaction implements Comparable<Transaction>{
 		this.id = id;
 	}
 	
+	public boolean equals(Transaction other) {
+		if (amount == other.amount)
+			return true;
+		else 
+			return false;
+	}
+	
+	public int equalDate(String date) {
+		return this.date.compareTo(date);
+	}
+	
 	public int compareTo(Transaction other) {
 		return amount - other.amount;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public String getPayer() {
+		return payer;
+	}
+
+	public String getPayee() {
+		return payee;
+	}
+
+	public int getPayerAccountID() {
+		return payerAccountID;
+	}
+
+	public int getPayeeAccountID() {
+		return payeeAccountID;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public int getId() {
+		return id;
 	}
 }
