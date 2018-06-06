@@ -6,10 +6,16 @@ import java.io.*;
 public class RegularMainMenu {
 	Scanner sc = new Scanner(System.in);
 	FamilyBudgetManagement family;
-	
+	String password;
 
 	public RegularMainMenu() {		
 		intakePin();
+	}
+	
+	public RegularMainMenu(String pass) {
+		password = pass;
+		family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
+		displayMenu();
 	}
 	
 	private void intakePin() {
@@ -20,8 +26,9 @@ public class RegularMainMenu {
 		
 		while (!success) {
 			try {
-				family = new FamilyBudgetManagement(sc.nextLine(), FileConstant.MEMBERINFO);
-				sucess = true;
+				password = sc.nextLine();
+				family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
+				success = true;
 			} catch (PINNotMatchException pinex) {
 				System.out.println("Incorrect password. Enter again.");
 			} catch (FileModifiedException modex) {
@@ -51,6 +58,7 @@ public class RegularMainMenu {
 	}
 
 	public void displayMenu() {
+		int choice;
 		System.out.println("Welcome. Please enter a number 1-3 that corresponds to the following choices: ");
 		System.out.println("1. Generate previous montly report");
 		System.out.println("2. Transanctions menu");
@@ -61,6 +69,16 @@ public class RegularMainMenu {
 			System.out.println("ALERT: your current household balance of $" + family.getHouseHoldBalance() + " is lower than your alert threshold of " + family.getMinHouseHoldBalance());
 		} else {
 			System.out.println("You have no current alerts");
+		}
+		
+		choice = intakeChoice();
+		
+		if (choice == 1) {
+			
+		} else if (choice == 2) {
+			TransactionMenu transmenu = new TransactionMenu(password);
+		} else {
+			GeneralFamilyInfo faminfo = new GeneralFamilyInfo(password);
 		}
 	}
 
