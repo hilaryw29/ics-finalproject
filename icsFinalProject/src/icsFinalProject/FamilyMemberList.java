@@ -5,33 +5,129 @@ public class FamilyMemberList{
 	public FamilyMemberList(String memFile, String accFile){
 	
 	}
-	
-	public void updateBalance(Transaction t){
+	public FamilyMemberList(){
+		
+	}
+	public void addFamilyMember(Member m){
+		family.add(m);
+	}
+	public void updateBalance(Transaction t) throws AccountException{
 		for(int i = 0; i < numOfMember; i ++){
 			if ((family.get(i).getName()).equals(t.getPayer())) {
 				if(!family.get(i).updateBalance(t.getID, (family.get(i).getBalance() - t.getAmount))){
-					throw new AccountException;
+					throw new AccountException();
 				}
 			}
 			if ((family.get(i).getName()).equals(t.getPayee())) {
 				if(!family.get(i).updateBalance(t.getID, (family.get(i).getBalance() + t.getAmount))){
-					throw new AccountException;
+					throw new AccountException();
 				}
+			}
+			if((family.get(i).getName()).equals(t.getPayer()) && (family.get(i).getName()).equals(t.getPayee())){
+				throw new AccountException(true, false);
 			}
 		}
 	}
 	public Member isNameInList(String name){
-		int bottom = 0;
-		int top = numOfMember-1;
-		boolean found = false;
-		int middle;
-		
-		while(!found && top > bottom){
-			middle = (top + bottom) / 2;
-			if((family.get(middle).getName()).equals(name)){
-				return family.get(middle);
+		for(int i = 0; i < numOfMember; i ++){
+			if((family.get(i).getName()).equals(name)){
+				return family.get(i);
 			}
-			else if((family.get(middle).getName())
 		}
+		return null;
+	}
+	public boolean transferMoney(double, String)
+	
+	public boolean assignBudget(String name, double amount){
+		for(int i = 0; i < numOfMember; i ++){
+			if((family.get(i).getName()).equals(name)){
+				family.get(i).setBudget();
+				return true;
+			}
+		}
+		return false; 
+	}
+	public double checkBudget(String name){
+		for(int i = 0; i < numOfMember; i ++){
+			if((family.get(i).getName()).equals(name)){
+				return family.get(i).getBudget();
+			}
+		}
+		return -1;
+	}
+	public boolean checkAccountBalance(String name, int id, double amount){
+		for(int i = 0; i < numOfMember; i ++){
+			if((family.get(i).getName()).equals(name)){
+				if(family.get(i).findAccount(id).getBalance() < amount){
+					return false;
+				}
+				else{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public void displayInfo(){
+		for(int i = 0; i < numOfMember; i ++){
+			System.out.println(family.get(i));
+		}
+	}
+	public void setGoal(Goal goal, String name) throws GoalException{
+		for(int i = 0; i < numOfMember; i ++){
+			if((family.get(i).getName()).equals(name)){
+				return(family.get(i).setGoal(goal));
+			}
+		}
+		throw new GoalException(false, true, true);
+	}
+	public int addAccount(Account account, String name) throws AccountException{
+		for(int i = 0; i < numOfMember; i ++){
+			if((family.get(i).getName()).equals(name)){
+				return(family.get(i).addAccount(account));
+		}
+		throw new AccountException(true, false);
+	}
+	public LinkedList<Account> listAccount(){
+		
+	}
+	public double calculateAveExpense(){
+		
+	}
+	public Member[] sortMemberByIncome(){
+		for(int i = numOfMember - 1; i >=0; i --){
+			int maxIndex = 0; 
+			for(int j = 0; j < i; j ++){
+				if(family.get(j).getIncome() > family.get(maxIndex).getIncome()){
+					maxIndex = j;
+				}
+			}
+			Member temp = family.get(i);
+			family.get(i) = family.get(maxIndex);
+			family.get(maxIndex) = temp;
+		}
+	}
+	public Member[] sortMemberByExpense(){
+		for(int i = numOfMember - 1; i >=0; i --){
+			int maxIndex = 0; 
+			for(int j = 0; j < i; j ++){
+				if(family.get(j).getExpense() > family.get(maxIndex).getExpense()){
+					maxIndex = j;
+				}
+			}
+			Member temp = family.get(i);
+			family.get(i) = family.get(maxIndex);
+			family.get(maxIndex) = temp;
+		}
+	}
+	public Member searchMember(String name){
+		boolean found = false;
+		for(int i = 0; i < numOfMember && !found; i ++){
+			if((family.get(i).getName()).equals(name)){
+				return family.get(i);
+				found = true;
+			}
+		}
+		return null;
 	}
 }
