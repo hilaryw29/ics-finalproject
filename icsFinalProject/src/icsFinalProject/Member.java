@@ -20,7 +20,7 @@ public abstract class Member {
 		this.percentage = percentage;
 	}
 
-	private Account findAccount(int accountId) {
+	public Account findAccount(int accountId) {
 		int bottom = 0;
 		int top = accountList.size()-1;
 		boolean found = false;
