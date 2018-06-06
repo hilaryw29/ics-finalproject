@@ -104,17 +104,6 @@ public abstract class Member {
 		return id;
 	}
 	
-	//Why do you need the name of the member as part of the parameters?
-	public boolean deleteAccount (String name, int accountId) {
-		int index = findAccountIndex (accountId);
-		
-		if (index != -1) {
-			accountList.remove(index);
-			return true;
-		}
-		return false;
-	}
-	
 	public LinkedList<Account> listAccount (){
 		return accountList;
 	}
