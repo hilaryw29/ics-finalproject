@@ -1,6 +1,6 @@
 package icsFinalProject;
 
-public class RecurringBill implements Comparable{
+public class RecurringBill implements Comparable<RecurringBill>{
 	private double amount;
 	private String name;
 	private String date;
@@ -54,5 +54,6 @@ public class RecurringBill implements Comparable{
 
 	public int getAccountID() {
 		return accountID;
-	}	
+	}
+
 }
