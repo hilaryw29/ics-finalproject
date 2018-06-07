@@ -28,11 +28,7 @@ public class TransactionMenu extends Submenu {
 		if (choice == FINDDATE) {
 			findByDate();
 		} else if (choice == ADDTRANS) {
-<<<<<<< HEAD
-			addTrans();	
-=======
-			addTransaction();
->>>>>>> branch 'master' of https://github.com/hilaryw29/ics-finalproject.git
+			
 		} else if (choice == FINDAMOUNT) {
 			findByAmount();
 		} else if (choice == VIEWBYFAM){
