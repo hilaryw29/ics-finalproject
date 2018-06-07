@@ -164,5 +164,20 @@ public class FamilyBudgetManagement {
 		
 	}
 	
-	public add
+	public boolean addFamilyMember(Member m) {
+		memberlist.addFamilyMember(m);
+		return true;
+	}
+	
+	public boolean tryPad(String name, int id, double amount) {
+		return memberlist.checkAccountBalance(name, id, amount);
+	}
+	
+	public boolean delBill(int id) {
+		return billList.delBill(id);
+	}
+	
+	public String displayFamilyInfo() {
+		return memberlist.toString();
+	}
 }
