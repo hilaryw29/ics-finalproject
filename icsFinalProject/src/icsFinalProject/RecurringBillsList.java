@@ -46,7 +46,6 @@ public class RecurringBillsList {
 	}
 
 	public boolean delBill(int id) {
-		
-		return false;
+		return billList.remove(new RecurringBill(new RecurringBill(0,"0","0",0), id));
 	}
 }
