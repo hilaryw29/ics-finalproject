@@ -1,11 +1,11 @@
 public class Transaction implements Comparable<Transaction>{
-	private int amount;
+	private double amount;
 	private String payer, payee;
 	private int payerAccountID, payeeAccountID;
 	private String description, date;
 	private int id;
 	
-	public Transaction(int amount, int payerAccountID, int payeeAccountID, String payer, String payee, String description, String date){
+	public Transaction(double amount, int payerAccountID, int payeeAccountID, String payer, String payee, String description, String date){
 		this.amount = amount;
 		this.payerAccountID = payerAccountID;
 		this.payeeAccountID = payeeAccountID;
@@ -51,7 +51,7 @@ public class Transaction implements Comparable<Transaction>{
 		return amount - other.amount;
 	}
 
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 

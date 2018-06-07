@@ -8,15 +8,19 @@ import java.util.*;
 
 public class DateManager implements Runnable{
 	RecurringBillsList billList;
-	
+	FamilyBudgetManagement manager;
+	final static String message = "RecurringBill";
 	public DateManager(RecurringBillsList billList, FamilyBudgetManagement manager) {
+		this.billList = billList;
+		this.manager = manager;
 		
 	}
 	public void run() {
-		
-		int time = calculateTimeToNextDay();
-		sleep(time);
-		
+		while (true) {
+			int time = calculateTimeToNextDay();
+			sleep(time);
+			pay();
+		}
 	}
 	
 	private int calculateTimeToNextDay() {
@@ -32,13 +36,19 @@ public class DateManager implements Runnable{
 		} catch (InterruptedException e) {
 		}
 	}
-	//mei wan cheng
+
 	private void pay() {
 		LinkedList<RecurringBill> bills = billList.getBillList();
 		for (RecurringBill i: bills) {
-			i.getAccountID()
-			if (true) {
-				
+			if (manager.tryPay(i.getName(), i.getAccountID(), i.getAmount())) {
+				try {
+					manager.addTransaction(i.generateTransaction());
+				} catch (AccountException e) {
+				}
+			} else {
+				i.setFailed(true);
+				System.out.println("The bill is not payed due to low account balance:");
+				System.out.println(i);
 			}
 		}
 		

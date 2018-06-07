@@ -1,10 +1,12 @@
 package icsFinalProject;
+import java.util.Calendar;  
+import java.util.Date;  
 
 public class RecurringBill implements Comparable<RecurringBill>{
 	private double amount;
 	private String name;
 	private String date;
-	private boolean payed;
+	private boolean isFailed;
 	private int ID;
 	private int accountID;
 	public RecurringBill(double amount, String name, String date, int accountID) {
@@ -12,7 +14,7 @@ public class RecurringBill implements Comparable<RecurringBill>{
 		this.date = date;
 		this.name = name;
 		this.amount = amount;
-		payed = false;
+		isFailed = false;
 	}
 	
 	public RecurringBill(RecurringBill bill, int ID) {
@@ -20,16 +22,27 @@ public class RecurringBill implements Comparable<RecurringBill>{
 		this.date = bill.date;
 		this.name = bill.name;
 		this.amount = bill.amount;
-		payed = false;
+		isFailed = false;
 		this.ID = ID;
+	}
+	
+	public Transaction generateTransaction() {
+		Calendar c = Calendar.getInstance();  
+	    c.setTime(new Date());  
+	    int month = c.get(Calendar.MONTH)+1; 
+		return new Transaction(amount,accountID,-1,name,"N/A","RecurringBill",month+"/"+date);
 	}
 	
 	public int compareTo(RecurringBill other) {
 		return ID - other.ID;
 	}
 	
-	public boolean pay() {
-		return payed;
+	public boolean isFailed() {
+		return isFailed;
+	}
+
+	public void setFailed(boolean isFailed) {
+		this.isFailed = isFailed;
 	}
 
 	public double getAmount() {
@@ -44,10 +57,6 @@ public class RecurringBill implements Comparable<RecurringBill>{
 		return date;
 	}
 
-	public boolean isPayed() {
-		return payed;
-	}
-
 	public int getID() {
 		return ID;
 	}
@@ -56,4 +65,7 @@ public class RecurringBill implements Comparable<RecurringBill>{
 		return accountID;
 	}
 
+	public String toString() {
+		return "123";
+	}
 }

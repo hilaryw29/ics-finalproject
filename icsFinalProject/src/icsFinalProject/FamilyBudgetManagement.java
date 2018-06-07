@@ -168,7 +168,7 @@ public class FamilyBudgetManagement {
 		return true;
 	}
 	
-	public boolean tryPad(String name, int id, double amount) {
+	public boolean tryPay(String name, int id, double amount) {
 		return memberlist.checkAccountBalance(name, id, amount);
 	}
 	
