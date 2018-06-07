@@ -23,25 +23,29 @@ public class GeneralFamilyInfo extends Submenu {
 		System.out.println("3. View low balance threshold");
 		System.out.println("4. Edit low balance threshold");
 		System.out.println("5. Edit pin");
-		choice = intakeChoice(3);
-
+		choice = intakeChoice(5);
+		
+		//How to view and edit family name??
 		if (choice == VIEW_FAM_NAME) {
 
 		} else if (choice == EDIT_FAM_NAME) {
 
 		} else if (choice == VIEW_LOW_BALANCE) {
-
+			System.out.print("The current minimum household balance is: $");
+			System.out.println(family.getMinHouseHoldBalance());
 		} else if (choice == EDIT_LOW_BALANCE) {
-
+			editLowBalance();
 		} else if (choice == EDIT_PIN) {
-
-		}
+			editPin();
+		} 
 
 	}
+	
 
 	public void displayFamilyInfo() {
 		System.out.println("Here is the family info: ");
 		System.out.print(family.displayFamilyInfo());
+		displayMenu();
 	}
 
 	public void editLowBalance() {
@@ -49,6 +53,8 @@ public class GeneralFamilyInfo extends Submenu {
 		System.out.println("Please enter the new balance threshold: ");
 		newBalance = UserInput.intakeDouble();
 		family.setMinHouseHoldBalance(newBalance);
+		System.out.println("New balance threshold set");
+		displayMenu();
 	}
 
 	public void editPin() {
@@ -72,6 +78,7 @@ public class GeneralFamilyInfo extends Submenu {
 			}
 		}
 		System.out.println("Pin changed");
+		displayMenu();
 	}
 
 }
