@@ -140,5 +140,29 @@ public class FamilyBudgetManagement {
 		return memberlist.findLowestBalance();
 	}
 	
-
+	public double avgExpensePerMember() {
+		return memberlist.calculateAveExpense();
+	}
+	//mei xie wan
+	public Member[] sortMemberByIncome() {
+		return null;
+	}
+	//mei xie wan
+	public Member[] sortMemberByExpense() {
+		return null;
+	}
+	
+	public Member searchMember(String name) {
+		return memberlist.searchMember(name);
+	}
+	
+	public boolean changePassword(String old, String newPass) {
+		return transactionList.changePassword(old, newPass);
+	}
+	//mei xie wan
+	public void allocateIncome(String name,int id, int percentage) throws AccountException{
+		
+	}
+	
+	public add
 }

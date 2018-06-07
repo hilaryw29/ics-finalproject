@@ -133,7 +133,7 @@ public class TransactionList{
 	public void readFile(String, String){
 		
 	}
-	public boolean changePassword(String, String){
-		
+	public boolean changePassword(String old, String newPass){
+		return true;
 	}
 }
