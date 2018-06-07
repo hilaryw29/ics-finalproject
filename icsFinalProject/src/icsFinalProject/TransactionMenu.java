@@ -31,7 +31,7 @@ public class TransactionMenu extends Submenu {
 			
 		} else if (choice == FINDAMOUNT) {
 			findByAmount();
-		} else if (choice == VIEWBYFAM){
+		} else if (choice == VIEWBYFAM) {
 			
 		} else {
 			
@@ -46,9 +46,22 @@ public class TransactionMenu extends Submenu {
 	}
 	
 	private void addTransaction () {
-		System.out
+		System.out.print("Please enter the following information:");
+		System.out.print("The name of the family member who paid the transaction: ");
+		String payer = UserInput.intakeName(password);
+		System.out.print("The name of the family member or organization who receied the transaction. ");
+		String payee = UserInput.intakeString();
+		System.out.print("The account ID Of the payer: ");
+		int payerID = UserInput.intakeInt();
+		System.out.print("The account ID of the receiver, or if it is an organization, enter -1: ");
+		int payeeID = UserInput.intakeInt();
+		System.out.print("Enter the amount of the transaction in dollars: $");
+		double amount = UserInput.intakeDouble();
+		System.out.print("Enter the date of the transaction: ");
+		String date = UserInput.intakeDate();
+		System.out.print("Enter transaction description (optional):");
 		try {
-			
+			family.addTransaction(new Transaction(amount, payerID, payeeID, payer, payee, description, date))
 		} catch (AccountException e) {
 			
 		}
@@ -63,7 +76,9 @@ public class TransactionMenu extends Submenu {
 		if (found == null) {
 			System.out.println("No transactions were found for the specified date");
 		} else {
-			System.out.println(found);
+			for(Transaction i:found) {
+				System.out.println(i);
+			}
 		}
 		displayMenu();
 	}
