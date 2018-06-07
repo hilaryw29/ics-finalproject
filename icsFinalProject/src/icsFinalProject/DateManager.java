@@ -9,7 +9,6 @@ import java.util.*;
 public class DateManager implements Runnable{
 	RecurringBillsList billList;
 	FamilyBudgetManagement manager;
-	final static String message = "RecurringBill";
 	public DateManager(RecurringBillsList billList, FamilyBudgetManagement manager) {
 		this.billList = billList;
 		this.manager = manager;

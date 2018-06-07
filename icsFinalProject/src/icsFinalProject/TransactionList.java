@@ -7,6 +7,8 @@ import java.io.*;
 
 public class TransactionList{
 	private int numOfTransaction;
+	private int lastID;
+	private final static int DEFAULTNUMOFTRANSACTION = 100;
 	private String PIN;
 	private ArrayList<Transaction> sortedTransaction;
 	private ArrayList<Transaction> unsortedTransaction;
@@ -35,37 +37,27 @@ public class TransactionList{
 	}
 	
 	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException{
-		throw new FileModifiedException();
-		throw new PINNotMatchException();
+
 	}
 	public TransactionList(String PIN){
 		this.PIN = PIN;
 	}
-	public void sortTransactionByAmount(){
-		
-		Iterator listInterator = unsortedTransaction.iterator();
-		while (listInterator.hasNext()) {
-			RecurringBill current = (RecurringBill) listInterator.next();
-			if (!current.pay()) {
-				unpaidList.add(current);
+	
+	public void insertTransactionByAmount(Transaction t){
+		for (int i = 0;i < numOfTransaction;i++) {
+			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
+				sortedTransaction.add(i,t);
 			}
 		}
-			Transaction temp;
-			temp = unsortedTransaction.get(i);
-			unsortedTransaction.get(i) = unsortedTransaction.get(index);
-			unsortedTransaction.get(index) = temp;	
 	}
+
 	public int addTransaction(Transaction t){
-		t.setID(unsortedTransaction.getLast().getID()+1);
-		int i = numOfTransaction - 1;
-		while((unsortedTransaction.get(i).getDate()).compareTo(t.getDate) > 0){
-			i --;
-		}
-		unsortedTransaction.add(i + 1, t);
-		return t.getId(); 
+		
+		insertTransactionByAmount(t);
+		
 	}
 	public void writeFile(){
-		try{
+/*		try{
 			BufferedWriter out = new BufferedWriter(new FileWriter(filename));
 			Iterator listInterator = unsortedTransaction.iterator();
 	 		while (listInterator.hasNext()) {
@@ -74,7 +66,7 @@ public class TransactionList{
 			}
 		}			out.close();
 		}
-	}
+*/	}
 	public LinkedList<Transaction> listTransaction(String name){
 		LinkedList<Transaction> person = new LinkedList();
 		for(int i = 0; i < numOfTransaction; i ++){
