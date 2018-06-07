@@ -37,7 +37,7 @@ public class GeneralFamilyInfo extends Submenu {
 			editLowBalance();
 		} else if (choice == EDIT_PIN) {
 			editPin();
-		}
+		} 
 
 	}
 	
