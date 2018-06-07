@@ -65,6 +65,34 @@ public class FamilyBudgetManagement {
 		billList = new RecurringBillsList();
 	}
 	
+	public boolean assignBudgets(String name, double amount) {
+		return memberlist.assignBudget(name, amount);
+	}
+	
+	public double checkDudgets(String name, double amount) {
+		return memberlist.checkBudget(name);
+	}
+	
+	public void setGoal(String name, Goal goal) throws GoalException{
+		memberlist.setGoal(goal, name);
+	}
+	
+	public void setMinHouseHoldBalance(double minHouseHoldBalance) {
+		this.minHouseHoldBalance = Math.abs(minHouseHoldBalance); 
+	}
+	
+	public boolean isHouseHoldBalanceLow() {
+		return houseHoldBalance > minHouseHoldBalance ? true : false;
+	}
+	
+	public boolean addMonthlyBill(RecurringBill bill) {
+		billList.addBill(bill);
+		return checkIfAccountExisted(bill);
+	}
+	
+	private boolean checkIfAccountExisted(RecurringBill bill) {
+		
+	}
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
 		updateHoldBalance();

@@ -17,7 +17,10 @@ public class RecurringBillsList {
 		billList = new LinkedList();
 	}
 	
-	
+	public void addBill(RecurringBill bill) {
+		int ID = billList.getLast().getID()+1;
+		billList.add(new RecurringBill(bill, ID));
+	}
 	public LinkedList<RecurringBill> getBillList() {
 		LocalDateTime now = LocalDateTime.now();
 		int day = now.getDayOfMonth();

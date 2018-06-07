@@ -12,8 +12,17 @@ public class RecurringBill {
 		this.date = date;
 		this.name = name;
 		this.amount = amount;
+		payed = false;
 	}
 	
+	public RecurringBill(RecurringBill bill, int ID) {
+		this.accountID = bill.accountID;
+		this.date = bill.date;
+		this.name = bill.name;
+		this.amount = bill.amount;
+		payed = false;
+		this.ID = ID;
+	}
 	public boolean pay() {
 		return payed;
 	}
