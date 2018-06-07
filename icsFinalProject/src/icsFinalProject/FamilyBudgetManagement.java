@@ -10,7 +10,7 @@ public class FamilyBudgetManagement {
 	private int familyBalance;
 	private double houseHoldBalance;
 	private double minHouseHoldBalance;
-	private Thread DateManager;
+	private DateManager dateManager;
 	private FamilyMemberList memberlist;
 	private TransactionList transactionList;
 	private RecurringBillsList billList;
@@ -48,11 +48,16 @@ public class FamilyBudgetManagement {
 				throw new FileModifiedException(fileName, FileConstant.FILEMODIFED);
 			}
 			
-		}
-		
+		}	
 		transactionList = new TransactionList(FileConstant.TRANSACTIONS, PIN);
 		memberlist = new FamilyMemberList(FileConstant.MEMBERINFO,FileConstant.ACCOUNTS);
-		billList = new RecurringBillsList(FileConstant.this)
+		billList = new RecurringBillsList(FileConstant.BILLS);
+		startTheard(this, billList);
+	}
+	
+	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) {
+		dateManager = new DateManager(billList,this);
+		dateManager.run();
 	}
 	
 	public int addTransaction(Transaction transaction) throws AccountException {
