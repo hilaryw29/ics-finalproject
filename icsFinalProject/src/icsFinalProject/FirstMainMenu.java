@@ -118,6 +118,7 @@ public class FirstMainMenu {
 		return input;
 	}
 	
+	// DEPRECATE
 	private double intakeDouble() {
 		boolean finished = false; 
 		double input;

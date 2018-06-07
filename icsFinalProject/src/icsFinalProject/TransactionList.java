@@ -62,7 +62,7 @@ public class TransactionList{
 			i --;
 		}
 		unsortedTransaction.add(i + 1, t);
-		return t.getID(); 
+		return t.getId(); 
 	}
 	public void writeFile(){
 		try{
@@ -99,9 +99,10 @@ public class TransactionList{
         }
         return -1;
 	}
-	public Transaction findTransaction(int){
+	public Transaction findTransaction(int id){
 	
 	}
+	
 	public LinkedList<Transaction> findTransactionLarger(double amount){
 		LinkedList<Transaction> result0 = new LinkedList();
 		for(int i = 0; i < numOfTransaction; i ++){
@@ -120,7 +121,7 @@ public class TransactionList{
 		}
 		return result1;
 	}
-	public LinkedList<Transaction> findTransactionEqual(double){
+	public LinkedList<Transaction> findTransactionEqual(double amount){
 		LinkedList<Transaction> result2 = new LinkedList();
 		for(int i = 0; i < numOfTransaction; i ++){
 			if(unsortedTransaction.get(i).getAmount() == amount){
@@ -132,7 +133,7 @@ public class TransactionList{
 	public void readFile(String, String){
 		
 	}
-	public boolean changePassword(String, String){
-		
+	public boolean changePassword(String old, String newPass){
+		return true;
 	}
 }

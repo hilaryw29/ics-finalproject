@@ -7,7 +7,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class FamilyBudgetManagement {
-	private int familyBalance;
 	private double houseHoldBalance;
 	private double minHouseHoldBalance;
 	private DateManager dateManager;
@@ -86,13 +85,18 @@ public class FamilyBudgetManagement {
 	}
 	
 	public boolean addMonthlyBill(RecurringBill bill) {
-		billList.addBill(bill);
-		return checkIfAccountExisted(bill);
+		if (checkIfAccountExisted(bill) == true) {
+			billList.addBill(bill);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	private boolean checkIfAccountExisted(RecurringBill bill) {
-		
+		return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MAX_VALUE);
 	}
+	
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
 		updateHoldBalance();
@@ -107,16 +111,72 @@ public class FamilyBudgetManagement {
 		houseHoldBalance=memberlist.getTotalBalance();
 	}
 	
-	public LinkedList <Transaction> listTransaction (String name){
-//		if (name is a real family member) {
-//			return 
-//		}
-				
+	public LinkedList<Transaction> listTransaction(String name){
+		return transactionList.listTransaction(name);	
 	}
 	
+	public LinkedList<Transaction> findTransaction(String date){
+		return transactionList.findTransaction(date);	
+	} 
 	
+	public Transaction findTransaction(int id){
+		return transactionList.findTransaction(id);	
+	}
 	
+	public LinkedList<Transaction> findTransactionLarger(double amount){
+		return transactionList.findTransactionLarger(amount);	
+	}
 	
+	public LinkedList<Transaction> findTransactionEqual(double amount){
+		return transactionList.findTransactionEqual(amount);	
+	}
 	
-
+	public LinkedList<Transaction> findTransactionSmaller(double amount){
+		return transactionList.findTransactionSmaller(amount);	
+	}
+	
+	public Member findLowestBalance() {
+		return memberlist.findLowestBalance();
+	}
+	
+	public double avgExpensePerMember() {
+		return memberlist.calculateAveExpense();
+	}
+	//mei xie wan
+	public Member[] sortMemberByIncome() {
+		return null;
+	}
+	//mei xie wan
+	public Member[] sortMemberByExpense() {
+		return null;
+	}
+	
+	public Member searchMember(String name) {
+		return memberlist.searchMember(name);
+	}
+	
+	public boolean changePassword(String old, String newPass) {
+		return transactionList.changePassword(old, newPass);
+	}
+	//mei xie wan
+	public void allocateIncome(String name,int id, int percentage) throws AccountException{
+		
+	}
+	
+	public boolean addFamilyMember(Member m) {
+		memberlist.addFamilyMember(m);
+		return true;
+	}
+	
+	public boolean tryPad(String name, int id, double amount) {
+		return memberlist.checkAccountBalance(name, id, amount);
+	}
+	
+	public boolean delBill(int id) {
+		return billList.delBill(id);
+	}
+	
+	public String displayFamilyInfo() {
+		return memberlist.toString();
+	}
 }

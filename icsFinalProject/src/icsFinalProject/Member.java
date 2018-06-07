@@ -40,6 +40,10 @@ public abstract class Member {
 		return null;
 	}
 	
+	public Member compareTo(Member other) {
+		return balance - other.balance > 0 ? this : other;
+	}
+	
 	private int findAccountIndex (int accountId) {
 		int bottom = 0;
 		int top = accountList.size()-1;
@@ -109,4 +113,32 @@ public abstract class Member {
 	}
 	
 	public abstract void writeFile ();
+
+	public String getName() {
+		return name;
+	}
+
+	public double getIncome() {
+		return income;
+	}
+
+	public double getExpense() {
+		return expense;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public LinkedList<Account> getAccountList() {
+		return accountList;
+	}
+
+	public double getPercentage() {
+		return percentage;
+	}
+
+	public Goal getGoal() {
+		return goal;
+	}
 }

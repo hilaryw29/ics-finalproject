@@ -32,6 +32,16 @@ public class Transaction implements Comparable<Transaction>{
 		else 
 			return false;
 	}
+
+	public String toString() {
+		String s = "Payer: " + payer;
+		s += "\nPayer account ID: " + payerAccountID;
+		s += "\nPayee: " + payee;
+		s += "\nPayee account ID: " + payeeAccountID;
+		s += "\nAmount: $" + amount;
+		s += "\nDate: " + date + "\n";
+		return s;
+	}
 	
 	public int equalDate(String date) {
 		return this.date.compareTo(date);
