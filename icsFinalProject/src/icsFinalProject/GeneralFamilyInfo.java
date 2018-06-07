@@ -8,7 +8,7 @@ public class GeneralFamilyInfo extends Submenu {
 	final int EDIT_LOW_BALANCE = 4;
 	final int EDIT_PIN = 5;
 	
-	public GeneralFamilyInfo (String pass) {
+	public GeneralFamilyInfo (String pass) { 
 		super(pass);
 		displayMenu();
 	}
