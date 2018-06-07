@@ -38,7 +38,6 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
-	
 	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
 		BufferedReader read = new BufferedReader(new FileReader(fileName));
 		String line;
@@ -55,9 +54,15 @@ public class FamilyBudgetManagement {
 		startTheard(this, billList);
 	}
 	
-	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) {
+	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
 		dateManager = new DateManager(billList,this);
 		dateManager.run();
+	}
+	
+	public FamilyBudgetManagement(String PIN) {
+		transactionList = new TransactionList(PIN);
+		memberlist = new FamilyMemberList();
+		billList = new RecurringBillsList();
 	}
 	
 	public int addTransaction(Transaction transaction) throws AccountException {
