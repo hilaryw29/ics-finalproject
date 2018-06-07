@@ -18,7 +18,7 @@ public class FamilyBudgetManagement {
 	static class MD5{
 		private static final String ALGORITHM ="MD5";
 		
-		public static String getMD5(String fileName) {
+		private static String getMD5(String fileName) {
 			try {
 				byte[] read = Files.readAllBytes(Paths.get(fileName));
 				byte[] hash = MessageDigest.getInstance(ALGORITHM).digest(read);
@@ -32,12 +32,27 @@ public class FamilyBudgetManagement {
 			}
 			return "0";
 		}
+		
+		public static boolean compareMD5(String fileName, String md5) {
+			return md5==getMD5(fileName) ? true : false;
+		}
 	}
 	
 	
-	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException {
+	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
 		BufferedReader read = new BufferedReader(new FileReader(fileName));
+		String line;
+		while ((line = read.readLine()) != null) {
+			String md5 = read.readLine();
+			if (!MD5.compareMD5(line, md5)) {
+				throw new FileModifiedException(fileName, FileConstant.FILEMODIFED);
+			}
+			
+		}
 		
+		transactionList = new TransactionList(FileConstant.TRANSACTIONS, PIN);
+		memberlist = new FamilyMemberList(FileConstant.MEMBERINFO,FileConstant.ACCOUNTS);
+		billList = new RecurringBillsList(FileConstant.this)
 	}
 	
 	public int addTransaction(Transaction transaction) throws AccountException {
