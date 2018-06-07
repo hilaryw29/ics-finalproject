@@ -1,3 +1,4 @@
+package icsFinalProject;
 public class Transaction{
 	private double amount;
 	private String payer, payee;

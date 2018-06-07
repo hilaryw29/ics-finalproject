@@ -1,4 +1,4 @@
-
+package icsFinalProject;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 import javax.crypto.Cipher;
@@ -39,8 +39,11 @@ public class TransactionList{
 	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException{
 
 	}
+	
 	public TransactionList(String PIN){
 		this.PIN = PIN;
+		sortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
+		unsortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
 	}
 	
 	public void insertTransactionByAmount(Transaction t){
@@ -51,9 +54,16 @@ public class TransactionList{
 		}
 	}
 
-	public int addTransaction(Transaction t){
+	public void insertTransactionByDateAndID(Transaction t) {
 		
+	}
+	
+	
+	public int addTransaction(Transaction t){
+		lastID++;
+		Transaction tWithId = new Transaction(t,lastID);
 		insertTransactionByAmount(t);
+		
 		
 	}
 	public void writeFile(){
@@ -92,11 +102,11 @@ public class TransactionList{
         return -1;
 	}
 	public Transaction findTransaction(int id){
-	
+		for (int i = 0; i < )
 	}
 	
 	public LinkedList<Transaction> findTransactionLarger(double amount){
-		LinkedList<Transaction> result0 = new LinkedList();
+		LinkedList<Transaction> result0 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
 			if(unsortedTransaction.get(i).getAmount() > amount){
 				result0.add(unsortedTransaction.get(i));
@@ -105,7 +115,7 @@ public class TransactionList{
 		return result0;
 	}
 	public LinkedList<Transaction> findTransactionSmaller(double amount){
-		LinkedList<Transaction> result1 = new LinkedList();
+		LinkedList<Transaction> result1 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
 			if(unsortedTransaction.get(i).getAmount() < amount){
 				result1.add(unsortedTransaction.get(i));
@@ -114,7 +124,7 @@ public class TransactionList{
 		return result1;
 	}
 	public LinkedList<Transaction> findTransactionEqual(double amount){
-		LinkedList<Transaction> result2 = new LinkedList();
+		LinkedList<Transaction> result2 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
 			if(unsortedTransaction.get(i).getAmount() == amount){
 				result2.add(unsortedTransaction.get(i));			
@@ -122,10 +132,16 @@ public class TransactionList{
 		}
 		return result2;
 	}
-	public void readFile(String, String){
+	public void readFile(){
 		
 	}
+	
 	public boolean changePassword(String old, String newPass){
-		return true;
+		if (old == PIN) {
+			PIN = newPass;
+			writeFile();
+			return true;
+		} else
+			return false;
 	}
 }

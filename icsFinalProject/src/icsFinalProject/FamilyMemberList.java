@@ -1,3 +1,4 @@
+package icsFinalProject;
 import java.util.*;
 public class FamilyMemberList{
 	private int numOfMember;
