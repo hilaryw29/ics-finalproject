@@ -1,6 +1,6 @@
 package icsFinalProject;
 
-public class RecurringBill {
+public class RecurringBill implements Comparable{
 	private double amount;
 	private String name;
 	private String date;
@@ -23,6 +23,11 @@ public class RecurringBill {
 		payed = false;
 		this.ID = ID;
 	}
+	
+	public int compareTo(RecurringBill other) {
+		return ID - other.ID;
+	}
+	
 	public boolean pay() {
 		return payed;
 	}
@@ -49,7 +54,5 @@ public class RecurringBill {
 
 	public int getAccountID() {
 		return accountID;
-	}
-
-	
+	}	
 }

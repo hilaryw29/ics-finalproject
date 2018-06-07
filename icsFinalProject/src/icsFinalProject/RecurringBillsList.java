@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import java.io.*;
 
 public class RecurringBillsList {
-	LinkedList<RecurringBill> billList;
 	int numOfBills;
+	TreeSet<RecurringBill> billList;
 	public RecurringBillsList(String fileName) throws IOException, FileNotFoundException, FileModifiedException {
 		BufferedReader read = new BufferedReader(new FileReader(fileName));
 		String line = read.readLine();
@@ -14,11 +14,11 @@ public class RecurringBillsList {
 	}
 	
 	public RecurringBillsList() {
-		billList = new LinkedList();
+		billList = new TreeSet<>();
 	}
 	
 	public void addBill(RecurringBill bill) {
-		int ID = billList.getLast().getID()+1;
+		int ID = billList.last().getID()+1;
 		billList.add(new RecurringBill(bill, ID));
 	}
 	public LinkedList<RecurringBill> getBillList() {
@@ -43,5 +43,10 @@ public class RecurringBillsList {
 			}
 		}
 		return unpaidList;
+	}
+
+	public boolean delBill(int id) {
+		
+		return false;
 	}
 }

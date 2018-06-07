@@ -7,7 +7,6 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class FamilyBudgetManagement {
-	private int familyBalance;
 	private double houseHoldBalance;
 	private double minHouseHoldBalance;
 	private DateManager dateManager;
