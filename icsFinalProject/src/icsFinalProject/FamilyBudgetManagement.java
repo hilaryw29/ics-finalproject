@@ -1,5 +1,6 @@
 package icsFinalProject;
 import java.io.*;
+import java.util.*;
 
 public class FamilyBudgetManagement {
 	private int familyBalance;
@@ -9,7 +10,7 @@ public class FamilyBudgetManagement {
 	private FamilyMemberList memberlist;
 	private TransactionList transactionList;
 	private RecurringBillsList billList;
-	static 
+
 	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException {
 		
 	}
@@ -25,6 +26,13 @@ public class FamilyBudgetManagement {
 	
 	private void updateHoldBalance() {
 		houseHoldBalance=FamilyMemberList.getTotalBalance();
+	}
+	
+	public LinkedList <Transaction> listTransaction (String name){
+//		if (name is a real family member) {
+//			return 
+//		}
+				
 	}
 	
 	

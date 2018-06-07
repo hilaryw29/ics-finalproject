@@ -24,7 +24,7 @@ public class TransactionMenu extends Submenu {
 		if (choice == FINDDATE) {
 			findDate();
 		} else if (choice == ADDTRANS) {
-			addTrans();
+			addTrans();	
 		} else if (choice == FINDAMOUNT) {
 			
 		} else {
