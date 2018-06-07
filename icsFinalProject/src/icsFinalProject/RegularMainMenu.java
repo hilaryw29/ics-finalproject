@@ -71,7 +71,7 @@ public class RegularMainMenu {
 			System.out.println("You have no current alerts");
 		}
 		
-		choice = intakeChoice();
+		choice = UserInput.intakeChoice(3);
 		
 		if (choice == 1) {
 			
@@ -82,6 +82,8 @@ public class RegularMainMenu {
 		}
 	}
 
+	
+	// DEPRECATE THIS
 	private int intakeChoice() {
 		int input;
 		boolean success = false;

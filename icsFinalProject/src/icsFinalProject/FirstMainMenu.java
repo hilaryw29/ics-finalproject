@@ -122,10 +122,8 @@ public class FirstMainMenu {
 		boolean finished = false; 
 		double input;
 		
-		// Prompts user for member income and writes it to file
 		while (!finished) {
 			try {				
-				System.out.println("Please enter the name of their monthly income in dollars: ");
 				input = sc.nextDouble();
 				finished = true;
 			} catch (InputMismatchException e) {
