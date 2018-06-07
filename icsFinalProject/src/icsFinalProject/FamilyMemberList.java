@@ -137,4 +137,16 @@ public class FamilyMemberList{
 		}
 		return sum;
 	}
+
+	public Member findLowestBalance() {
+		return searchLowestBalance(0);
+	}
+	
+	private Member searchLowestBalance(int depth) {
+		if (depth == numOfMember - 1) {
+			return family.get(depth);
+		} else {
+			return family.get(depth).compareTo(searchLowestBalance(depth+1));
+		}
+	}
 }

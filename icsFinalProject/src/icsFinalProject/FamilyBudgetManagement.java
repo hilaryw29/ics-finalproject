@@ -124,9 +124,21 @@ public class FamilyBudgetManagement {
 		return transactionList.findTransaction(id);	
 	}
 	
+	public LinkedList<Transaction> findTransactionLarger(double amount){
+		return transactionList.findTransactionLarger(amount);	
+	}
 	
+	public LinkedList<Transaction> findTransactionEqual(double amount){
+		return transactionList.findTransactionEqual(amount);	
+	}
 	
+	public LinkedList<Transaction> findTransactionSmaller(double amount){
+		return transactionList.findTransactionSmaller(amount);	
+	}
 	
+	public Member findLowestBalance() {
+		return memberlist.findLowestBalance();
+	}
 	
 
 }

@@ -121,7 +121,7 @@ public class TransactionList{
 		}
 		return result1;
 	}
-	public LinkedList<Transaction> findTransactionEqual(double){
+	public LinkedList<Transaction> findTransactionEqual(double amount){
 		LinkedList<Transaction> result2 = new LinkedList();
 		for(int i = 0; i < numOfTransaction; i ++){
 			if(unsortedTransaction.get(i).getAmount() == amount){

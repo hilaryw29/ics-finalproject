@@ -40,6 +40,10 @@ public abstract class Member {
 		return null;
 	}
 	
+	public Member compareTo(Member other) {
+		return balance - other.balance > 0 ? this : other;
+	}
+	
 	private int findAccountIndex (int accountId) {
 		int bottom = 0;
 		int top = accountList.size()-1;
