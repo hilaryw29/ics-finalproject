@@ -4,14 +4,16 @@ import java.util.*;
 
 public class Submenu {
 	String password;
+	FamilyBudgetManagement family;
 	
 	public Submenu (String pass) {
 		password = pass;
+		family = new FamilyBudgetManagement(pass);
 	}
 	
 	public int intakeChoice (int upper) {
 		Scanner sc = new Scanner(System.in);
-		int input;
+		int input = 0;
 		boolean finished = false;
 		
 		while (!finished) {

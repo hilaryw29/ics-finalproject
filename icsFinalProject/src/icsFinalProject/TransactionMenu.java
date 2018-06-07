@@ -7,6 +7,7 @@ public class TransactionMenu extends Submenu {
 	final int ADDTRANS = 2;
 	final int FINDAMOUNT = 3;
 	final int VIEWBYFAM = 4;
+	final int GOBACK = 5;
 	
 	public TransactionMenu(String pass) {
 		super(pass);
@@ -16,18 +17,36 @@ public class TransactionMenu extends Submenu {
 	public void displayMenu() {
 		int choice;
 		System.out.println("TRANSACTION MENU");
-		System.out.println("Please enter a number 1-4 that corresponds to one of the following choices: ");
-		choice = intakeChoice(VIEWBYFAM);
+		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
+		System.out.println("1. Find transaction by date");
+		choice = intakeChoice(5);
 		
 		if (choice == FINDDATE) {
-			
+			findDate();
 		} else if (choice == ADDTRANS) {
-			
+			addTrans();
 		} else if (choice == FINDAMOUNT) {
 			
 		} else {
 			
 		}
+	}
+	
+	private void addTrans () {
+		
+	}
+	
+	private void findDate () {
+		LinkedList <Transaction> found;
+		System.out.println("Searching transactions by date");
+		found = family.findTransaction(intakeDate());
+		
+		if (found == null) {
+			System.out.println("No transactions were found for the specified date");
+		} else {
+			System.out.println(found);
+		}
+		displayMenu();
 	}
 	
 	private String intakeDate () {
