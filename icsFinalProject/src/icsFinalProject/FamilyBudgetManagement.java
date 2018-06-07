@@ -36,20 +36,22 @@ public class FamilyBudgetManagement {
 	
 	
 	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException {
+		BufferedReader read = new BufferedReader(new FileReader(fileName));
 		
 	}
 	
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
 		updateHoldBalance();
+		return transactionList.addTransaction(transaction);
 	}
 	
 	private void updateBalance(Transaction transaction) throws AccountException {
-		FamilyMemberList.updateBalance(transaction);
+		memberlist.updateBalance(transaction);
 	}
 	
 	private void updateHoldBalance() {
-		houseHoldBalance=FamilyMemberList.getTotalBalance();
+		houseHoldBalance=memberlist.getTotalBalance();
 	}
 	
 	public LinkedList <Transaction> listTransaction (String name){
