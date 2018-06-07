@@ -65,4 +65,39 @@ public class UserInput {
 		}
 		return input;
 	}
+	
+	public static String intakeName (String pin) {
+		FamilyBudgetManagement family = new FamilyBudgetManagement(pin);
+		String input;
+		boolean found = false;
+		
+		while (!found) {
+			input = sc.nextLine();
+			if (family.searchMember(input) == null) {
+				System.out.println("Name not found. Try again.");
+			} else {
+				return input;
+			}
+		}
+	}
+	
+	public static String intakeString () {
+		return sc.nextLine();
+	}
+	
+	public static int intakeInt() {
+		boolean success = false;
+		int input = 0;
+		
+		while (!success) {
+			try {
+				input = sc.nextInt();
+				success = true;
+			} catch (InputMismatchException ix) {
+				sc.nextLine();
+				System.out.println("Invalid input. Please enter again.");
+			}
+		}
+		return input;
+	}
 }
