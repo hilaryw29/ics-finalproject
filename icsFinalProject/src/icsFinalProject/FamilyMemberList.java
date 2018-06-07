@@ -92,9 +92,11 @@ public class FamilyMemberList{
 	public LinkedList<Account> listAccount(){
 		
 	}
+	
 	public double calculateAveExpense(){
 		return getTotalBalance() / numOfMember;
 	}
+	
 	public Member[] sortMemberByIncome(){
 		for(int i = numOfMember - 1; i >=0; i --){
 			int maxIndex = 0; 

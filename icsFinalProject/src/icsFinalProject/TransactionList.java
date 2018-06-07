@@ -102,6 +102,7 @@ public class TransactionList{
 	public Transaction findTransaction(int id){
 	
 	}
+	
 	public LinkedList<Transaction> findTransactionLarger(double amount){
 		LinkedList<Transaction> result0 = new LinkedList();
 		for(int i = 0; i < numOfTransaction; i ++){
