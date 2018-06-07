@@ -109,4 +109,32 @@ public abstract class Member {
 	}
 	
 	public abstract void writeFile ();
+
+	public String getName() {
+		return name;
+	}
+
+	public double getIncome() {
+		return income;
+	}
+
+	public double getExpense() {
+		return expense;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public LinkedList<Account> getAccountList() {
+		return accountList;
+	}
+
+	public double getPercentage() {
+		return percentage;
+	}
+
+	public Goal getGoal() {
+		return goal;
+	}
 }

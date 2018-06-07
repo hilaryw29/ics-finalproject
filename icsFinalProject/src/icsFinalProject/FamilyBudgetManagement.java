@@ -86,13 +86,18 @@ public class FamilyBudgetManagement {
 	}
 	
 	public boolean addMonthlyBill(RecurringBill bill) {
-		billList.addBill(bill);
-		return checkIfAccountExisted(bill);
+		if (checkIfAccountExisted(bill) == true) {
+			billList.addBill(bill);
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	private boolean checkIfAccountExisted(RecurringBill bill) {
-		
+		return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MAX_VALUE);
 	}
+	
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
 		updateHoldBalance();
@@ -107,13 +112,17 @@ public class FamilyBudgetManagement {
 		houseHoldBalance=memberlist.getTotalBalance();
 	}
 	
-	public LinkedList <Transaction> listTransaction (String name){
-//		if (name is a real family member) {
-//			return 
-//		}
-				
+	public LinkedList<Transaction> listTransaction(String name){
+		return transactionList.listTransaction(name);	
 	}
 	
+	public LinkedList<Transaction> findTransaction(String date){
+		return transactionList.findTransaction(date);	
+	} 
+	
+	public Transaction findTransaction(int id){
+		return transactionList.findTransaction(id);	
+	}
 	
 	
 	

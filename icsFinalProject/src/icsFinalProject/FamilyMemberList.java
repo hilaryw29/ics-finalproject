@@ -1,3 +1,4 @@
+import java.util.*;
 public class FamilyMemberList{
 	private int numOfMember;
 	private ArrayList<Member> family;
@@ -14,12 +15,12 @@ public class FamilyMemberList{
 	public void updateBalance(Transaction t) throws AccountException{
 		for(int i = 0; i < numOfMember; i ++){
 			if ((family.get(i).getName()).equals(t.getPayer())) {
-				if(!family.get(i).updateBalance(t.getID, (family.get(i).getBalance() - t.getAmount))){
+				if(!family.get(i).updateBalance(t.getId(), (family.get(i).getBalance() - t.getAmount))){
 					throw new AccountException();
 				}
 			}
 			if ((family.get(i).getName()).equals(t.getPayee())) {
-				if(!family.get(i).updateBalance(t.getID, (family.get(i).getBalance() + t.getAmount))){
+				if(!family.get(i).updateBalance(t.getId(), (family.get(i).getBalance() + t.getAmount))){
 					throw new AccountException();
 				}
 			}
@@ -36,12 +37,12 @@ public class FamilyMemberList{
 		}
 		return null;
 	}
-	public boolean transferMoney(double, String)
+//	public boolean transferMoney(double, String)
 	
 	public boolean assignBudget(String name, double amount){
 		for(int i = 0; i < numOfMember; i ++){
 			if((family.get(i).getName()).equals(name)){
-				family.get(i).setBudget();
+				family.get(i).setBudget(amount);
 				return true;
 			}
 		}
@@ -76,7 +77,7 @@ public class FamilyMemberList{
 	public void setGoal(Goal goal, String name) throws GoalException{
 		for(int i = 0; i < numOfMember; i ++){
 			if((family.get(i).getName()).equals(name)){
-				return(family.get(i).setGoal(goal));
+				family.get(i).setGoal(goal);
 			}
 		}
 		throw new GoalException(false, true, true);
@@ -92,7 +93,7 @@ public class FamilyMemberList{
 		
 	}
 	public double calculateAveExpense(){
-		
+		return getTotalBalance() / numOfMember;
 	}
 	public Member[] sortMemberByIncome(){
 		for(int i = numOfMember - 1; i >=0; i --){
@@ -102,9 +103,7 @@ public class FamilyMemberList{
 					maxIndex = j;
 				}
 			}
-			Member temp = family.get(i);
-			family.get(i) = family.get(maxIndex);
-			family.get(maxIndex) = temp;
+			family.set(maxIndex, family.set(i, family.get(maxIndex)));
 		}
 	}
 	public Member[] sortMemberByExpense(){
@@ -115,9 +114,7 @@ public class FamilyMemberList{
 					maxIndex = j;
 				}
 			}
-			Member temp = family.get(i);
-			family.get(i) = family.get(maxIndex);
-			family.get(maxIndex) = temp;
+			family.set(maxIndex, family.set(i, family.get(maxIndex)));
 		}
 	}
 	public Member searchMember(String name){
@@ -129,5 +126,13 @@ public class FamilyMemberList{
 			}
 		}
 		return null;
+	}
+	
+	public double getTotalBalance() {
+		double sum = 0;
+		for (int i = 0; i < numOfMember;i++) {
+			sum+=family.get(i).getBalance();
+		}
+		return sum;
 	}
 }

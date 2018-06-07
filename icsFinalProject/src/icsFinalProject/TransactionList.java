@@ -62,7 +62,7 @@ public class TransactionList{
 			i --;
 		}
 		unsortedTransaction.add(i + 1, t);
-		return t.getID(); 
+		return t.getId(); 
 	}
 	public void writeFile(){
 		try{
@@ -99,7 +99,7 @@ public class TransactionList{
         }
         return -1;
 	}
-	public Transaction findTransaction(int){
+	public Transaction findTransaction(int id){
 	
 	}
 	public LinkedList<Transaction> findTransactionLarger(double amount){
