@@ -21,7 +21,8 @@ public class GeneralFamilyInfo extends Submenu {
 		System.out.println("2. Edit low balance threshold");
 		System.out.println("3. Edit pin");
 		System.out.println("4. Display family info");
-		choice = intakeChoice(3);
+		System.out.println("5. Back to main menu");
+		choice = intakeChoice(5);
 		
 		if (choice == DISPLAY_FAMILY_INFO) {
 			displayFamilyInfo();
@@ -32,7 +33,9 @@ public class GeneralFamilyInfo extends Submenu {
 			editLowBalance();
 		} else if (choice == EDIT_PIN) {
 			editPin();
-		} 
+		} else {
+			goBack();
+		}
 
 	}
 	
