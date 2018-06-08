@@ -44,7 +44,18 @@ public class RecurringBillsList implements Serializable{
 	}
 
 	public void writeFile() {
-		
+		try{
+			BufferedWriter out = new BufferedWriter(new FileWriter(fileConstant.));
+			out.write(numOfBills);
+			RecurringBill itr =  (RecurringBill)listInterator.next();  
+  			while(itr.hasNext()){  
+   				System.out.println(itr.next());  	
+			}
+			out.close();
+		}
+		catch(IOException io){
+			throw io;
+		}
 	}
 	public boolean delBill(int id) {
 		return billList.remove(new RecurringBill(new RecurringBill(0,"0","0",0), id));
