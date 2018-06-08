@@ -1,5 +1,5 @@
 package icsFinalProject;
-import java.nio.charset.StandardCharsets;
+//import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -21,28 +21,25 @@ public class TransactionList{
 	static class Encryption{
 		 private static final String ALGORITHM = "AES";
 		 
-		 static String encrypt(String PIN, String text) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-			 byte[] pinbyte = PIN.getBytes(StandardCharsets.UTF_8);
-			 byte[] byteText = text.getBytes(StandardCharsets.UTF_8);
-			 SecretKeySpec key = new SecretKeySpec(pinbyte, ALGORITHM);
+		 static byte[] encrypt(byte[] PIN, byte[] text) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+			 SecretKeySpec key = new SecretKeySpec(PIN, ALGORITHM);
 		     Cipher cipher = Cipher.getInstance(ALGORITHM);
 		     cipher.init(Cipher.ENCRYPT_MODE, key);
-		     byte[] cipherText = cipher.doFinal(byteText);
-		     return new String(cipherText);
+		     return cipher.doFinal(text);
+		     
 		 }
 		 
-		 static String decrypt(String PIN, String text) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
-			 byte[] key = PIN.getBytes(StandardCharsets.UTF_8);
-			 byte[] cipherText = text.getBytes(StandardCharsets.UTF_8);
-			 SecretKeySpec secretKey = new SecretKeySpec(key, ALGORITHM);
+		 static byte[] decrypt(byte[] PIN, byte[] text) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
+			 SecretKeySpec secretKey = new SecretKeySpec(PIN, ALGORITHM);
 		     Cipher cipher = Cipher.getInstance(ALGORITHM);
 		     cipher.init(Cipher.DECRYPT_MODE, secretKey);
-		     return new String(cipher.doFinal(cipherText));
+		     return cipher.doFinal(text);
 		 }
 	}
 	
 	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException{
-
+		sortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
+		unsortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
 	}
 	
 	public TransactionList(String PIN){

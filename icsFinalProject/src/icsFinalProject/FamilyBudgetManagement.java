@@ -67,7 +67,7 @@ public class FamilyBudgetManagement {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FileConstant.MEMBERINFO));
         out.writeObject(memberlist);
         out.close();
-        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FileConstant.BILLS));
+        out = new ObjectOutputStream(new FileOutputStream(FileConstant.BILLS));
         out.writeObject(billList);
         out.close();
 	}
