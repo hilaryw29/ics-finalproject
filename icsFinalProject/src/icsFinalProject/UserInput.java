@@ -66,19 +66,20 @@ public class UserInput {
 		return input;
 	}
 	
-	public static String intakeName (String pin) {
-		FamilyBudgetManagement family = new FamilyBudgetManagement(pin);
-		String input;
+	// GIVE THIS A TRY SEE IF IT WORKS YIKES YIKES YIKES YIKES 
+	public static String intakeName (/*String pin*/) {
+		String input = null;
 		boolean found = false;
 		
 		while (!found) {
 			input = sc.nextLine();
-			if (family.searchMember(input) == null) {
+			if (RegularMainMenu.family.searchMember(input) == null) {
 				System.out.println("Name not found. Try again.");
 			} else {
 				return input;
 			}
 		}
+		return input;
 	}
 	
 	public static String intakeString () {

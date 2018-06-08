@@ -8,5 +8,4 @@ public class FileConstant {
 	public static final String TRANSACTIONS = ".\\resources\\Transactions.txt";
 	public static final String FILEMODIFED = "File Modified";
 	public static final String BILLS = ".\\resources\\Bills.txt";
-	//public static final String PIN = ".\\resources\\pin.txt";
 }

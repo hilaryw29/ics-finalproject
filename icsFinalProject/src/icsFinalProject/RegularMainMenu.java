@@ -5,7 +5,7 @@ import java.io.*;
 
 public class RegularMainMenu {
 	Scanner sc = new Scanner(System.in);
-	FamilyBudgetManagement family;
+	public static FamilyBudgetManagement family; // IS THIS A BAD IDEAAAA
 	String password;
 
 	public RegularMainMenu() {		
@@ -62,7 +62,11 @@ public class RegularMainMenu {
 		System.out.println("Welcome. Please enter a number 1-3 that corresponds to the following choices: ");
 		System.out.println("1. Generate previous montly report");
 		System.out.println("2. Transanctions menu");
-		System.out.println("3. View or edit current info\n");
+		System.out.println("3. General Family Info");
+		System.out.println("4. Bank accounts menu");
+		System.out.println("5. Family member menu");
+		System.out.println("6. Bills menu\n");
+		
 		System.out.println("Your current total family balance: + $" + family.getHouseHoldBalance());
 		
 		if (loadalert()) {
@@ -71,7 +75,7 @@ public class RegularMainMenu {
 			System.out.println("You have no current alerts");
 		}
 		
-		choice = UserInput.intakeChoice(3);
+		choice = UserInput.intakeChoice(6);
 		
 		if (choice == 1) {
 			

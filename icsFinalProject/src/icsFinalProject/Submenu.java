@@ -8,7 +8,7 @@ public class Submenu {
 	
 	public Submenu (String pass) {
 		password = pass;
-		family = new FamilyBudgetManagement(pass);
+		family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
 	}
 	
 	public int intakeChoice (int upper) {

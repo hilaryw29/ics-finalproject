@@ -28,21 +28,31 @@ public class TransactionMenu extends Submenu {
 		if (choice == FINDDATE) {
 			findByDate();
 		} else if (choice == ADDTRANS) {
-			
+			addTransaction();
 		} else if (choice == FINDAMOUNT) {
 			findByAmount();
 		} else if (choice == VIEWBYFAM) {
-			
+			viewByFamilyMembers();
 		} else {
-			
+			goBack();
 		}
+	}
+	
+	private void viewByFamilyMembers() {
+		System.out.print("Please enter the desired family member: ");
+		String member = UserInput.intakeName();
+		System.out.println("mei xie wan")
+		displayMenu();
 	}
 	
 	private void findByAmount () {
 		double amount;
 		
 		System.out.println("Finding transactions by amount");
-		
+		System.out.println("Enter the amount you are looking for: ");
+		amount = Math.abs(UserInput.intakeDouble());
+		System.out.println("mei xie wan");
+		displayMenu();
 	}
 	
 	private void addTransaction () {
@@ -60,10 +70,20 @@ public class TransactionMenu extends Submenu {
 		System.out.print("Enter the date of the transaction: ");
 		String date = UserInput.intakeDate();
 		System.out.print("Enter transaction description (optional):");
-		try {
-			family.addTransaction(new Transaction(amount, payerID, payeeID, payer, payee, description, date))
-		} catch (AccountException e) {
-			
+		String description = UserInput.intakeString();
+		
+		boolean success = false;
+		while (!success) {
+			try {
+				family.addTransaction(new Transaction(amount, payerID, payeeID, payer, payee, description, date));
+				success = true;
+			} catch (AccountException e) {
+				System.out.println("No account found");
+				System.out.println("Enter the payer account ID again: ");
+				payerID = UserInput.intakeInt();
+				System.out.println("Enter the account ID of the receiver, or if it is an organization, enter -1: ");
+				payeeID = UserInput.intakeInt();
+			}
 		}
 		displayMenu();
 	}
