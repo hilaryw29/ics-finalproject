@@ -67,6 +67,6 @@ public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 	}
 
 	public String toString() {
-		return "123";
+		return "ID: " + ID + "Account ID: " + accountID + "\nAmount: " + amount + "\nName: " + name + "\nDate: " + date + "\nSuccessful Transaction: " + isFailed;
 	}
 }
