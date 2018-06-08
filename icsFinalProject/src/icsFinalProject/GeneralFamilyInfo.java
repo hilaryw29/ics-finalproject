@@ -3,11 +3,10 @@ package icsFinalProject;
 import java.util.*;
 
 public class GeneralFamilyInfo extends Submenu {
-	final int VIEW_FAM_NAME = 1;
-	final int EDIT_FAM_NAME = 2;
-	final int VIEW_LOW_BALANCE = 3;
-	final int EDIT_LOW_BALANCE = 4;
-	final int EDIT_PIN = 5;
+	final int VIEW_LOW_BALANCE = 1;
+	final int EDIT_LOW_BALANCE = 2;
+	final int EDIT_PIN = 3;
+	final int DISPLAY_FAMILY_INFO = 4;
 
 	public GeneralFamilyInfo(String pass) {
 		super(pass);
@@ -18,18 +17,14 @@ public class GeneralFamilyInfo extends Submenu {
 		int choice;
 		System.out.println("GENERAL FAMILY INFO MENU");
 		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
-		System.out.println("1. View family name");
-		System.out.println("2. Edit family name");
-		System.out.println("3. View low balance threshold");
-		System.out.println("4. Edit low balance threshold");
-		System.out.println("5. Edit pin");
-		choice = intakeChoice(5);
+		System.out.println("1. View low balance threshold");
+		System.out.println("2. Edit low balance threshold");
+		System.out.println("3. Edit pin");
+		System.out.println("4. Display family info");
+		choice = intakeChoice(3);
 		
-		//How to view and edit family name??
-		if (choice == VIEW_FAM_NAME) {
-
-		} else if (choice == EDIT_FAM_NAME) {
-
+		if (choice == DISPLAY_FAMILY_INFO) {
+			displayFamilyInfo();
 		} else if (choice == VIEW_LOW_BALANCE) {
 			System.out.print("The current minimum household balance is: $");
 			System.out.println(family.getMinHouseHoldBalance());
@@ -42,7 +37,7 @@ public class GeneralFamilyInfo extends Submenu {
 	}
 	
 
-	public void displayFamilyInfo() {
+	public void displayFamilyInfo() {	
 		System.out.println("Here is the family info: ");
 		System.out.print(family.displayFamilyInfo());
 		displayMenu();

@@ -24,7 +24,7 @@ public class FamilyMemberMenu extends Submenu {
 		System.out.print("List of family members sorted by income: ");
 		sorted = family.sortMemberByIncome ();
 		
-		for (int i = 0; i < sort.length; i ++) {
+		for (int i = 0; i < sorted.length; i ++) {
 			System.out.println (sorted [i]);
 		}
 	}
