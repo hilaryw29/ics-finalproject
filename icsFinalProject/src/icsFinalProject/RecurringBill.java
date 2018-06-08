@@ -1,8 +1,9 @@
 package icsFinalProject;
+import java.io.Serializable;
 import java.util.Calendar;  
 import java.util.Date;  
 
-public class RecurringBill implements Comparable<RecurringBill>{
+public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 	private double amount;
 	private String name;
 	private String date;

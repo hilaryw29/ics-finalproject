@@ -3,7 +3,7 @@ package icsFinalProject;
 import java.util.*;
 import java.io.*;
 
-public abstract class Member {
+public abstract class Member implements Serializable {
 	protected String name;
 	protected double income;
 	protected double budget;

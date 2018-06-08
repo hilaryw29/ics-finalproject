@@ -4,7 +4,7 @@ import java.util.*;
 import java.time.LocalDateTime; 
 import java.io.*;
 
-public class RecurringBillsList {
+public class RecurringBillsList implements Serializable{
 	int numOfBills;
 	TreeSet<RecurringBill> billList;
 	public RecurringBillsList(String fileName) throws IOException, FileNotFoundException, FileModifiedException {

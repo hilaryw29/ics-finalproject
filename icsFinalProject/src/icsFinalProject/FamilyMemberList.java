@@ -1,11 +1,13 @@
 package icsFinalProject;
+import java.io.*;
 import java.util.*;
-public class FamilyMemberList{
+public class FamilyMemberList implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private int numOfMember;
 	private ArrayList<Member> family;
 	
 	public FamilyMemberList(String memFile, String accFile){
-	
+		
 	}
 	public FamilyMemberList(){
 		family = new ArrayList<>(10);

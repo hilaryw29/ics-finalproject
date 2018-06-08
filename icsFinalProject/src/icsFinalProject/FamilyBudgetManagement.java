@@ -37,7 +37,7 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
-	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
+	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException {
 		BufferedReader read = new BufferedReader(new FileReader(fileName));
 		String line;
 		while ((line = read.readLine()) != null) {
@@ -48,8 +48,12 @@ public class FamilyBudgetManagement {
 			
 		}	
 		transactionList = new TransactionList(FileConstant.TRANSACTIONS, PIN);
-		memberlist = new FamilyMemberList(FileConstant.MEMBERINFO,FileConstant.ACCOUNTS);
-		billList = new RecurringBillsList(FileConstant.BILLS);
+		ObjectInputStream memberlistIn = new ObjectInputStream(new FileInputStream(FileConstant.MEMBERINFO));
+		memberlist = (FamilyMemberList) memberlistIn.readObject();
+		memberlistIn.close();
+		ObjectInputStream billListIn = new ObjectInputStream(new FileInputStream(FileConstant.MEMBERINFO));
+		billList = (RecurringBillsList) billListIn.readObject();
+		billListIn.close();
 		startTheard(this, billList);
 		read.close();
 	}
@@ -57,6 +61,15 @@ public class FamilyBudgetManagement {
 	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
 		dateManager = new DateManager(billList,this);
 		dateManager.run();
+	}
+	
+	public void writeToFile() throws IOException {
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FileConstant.MEMBERINFO));
+        out.writeObject(memberlist);
+        out.close();
+        ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FileConstant.BILLS));
+        out.writeObject(billList);
+        out.close();
 	}
 	
 	public FamilyBudgetManagement(String PIN) {

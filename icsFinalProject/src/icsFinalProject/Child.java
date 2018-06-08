@@ -3,8 +3,9 @@ package icsFinalProject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Child extends Member {
+public class Child extends Member implements Serializable{
 	private final double MAX_GOAL_AMOUNT = 5000;
 
 	public Child(String name, double income, double budget, double percentage) {

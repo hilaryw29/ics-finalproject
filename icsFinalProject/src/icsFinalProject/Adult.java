@@ -2,7 +2,7 @@ package icsFinalProject;
 
 import java.io.*;
 
-public class Adult extends Member {
+public class Adult extends Member implements Serializable{
 
 	public Adult(String name, double income, double budget, double percentage) {
 		super(name, income, budget, percentage);

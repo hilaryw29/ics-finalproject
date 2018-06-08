@@ -1,6 +1,8 @@
 package icsFinalProject;
 
-public class Goal {
+import java.io.*;
+
+public class Goal implements Serializable{
 	private double amount;
 	private String description;
 	

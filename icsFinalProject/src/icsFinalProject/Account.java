@@ -1,6 +1,8 @@
 package icsFinalProject;
 
-public class Account {
+import java.io.*;
+
+public class Account implements Serializable {
 	String accountType;
 	int id;
 	double balance;
