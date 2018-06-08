@@ -47,4 +47,47 @@ public class FamilyMemberMenu extends Submenu {
 		}
 		displayMenu();
 	}
+	
+	public void sortByExpense () {
+		Member [] sorted;
+		System.out.println("List of family members sorted by expense: ");
+		sorted = family.sortMemberByExpense();
+		
+		for (int i = 0; i < sorted.length; i++) {
+			System.out.println("Name:" + sorted[i].getName());
+			System.out.println("Expense: " + sorted[i].getExpense());
+			System.out.println("");
+		}
+		displayMenu();
+	}
+	
+	private void listMembers () {
+		// NEED TO GET A LIST/ARRAY OF MEMBERS SO THAT WE CAN HAVE AN ID...
+		// ...IN FRONT OF EACH MEMBER AS AN OPTION
+	}
+	
+	private void selectMember () {
+		listMembers();
+		
+		System.out.println("Please enter the number associated with the member you'd like to select: ");
+		int choice = UserInput.intakeInt();
+		Member selected;
+		
+		boolean success = false;
+		while (!success) {			
+			try {
+				selected = family.listMembers().get(choice);
+				success = true;
+			} catch (IndexOutOfBoundsException ix) {
+				System.out.println("Invalid choice. Try again.");
+				choice = UserInput.intakeInt();
+			}
+		}
+		
+		System.out.println("Member " + selected.getName() + " is selected");
+		editFamMemberMenu(selected);
+		
+	}
+	
+	
 }
