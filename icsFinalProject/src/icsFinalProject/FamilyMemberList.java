@@ -8,7 +8,7 @@ public class FamilyMemberList{
 	
 	}
 	public FamilyMemberList(){
-		
+		family = new ArrayList<>(10);
 	}
 	public void addFamilyMember(Member m){
 		family.add(m);
@@ -16,17 +16,14 @@ public class FamilyMemberList{
 	public void updateBalance(Transaction t) throws AccountException{
 		for(int i = 0; i < numOfMember; i ++){
 			if ((family.get(i).getName()).equals(t.getPayer())) {
-				if(!family.get(i).updateBalance(t.getId(), (family.get(i).getBalance() - t.getAmount))){
-					throw new AccountException();
+				if(!family.get(i).updateBalance(t.getId(), (family.get(i).getBalance() - t.getAmount()))){
+					throw new AccountException(false,"Account Does Not Exist");
 				}
 			}
 			if ((family.get(i).getName()).equals(t.getPayee())) {
-				if(!family.get(i).updateBalance(t.getId(), (family.get(i).getBalance() + t.getAmount))){
-					throw new AccountException();
+				if(!family.get(i).updateBalance(t.getId(), (family.get(i).getBalance() + t.getAmount()))){
+					throw new AccountException(false,"Account Does Not Exist");
 				}
-			}
-			if((family.get(i).getName()).equals(t.getPayer()) && (family.get(i).getName()).equals(t.getPayee())){
-				throw new AccountException(true, false);
 			}
 		}
 	}
@@ -87,11 +84,16 @@ public class FamilyMemberList{
 		for(int i = 0; i < numOfMember; i ++){
 			if((family.get(i).getName()).equals(name)){
 				return(family.get(i).addAccount(account));
+			}
 		}
-		throw new AccountException(true, false);
+		throw new AccountException(true, "Name Not Found");
 	}
 	public LinkedList<Account> listAccount(){
-		
+		LinkedList<Account> account = new LinkedList<>();
+		for (Member i: family) {
+			account.addAll(i.getAccountList());
+		}
+		return account;
 	}
 	
 	public double calculateAveExpense(){
@@ -99,33 +101,37 @@ public class FamilyMemberList{
 	}
 	
 	public Member[] sortMemberByIncome(){
+		Member[] member = (Member[]) family.toArray();
 		for(int i = numOfMember - 1; i >=0; i --){
 			int maxIndex = 0; 
 			for(int j = 0; j < i; j ++){
-				if(family.get(j).getIncome() > family.get(maxIndex).getIncome()){
+				if(member[j].compareToIncome(member[maxIndex]) > 0){
 					maxIndex = j;
 				}
 			}
-			family.set(maxIndex, family.set(i, family.get(maxIndex)));
+			Member temp = member[i];
+			member[i] = member[maxIndex];
+			member[maxIndex] = temp;
 		}
+		return member;
 	}
 	public Member[] sortMemberByExpense(){
-		for(int i = numOfMember - 1; i >=0; i --){
-			int maxIndex = 0; 
-			for(int j = 0; j < i; j ++){
-				if(family.get(j).getExpense() > family.get(maxIndex).getExpense()){
-					maxIndex = j;
-				}
-			}
-			family.set(maxIndex, family.set(i, family.get(maxIndex)));
-		}
+		Member[] member = (Member[]) family.toArray();
+        for (int i = 0; i < numOfMember-1; i++){
+            for (int j = 0; j < numOfMember-i-1; j++){
+                if (member[j].compareToExpense(member[j+1]) > 0){
+                    Member temp = member[j];
+                    member[j] = member[j+1];
+                    member[j+1] = temp;
+                }
+            }
+        }
+        return member;
 	}
 	public Member searchMember(String name){
-		boolean found = false;
-		for(int i = 0; i < numOfMember && !found; i ++){
-			if((family.get(i).getName()).equals(name)){
+		for(int i = 0; i < numOfMember; i ++){
+			if(family.get(i).equalTo(name)){
 				return family.get(i);
-				found = true;
 			}
 		}
 		return null;

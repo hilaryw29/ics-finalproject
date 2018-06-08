@@ -142,13 +142,13 @@ public class FamilyBudgetManagement {
 	public double avgExpensePerMember() {
 		return memberlist.calculateAveExpense();
 	}
-	//mei xie wan
+
 	public Member[] sortMemberByIncome() {
-		return null;
+		return memberlist.sortMemberByIncome();
 	}
 	//mei xie wan
 	public Member[] sortMemberByExpense() {
-		return null;
+		return memberlist.sortMemberByExpense();
 	}
 	
 	public Member searchMember(String name) {

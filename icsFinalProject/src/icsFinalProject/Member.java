@@ -90,6 +90,18 @@ public abstract class Member {
 		balance =balance + amount;
 	}
 	
+	public double compareToIncome(Member other) {
+		return this.income - other.income;
+	}
+	
+	public double compareToExpense(Member other) {
+		return this.expense - other.expense;
+	}
+
+	public boolean equalTo(String name) {
+		return this.name == name;
+	}
+	
 	public boolean checkAccountBalance (String name, int accountId, double lowestBalance) throws AccountException {
 		Account account = findAccount (accountId);
 		if (account != null) {
