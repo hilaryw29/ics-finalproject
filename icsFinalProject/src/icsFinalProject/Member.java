@@ -153,4 +153,8 @@ public abstract class Member {
 	public Goal getGoal() {
 		return goal;
 	}
+	
+	public void setIncome (double money) {
+		income = money;
+	}
 }
