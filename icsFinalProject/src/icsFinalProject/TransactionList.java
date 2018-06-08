@@ -1,7 +1,12 @@
 package icsFinalProject;
 import java.nio.charset.StandardCharsets;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 
@@ -16,7 +21,7 @@ public class TransactionList{
 	static class Encryption{
 		 private static final String ALGORITHM = "AES";
 		 
-		 static String encrypt(String PIN, String text) {
+		 static String encrypt(String PIN, String text) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 			 byte[] pinbyte = PIN.getBytes(StandardCharsets.UTF_8);
 			 byte[] byteText = text.getBytes(StandardCharsets.UTF_8);
 			 SecretKeySpec key = new SecretKeySpec(pinbyte, ALGORITHM);
@@ -26,7 +31,7 @@ public class TransactionList{
 		     return new String(cipherText);
 		 }
 		 
-		 static String decrypt(String PIN, String text) {
+		 static String decrypt(String PIN, String text) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 			 byte[] key = PIN.getBytes(StandardCharsets.UTF_8);
 			 byte[] cipherText = text.getBytes(StandardCharsets.UTF_8);
 			 SecretKeySpec secretKey = new SecretKeySpec(key, ALGORITHM);
@@ -50,21 +55,28 @@ public class TransactionList{
 		for (int i = 0;i < numOfTransaction;i++) {
 			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
 				sortedTransaction.add(i,t);
+				return;
 			}
 		}
 	}
 
-	public void insertTransactionByDateAndID(Transaction t) {
-		
+	public void insertTransactionByDate(Transaction t) {
+		for (int i = 0;i < numOfTransaction;i++) {
+			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
+				sortedTransaction.add(i,t);
+				return;
+			}
+		}
 	}
 	
 	
 	public int addTransaction(Transaction t){
 		lastID++;
 		Transaction tWithId = new Transaction(t,lastID);
-		insertTransactionByAmount(t);
-		
-		
+		insertTransactionByAmount(tWithId);
+		insertTransactionByDate(tWithId);
+		return lastID;
+
 	}
 	public void writeFile(){
 /*		try{
@@ -78,7 +90,7 @@ public class TransactionList{
 		}
 */	}
 	public LinkedList<Transaction> listTransaction(String name){
-		LinkedList<Transaction> person = new LinkedList();
+		LinkedList<Transaction> person = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
 			if((unsortedTransaction.get(i).getPayer()).equals(name)){
 				person.add(unsortedTransaction.get(i));
@@ -87,29 +99,43 @@ public class TransactionList{
 		return person;
 	}
 	public LinkedList<Transaction> findTransaction(String date){
-		//LinkedList<Transaction> date = new LinkedList();
-		int l = 0, r = sortedTransaction.size() - 1;
+		LinkedList<Transaction> transactions = new LinkedList<>();
+		int l = 0, r = unsortedTransaction.size() - 1;
         while (l <= r)
         {
             int m = l + (r-l)/2;
-            if (sortedTransaction.get(m).equalDate(date) == 0)
-                return m;
-            if (sortedTransaction.get(m).equalDate(date) < 0)
+            if (unsortedTransaction.get(m).equalDate(date) == 0) {
+            	r = m + 1;
+            	l = m - 1;
+            	while (unsortedTransaction.get(r).equalDate(date) == 0){
+            		transactions.add(unsortedTransaction.get(r));
+            		r++;
+            	}
+            	while (unsortedTransaction.get(l).equalDate(date) == 0){
+            		transactions.add(unsortedTransaction.get(l));
+            		l++;
+            	}
+            	return transactions;
+            } else if (unsortedTransaction.get(m).equalDate(date) < 0)
                 l = m + 1;
             else
                 r = m - 1;
         }
-        return -1;
+        return null;
 	}
 	public Transaction findTransaction(int id){
-		for (int i = 0; i < )
+		for (int i = 0; i < numOfTransaction ; i++) {
+			if (unsortedTransaction.get(i).equals(id))
+				return unsortedTransaction.get(i);
+		}
+		return null;
 	}
 	
 	public LinkedList<Transaction> findTransactionLarger(double amount){
 		LinkedList<Transaction> result0 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
-			if(unsortedTransaction.get(i).getAmount() > amount){
-				result0.add(unsortedTransaction.get(i));
+			if(sortedTransaction.get(i).getAmount() > amount){
+				result0.add(sortedTransaction.get(i));
 			}
 		}	
 		return result0;
@@ -117,8 +143,8 @@ public class TransactionList{
 	public LinkedList<Transaction> findTransactionSmaller(double amount){
 		LinkedList<Transaction> result1 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
-			if(unsortedTransaction.get(i).getAmount() < amount){
-				result1.add(unsortedTransaction.get(i));
+			if(sortedTransaction.get(i).getAmount() < amount){
+				result1.add(sortedTransaction.get(i));
 			}
 		}
 		return result1;
@@ -126,8 +152,8 @@ public class TransactionList{
 	public LinkedList<Transaction> findTransactionEqual(double amount){
 		LinkedList<Transaction> result2 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
-			if(unsortedTransaction.get(i).getAmount() == amount){
-				result2.add(unsortedTransaction.get(i));			
+			if(sortedTransaction.get(i).getAmount() == amount){
+				result2.add(sortedTransaction.get(i));			
 			}
 		}
 		return result2;

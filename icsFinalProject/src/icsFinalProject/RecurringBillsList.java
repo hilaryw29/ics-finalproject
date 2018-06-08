@@ -8,10 +8,10 @@ public class RecurringBillsList {
 	int numOfBills;
 	TreeSet<RecurringBill> billList;
 	public RecurringBillsList(String fileName) throws IOException, FileNotFoundException, FileModifiedException {
-		BufferedReader read = new BufferedReader(new FileReader(fileName));
+/*		BufferedReader read = new BufferedReader(new FileReader(fileName));
 		String line = read.readLine();
 		if (!line.endsWith("</Num>")) throw new FileModifiedException(fileName,"")
-	}
+*/	}
 	
 	public RecurringBillsList() {
 		billList = new TreeSet<>();
@@ -38,7 +38,7 @@ public class RecurringBillsList {
 		LinkedList<RecurringBill> unpaidList = new LinkedList<>();
 		while (listInterator.hasNext()) {
 			RecurringBill current = (RecurringBill) listInterator.next();
-			if (!current.pay()) {
+			if (current.isFailed()) {
 				unpaidList.add(current);
 			}
 		}

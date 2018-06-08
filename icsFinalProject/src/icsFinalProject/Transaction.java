@@ -33,6 +33,10 @@ public class Transaction{
 		else 
 			return false;
 	}
+	
+	public boolean equals(int id) {
+		return this.id == id;
+	}
 
 	public String toString() {
 		String s = "Payer: " + payer;
