@@ -12,6 +12,7 @@ public class FamilyMemberList{
 	}
 	public void addFamilyMember(Member m){
 		family.add(m);
+		numOfMember++;
 	}
 	public void updateBalance(Transaction t) throws AccountException{
 		for(int i = 0; i < numOfMember; i ++){
@@ -156,4 +157,17 @@ public class FamilyMemberList{
 			return family.get(depth).compareTo(searchLowestBalance(depth+1));
 		}
 	}
+	
+	public void allocateIncome(String name, int id, int percentage) throws AccountException{
+		for (Member i : family) {
+			if (i.equalTo(name)) {
+				if (!i.updateBalance(id, 1.0*i.getIncome()*percentage/100))
+					throw new AccountException(false,name);
+				return;
+			}
+			
+		}
+		
+	}
+	
 }

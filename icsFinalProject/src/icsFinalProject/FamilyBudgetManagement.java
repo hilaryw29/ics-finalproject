@@ -51,6 +51,7 @@ public class FamilyBudgetManagement {
 		memberlist = new FamilyMemberList(FileConstant.MEMBERINFO,FileConstant.ACCOUNTS);
 		billList = new RecurringBillsList(FileConstant.BILLS);
 		startTheard(this, billList);
+		read.close();
 	}
 	
 	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
@@ -100,6 +101,9 @@ public class FamilyBudgetManagement {
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
 		updateHoldBalance();
+		if (isHouseHoldBalanceLow()) {
+			System.out.println("House Hold Balance is low now!");
+		}
 		return transactionList.addTransaction(transaction);
 	}
 	
@@ -146,7 +150,7 @@ public class FamilyBudgetManagement {
 	public Member[] sortMemberByIncome() {
 		return memberlist.sortMemberByIncome();
 	}
-	//mei xie wan
+	
 	public Member[] sortMemberByExpense() {
 		return memberlist.sortMemberByExpense();
 	}
@@ -158,9 +162,9 @@ public class FamilyBudgetManagement {
 	public boolean changePassword(String old, String newPass) {
 		return transactionList.changePassword(old, newPass);
 	}
-	//mei xie wan
+	
 	public void allocateIncome(String name,int id, int percentage) throws AccountException{
-		
+		memberlist.allocateIncome(name,id,percentage);
 	}
 	
 	public boolean addFamilyMember(Member m) {
