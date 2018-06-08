@@ -87,16 +87,16 @@ public class FamilyMemberMenu extends Submenu {
 		System.out.println("Member " + selected.getName() + " is selected");
 		editFamMemberMenu(selected);
 		
-	}
+	} 
 	
-	private void addMember () {
-		String name;
-		double income;
-		double 
-		
-		System.out.println ("Please enter the name of the family member you'd like to add : ");
-		
-	}
+//	private void addMember () {
+//		String name;
+//		double income;
+//		double 
+//		
+//		System.out.println ("Please enter the name of the family member you'd like to add : ");
+//		
+//	}
 	
 	private void editFamMemberMenu(Member person) {
 		final int EDIT_INCOME = 1;
