@@ -111,6 +111,10 @@ public class FamilyBudgetManagement {
 		return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MAX_VALUE);
 	}
 	
+	public LinkedList<Account> listAccount(){
+		return memberlist.listAccount();
+	}
+	
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
 		updateHoldBalance();

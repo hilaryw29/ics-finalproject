@@ -1,5 +1,5 @@
 package icsFinalProject;
-//import java.nio.charset.StandardCharsets;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -9,11 +9,14 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class TransactionList{
 	private int numOfTransaction;
 	private int lastID;
 	private final static int DEFAULTNUMOFTRANSACTION = 100;
+	private final static byte[] a = "Nfwernxnfuinouie".getBytes(StandardCharsets.UTF_8);
 	private String PIN;
 	private ArrayList<Transaction> sortedTransaction;
 	private ArrayList<Transaction> unsortedTransaction;
@@ -37,9 +40,11 @@ public class TransactionList{
 		 }
 	}
 	
-	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException{
-		sortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
-		unsortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
+	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException{
+		this.PIN = PIN;
+		byte[] m = Files.readAllBytes(Paths.get(FileConstant.TRANSACTIONS));
+		byte[] m1 = Encryption.decrypt(a, m);
+		
 	}
 	
 	public TransactionList(String PIN){
