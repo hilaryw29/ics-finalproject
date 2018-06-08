@@ -32,7 +32,7 @@ public class NMN {
 	}
 	
 	private void deleteGoal(Member person) {
-		// How to delete goal
+		// How to delete goal 
 		System.out.println("Goal was successfully deleted");
 		
 	}
