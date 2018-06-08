@@ -16,7 +16,7 @@ public class FamilyMemberMenu extends Submenu {
 		System.out.println("3. View low balance threshold");
 		System.out.println("4. Edit low balance threshold");
 		System.out.println("5. Edit pin");
-		choice = intakeChoice(3);
+		choice = intakeChoice(5);
 	}
 	
 	public void sortByIncome () {
