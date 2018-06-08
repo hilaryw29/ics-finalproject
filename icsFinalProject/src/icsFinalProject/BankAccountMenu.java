@@ -99,7 +99,7 @@ public class BankAccountMenu extends Submenu {
 		}
 		
 		for(Account i:found) {
-			System.out.println(i);
+			System.out.println(i); 
 		}
 		displayMenu();
 	}
