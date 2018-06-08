@@ -8,10 +8,8 @@ public class RecurringBillsList implements Serializable{
 	int numOfBills;
 	TreeSet<RecurringBill> billList;
 	public RecurringBillsList(String fileName) throws IOException, FileNotFoundException, FileModifiedException {
-/*		BufferedReader read = new BufferedReader(new FileReader(fileName));
-		String line = read.readLine();
-		if (!line.endsWith("</Num>")) throw new FileModifiedException(fileName,"")
-*/	}
+		BufferedReader 
+	}
 	
 	public RecurringBillsList() {
 		billList = new TreeSet<>();
@@ -45,6 +43,9 @@ public class RecurringBillsList implements Serializable{
 		return unpaidList;
 	}
 
+	public void writeFile() {
+		
+	}
 	public boolean delBill(int id) {
 		return billList.remove(new RecurringBill(new RecurringBill(0,"0","0",0), id));
 	}
