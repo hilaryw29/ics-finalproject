@@ -9,6 +9,8 @@ public class BankAccountMenu extends Submenu {
 	}
 	
 	public void displayMenu() {
+		
+		
 		int choice;
 		
 		System.out.println("BANK ACCOUNT MENU");
@@ -37,6 +39,43 @@ public class BankAccountMenu extends Submenu {
 		}
 	}
 	
+	private void deleteAccount() {
+		listAccounts();
+		System.out.print("Enter the ID of the account you want to delete: ");
+		int id = UserInput.intakeInt();
+		System.out.print("Enter the name of the owner of the account: ");
+		String name = UserInput.intakeName();
+		
+		boolean success = false;
+		while (!success) {
+			if (family.removeAccount(name, id)) {
+				System.out.println("This account was successfully deleted.");
+				success = true;
+			} else {
+				System.out.println("Cannot find account ID. Please enter again.");
+				id = UserInput.intakeInt();
+			}
+		}
+		displayMenu();
+	}
+
+	private void addAccount() {
+		System.out.print("Enter the name of the owner of the new account: ");
+		String name = UserInput.intakeName();
+		System.out.print("Enter the type of account. Enter 'c' for chequing or 's' for savings.");
+		String type = UserInput.intakeType("c", "s");
+		System.out.print("Enter the amount of money currently in this account: $");
+		double amount = UserInput.intakeDouble();
+		
+		if (type.equalsIgnoreCase("c")) {
+			family.addAccount(new Account("Chequing", amount));
+		} else {
+			family.addAccount(new Account("Saving", amount));
+		}
+		System.out.println("Your account was succesfully added.");
+		displayMenu();
+	}
+
 	private void selectAccount() {
 		listAccounts();
 		System.out.println("Enter the number associated with the bank account you want to select");
@@ -81,7 +120,7 @@ public class BankAccountMenu extends Submenu {
 		String choice = UserInput.intakeType("s", "c");
 		
 		if (choice.equalsIgnoreCase("s")) {
-			selected.setAccountType("Savings");
+			selected.setAccountType("Saving");
 		} else {
 			selected.setAccountType("Chequing");
 		}
