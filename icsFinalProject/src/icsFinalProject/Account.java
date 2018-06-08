@@ -25,6 +25,14 @@ public class Account {
 		return balance;
 	}
 	
+	public String getAccountType () {
+		return accountType;
+	}
+	
+	public void setAccountType (String type) {
+		accountType = type;
+	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}

@@ -81,8 +81,14 @@ public class RegularMainMenu {
 			
 		} else if (choice == 2) {
 			TransactionMenu transmenu = new TransactionMenu(password);
-		} else {
+		} else if (choice == 3){
 			GeneralFamilyInfo faminfo = new GeneralFamilyInfo(password);
+		} else if (choice == 4) {
+			BankAccountMenu bankmenu = new BankAccountMenu(password);
+		} else if (choice == 5) {
+			FamilyMemberMenu fammenu = new FamilyMemberMenu(password);
+		} else if (choice == 6) {
+			BillsMenu billmenu = new BillsMenu(password);
 		}
 	}
 

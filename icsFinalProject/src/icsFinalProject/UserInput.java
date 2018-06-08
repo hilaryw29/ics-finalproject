@@ -101,4 +101,18 @@ public class UserInput {
 		}
 		return input;
 	}
+	
+	public static String intakeType(String a, String b) {
+		boolean finished = false;
+		String input = null;
+		
+		// Prompts user for member role and writes it to the file
+		while (!finished) {
+			if ((input = sc.nextLine()).equalsIgnoreCase(a) || input.equalsIgnoreCase(b)) {
+				finished = true;
+			}
+		}
+		return input;
+	}
+
 }

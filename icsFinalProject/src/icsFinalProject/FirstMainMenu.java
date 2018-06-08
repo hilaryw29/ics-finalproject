@@ -31,7 +31,7 @@ public class FirstMainMenu {
 		System.out.print("Please enter the number of family members: ");
 		
 		// Prompts user to enter number of family members
-		while (!finished) {
+		/*while (!finished) {
 			try {
 				numMember = sc.nextInt();
 				sc.nextLine();
@@ -40,16 +40,23 @@ public class FirstMainMenu {
 				sc.nextLine();
 				System.out.println("Invalid entry. Please enter again.");
 			}
-		}
+		}*/
+		numMember = UserInput.intakeInt();
 		
 		// Family member info is entered
+		System.out.println("Please enter the name of their role in the family. Enter 'a' for adult or 'c' for child: ");
+		String role = UserInput.intakeType("a", "c");
+		
+		
 		for (int i = 0; i < numMember; i++) {
-			if (intakeRole().equalsIgnoreCase("a")) {
+			if (role.equalsIgnoreCase("a")) {
 				family.addFamilyMember(new Adult(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
 			} else {
 				family.addFamilyMember(new Child(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
 			}
 		}
+		
+		
 		System.out.println("Thank you for setting up. Let's continue to the main menu.");
 		RegularMainMenu regMenu = new RegularMainMenu();
 	}
