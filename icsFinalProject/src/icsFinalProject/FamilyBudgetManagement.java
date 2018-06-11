@@ -173,6 +173,10 @@ public class FamilyBudgetManagement {
 	public double avgExpensePerMember() {
 		return memberlist.calculateAveExpense();
 	}
+	
+	public String displayMonthlyBills() {
+		return billList.displayMonthlyBills();
+	}
 
 	public Member[] sortMemberByIncome() {
 		return memberlist.sortMemberByIncome();

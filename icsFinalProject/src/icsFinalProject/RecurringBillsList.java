@@ -57,6 +57,14 @@ public class RecurringBillsList implements Serializable{
 			return;
 		}
 	}
+	
+	public String displayMonthlyBills() {
+		String s = "";
+		for (RecurringBill i : billList) {
+			s+=i.toString()+"\n";
+		}
+		return s;
+	}
 	public boolean delBill(int id) {
 		return billList.remove(new RecurringBill(new RecurringBill(0,"0","0",0), id));
 	}
