@@ -148,7 +148,7 @@ public class FamilyBudgetManagement {
 		memberlist.updateBalance(transaction);
 	}
 	
-	private void updateHoldBalance() {
+	private void updateHoldBalance() { 
 		houseHoldBalance=memberlist.getTotalBalance();
 	}
 	
@@ -182,6 +182,10 @@ public class FamilyBudgetManagement {
 	
 	public double avgExpensePerMember() {
 		return memberlist.calculateAveExpense();
+	}
+	
+	public String displayMonthlyBills() {
+		return billList.displayMonthlyBills();
 	}
 
 	public Member[] sortMemberByIncome() {
