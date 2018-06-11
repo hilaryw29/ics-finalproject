@@ -3,7 +3,7 @@ import java.io.*;
 import java.util.*;
 public class FamilyMemberList implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private int numOfMember;
+	private int numOfMember = 0;
 	private ArrayList<Member> family;
 	
 	public FamilyMemberList(String memFile, String accFile){
