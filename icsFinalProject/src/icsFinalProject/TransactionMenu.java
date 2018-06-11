@@ -108,7 +108,7 @@ public class TransactionMenu extends Submenu {
 	private void findByDate () {
 		LinkedList <Transaction> found;
 		System.out.println("Searching transactions by date");
-		found = family.findTransaction(UserInput.intakeDate());
+		found = family.findTransaction(UserInput.intakeDate()); 
 		
 		if (found == null) {
 			System.out.println("No transactions were found for the specified date");
