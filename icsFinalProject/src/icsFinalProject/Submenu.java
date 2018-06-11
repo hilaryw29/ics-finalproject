@@ -8,7 +8,11 @@ public class Submenu {
 	
 	public Submenu (String pass) {
 		password = pass;
-		family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
+		try {
+			family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
+		} catch (Exception e) {
+			System.out.println("124");
+		}
 	}
 	
 	public int intakeChoice (int upper) {

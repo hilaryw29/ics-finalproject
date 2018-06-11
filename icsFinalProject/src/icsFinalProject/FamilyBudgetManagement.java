@@ -213,4 +213,12 @@ public class FamilyBudgetManagement {
 	public String displayFamilyInfo() {
 		return memberlist.toString();
 	}
+
+	public double getHouseHoldBalance() {
+		return houseHoldBalance;
+	}
+
+	public void setHouseHoldBalance(double houseHoldBalance) {
+		this.houseHoldBalance = houseHoldBalance;
+	}
 }

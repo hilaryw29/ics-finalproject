@@ -1,7 +1,14 @@
 package icsFinalProject;
 
 import java.util.*;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+
 import java.io.*;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 
 public class RegularMainMenu {
 	Scanner sc = new Scanner(System.in);
@@ -14,7 +21,11 @@ public class RegularMainMenu {
 	
 	public RegularMainMenu(String pass) {
 		password = pass;
-		family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
+		try {
+			family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
+		} catch (BadPaddingException c) {
+		} catch (Exception e) {
+		}
 		displayMenu();
 	}
 	
@@ -27,7 +38,13 @@ public class RegularMainMenu {
 		while (!success) {
 			try {
 				password = sc.nextLine();
-				family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
+				try {
+					family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
+				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+						| NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}// MAYBE NOT NEEDED
 				success = true;
 			} catch (PINNotMatchException pinex) {
 				System.out.println("Incorrect password. Enter again.");

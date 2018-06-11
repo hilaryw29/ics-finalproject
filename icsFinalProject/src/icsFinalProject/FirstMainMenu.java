@@ -70,7 +70,7 @@ public class FirstMainMenu {
 	
 	private String intakeRole() {
 		boolean finished = false;
-		String input;
+		String input = null;
 		
 		// Prompts user for member role and writes it to the file
 		while (!finished) {
@@ -99,7 +99,7 @@ public class FirstMainMenu {
 	
 	private String intakeName () {
 		// Prompts user for member name
-		System.out.println("Enter the name of family member #" + (i + 1));
+		System.out.println("Enter the name of family member: ");
 		return sc.nextLine();
 	}
 	
@@ -128,7 +128,7 @@ public class FirstMainMenu {
 	// DEPRECATE
 	private double intakeDouble() {
 		boolean finished = false; 
-		double input;
+		double input = 0;
 		
 		while (!finished) {
 			try {				
