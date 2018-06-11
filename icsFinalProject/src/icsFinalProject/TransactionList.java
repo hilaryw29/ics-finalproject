@@ -41,10 +41,10 @@ public class TransactionList{
 	}
 	
 	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException{
-		this.PIN = PIN;
+/*		this.PIN = PIN;
 		byte[]  = Files.readAllBytes(Paths.get(FileConstant.TRANSACTIONS));
 		byte[]  = Encryption.decrypt(a, m);
-		
+*/		
 	}
 	
 	public TransactionList(String PIN){

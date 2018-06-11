@@ -8,7 +8,7 @@ public class RecurringBillsList implements Serializable{
 	int numOfBills;
 	TreeSet<RecurringBill> billList;
 	public RecurringBillsList(String fileName) throws IOException, FileNotFoundException, FileModifiedException {
-		BufferedReader 
+//		BufferedReader 
 	}
 	
 	public RecurringBillsList() {
