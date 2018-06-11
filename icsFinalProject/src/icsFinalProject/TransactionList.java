@@ -12,7 +12,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class TransactionList{
+public class TransactionList implements Serializable {
 	private int numOfTransaction;
 	private int lastID;
 	private final static int DEFAULTNUMOFTRANSACTION = 100;
@@ -40,14 +40,20 @@ public class TransactionList{
 	}
 	
 	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException{
-		this.PIN = MD5.getMd5(PIN);
+/*		this.PIN = MD5.getMd5(PIN);
 		byte[] text = Files.readAllBytes(Paths.get(FileConstant.TRANSACTIONS));
 		byte[] plainText = Encryption.decrypt(this.PIN, text);
-
+		double amount;
+		String payer, payee;
+		int payerAccountID, payeeAccountID;
+		String description, date;
+		int id;
+		
+		
 		for (byte i: plainText) {
 			line += 
 		}
-		
+*/
 	}
 	
 	public TransactionList(String PIN){

@@ -5,8 +5,13 @@ import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 import javax.crypto.BadPaddingException;
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SealedObject;
+import javax.crypto.spec.SecretKeySpec;
 
 public class FamilyBudgetManagement {
 	private double houseHoldBalance;
@@ -15,7 +20,7 @@ public class FamilyBudgetManagement {
 	private FamilyMemberList memberlist;
 	private TransactionList transactionList;
 	private RecurringBillsList billList;
-	
+	private byte[] PIN;
 	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		BufferedReader read = new BufferedReader(new FileReader(fileName));
 		String line;
@@ -26,13 +31,15 @@ public class FamilyBudgetManagement {
 			}
 			
 		}	
-		transactionList = new TransactionList(FileConstant.TRANSACTIONS, PIN);
+		this.PIN = MD5.getMd5(PIN);
 		ObjectInputStream memberlistIn = new ObjectInputStream(new FileInputStream(FileConstant.MEMBERINFO));
 		memberlist = (FamilyMemberList) memberlistIn.readObject();
 		memberlistIn.close();
 	//	ObjectInputStream billListIn = new ObjectInputStream(new FileInputStream(FileConstant.MEMBERINFO));
 		billList = new RecurringBillsList(FileConstant.BILLS);
 	//	billListIn.close();
+		InputStream in = new FileInputStream(FileConstant.TRANSACTIONS);
+		transactionList = Encryption.decrypt(in, this.PIN);
 		startTheard(this, billList);
 		read.close();
 	}
@@ -47,6 +54,8 @@ public class FamilyBudgetManagement {
         out.writeObject(memberlist);
         out.close();
         billList.writeFile();
+        OutputStream objectOut = new FileOutputStream(FileConstant.TRANSACTIONS);
+        Encryption.encrypt(transactionList, objectOut, PIN);
 	}
 	
 	public FamilyBudgetManagement(String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
@@ -179,7 +188,17 @@ public class FamilyBudgetManagement {
 	}
 	
 	public boolean changePassword(String old, String newPass) {
-		return transactionList.changePassword(old, newPass);
+		if (MD5.getMd5(old) == PIN) {
+			PIN = MD5.getMd5(newPass);
+			try {
+				writeToFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return true;
+		} else
+			return false;
 	}
 	
 	public void allocateIncome(String name,int id, int percentage) throws AccountException{

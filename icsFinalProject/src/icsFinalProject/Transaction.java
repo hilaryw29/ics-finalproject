@@ -1,5 +1,8 @@
 package icsFinalProject;
-public class Transaction{
+
+import java.io.Serializable;
+
+public class Transaction implements Serializable{
 	private double amount;
 	private String payer, payee;
 	private int payerAccountID, payeeAccountID;
