@@ -160,6 +160,10 @@ public class FamilyMemberList implements Serializable{
 		}
 	}
 	
+	public ArrayList<Member> listMember(){
+		return family;
+	}
+	
 	public void allocateIncome(String name, int id, int percentage) throws AccountException{
 		for (Member i : family) {
 			if (i.equalTo(name)) {

@@ -182,6 +182,9 @@ public class FamilyBudgetManagement {
 		return memberlist.sortMemberByExpense();
 	}
 	
+	public ArrayList<Member> listMember() {
+		return memberlist.listMember();
+	}
 	public Member searchMember(String name) {
 		return memberlist.searchMember(name);
 	}
