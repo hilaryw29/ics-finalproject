@@ -3,7 +3,7 @@ package icsFinalProject;
 import java.util.LinkedList;
 
 public class BankAccountMenu extends Submenu {
-	public BankAccountMenu (String password) {
+	public BankAccountMenu (String password) { 
 		super(password);
 		displayMenu();
 	}
