@@ -94,6 +94,10 @@ public class FamilyBudgetManagement {
 		this.minHouseHoldBalance = Math.abs(minHouseHoldBalance); 
 	}
 	
+	public double getMinHouseHoldBalance() {
+		return minHouseHoldBalance;
+	}
+
 	public boolean isHouseHoldBalanceLow() {
 		return houseHoldBalance > minHouseHoldBalance ? true : false;
 	}
@@ -114,6 +118,8 @@ public class FamilyBudgetManagement {
 	public LinkedList<Account> listAccount(){
 		return memberlist.listAccount();
 	}
+	
+	public 
 	
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);

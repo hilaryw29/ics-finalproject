@@ -1,4 +1,5 @@
 package icsFinalProject;
+import java.util.*;
 
 public class FamilyMemberMenu extends Submenu {
 	final int SORT_INCOME = 1;
@@ -23,13 +24,13 @@ public class FamilyMemberMenu extends Submenu {
 		choice = intakeChoice(5);
 		
 		if (choice == SORT_INCOME) {
-
+			sortByIncome();
 		} else if (choice == SORT_EXPENSE) {
-			
+			sortByExpense();
 		} else if (choice == ADD_MEMBER) {
 			
 		} else if (choice == SELECT_MEMBER) {
-			
+			selectMember();
 		} else {
 			goBack();
 		}
@@ -89,14 +90,32 @@ public class FamilyMemberMenu extends Submenu {
 		
 	} 
 	
-//	private void addMember () {
-//		String name;
-//		double income;
-//		double 
-//		
-//		System.out.println ("Please enter the name of the family member you'd like to add : ");
-//		
-//	}
+	private void addMember () {
+		String name;
+		double income;
+		double budget;
+		double percentage;
+		String isAdult;
+		
+		System.out.println ("Please enter the name of the family member you'd like to add : ");
+		name = UserInput.intakeString();
+		System.out.println("Please enter your monthly income: ");
+		income = UserInput.intakeDouble();
+		System.out.println("Please enter your monthly budget: ");
+		budget = UserInput.intakeDouble();
+		System.out.println("Please enter the percentage of your income you'd like to devote to your monthly budget: ");
+		percentage = UserInput.intakeDouble()/100;
+		System.out.println("Are you an adult? (Please enter yes or no");
+		isAdult = UserInput.intakeString();
+		
+		if (isAdult.equalsIgnoreCase("yes")) {
+			family.addFamilyMember(new Adult (name, income, budget, percentage));
+		} else {
+			family.addFamilyMember(new Child (name, income, budget, percentage));
+		}
+		
+		displayMenu();
+	}
 	
 	private void editFamMemberMenu(Member person) {
 		final int EDIT_INCOME = 1;
