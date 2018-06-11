@@ -1,9 +1,6 @@
 package icsFinalProject;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.security.InvalidKeyException;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
@@ -18,29 +15,6 @@ public class FamilyBudgetManagement {
 	private FamilyMemberList memberlist;
 	private TransactionList transactionList;
 	private RecurringBillsList billList;
-
-	static class MD5{
-		private static final String ALGORITHM ="MD5";
-		
-		private static String getMD5(String fileName) {
-			try {
-				byte[] read = Files.readAllBytes(Paths.get(fileName));
-				byte[] hash = MessageDigest.getInstance(ALGORITHM).digest(read);
-				StringBuffer value = new StringBuffer();
-			    for (int i = 0; i < hash.length; i++) {
-			        value.append(Integer.toString((hash[i] & 0xff) + 0x100, 16).substring(1));
-			    }
-				return value.toString();
-			}catch (NoSuchAlgorithmException e) {
-			}catch (IOException e) {
-			}
-			return "0";
-		}
-		
-		public static boolean compareMD5(String fileName, String md5) {
-			return md5==getMD5(fileName) ? true : false;
-		}
-	}
 	
 	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		BufferedReader read = new BufferedReader(new FileReader(fileName));
@@ -56,25 +30,23 @@ public class FamilyBudgetManagement {
 		ObjectInputStream memberlistIn = new ObjectInputStream(new FileInputStream(FileConstant.MEMBERINFO));
 		memberlist = (FamilyMemberList) memberlistIn.readObject();
 		memberlistIn.close();
-		ObjectInputStream billListIn = new ObjectInputStream(new FileInputStream(FileConstant.MEMBERINFO));
-		billList = (RecurringBillsList) billListIn.readObject();
-		billListIn.close();
+	//	ObjectInputStream billListIn = new ObjectInputStream(new FileInputStream(FileConstant.MEMBERINFO));
+		billList = new RecurringBillsList(FileConstant.BILLS);
+	//	billListIn.close();
 		startTheard(this, billList);
 		read.close();
 	}
 	
 	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
 		dateManager = new DateManager(billList,this);
-//		dateManager.run();
+		new Thread(dateManager).start();
 	}
 	
 	public void writeToFile() throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FileConstant.MEMBERINFO));
         out.writeObject(memberlist);
         out.close();
-        out = new ObjectOutputStream(new FileOutputStream(FileConstant.BILLS));
-        out.writeObject(billList);
-        out.close();
+        billList.writeFile();
 	}
 	
 	public FamilyBudgetManagement(String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
@@ -83,6 +55,7 @@ public class FamilyBudgetManagement {
 		billList = new RecurringBillsList();
 		updateHoldBalance();
 		startTheard(this, billList) ;
+		writeToFile();
 	}
 	
 	public boolean assignBudgets(String name, double amount) {

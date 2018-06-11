@@ -37,7 +37,20 @@ public class Transaction{
 	public boolean equals(int id) {
 		return this.id == id;
 	}
-
+	
+	public String writeToFile() {
+		String s = "";
+		s+="<ID>"+id+"</ID>";
+		s+="<Date>"+date+"</Date>";
+		s+="<Payer>"+payer+"</Payer>";
+		s+="<AccountID>"+payerAccountID+"</AccountID>";
+		s+="<Payee>"+payee+"</Payee>";
+		s+="<AccountID>"+payeeAccountID+"</AccountID>";
+		s+="<Description>"+description+"</Description>";
+		s+="<Amount>"+amount+"</Amount>";
+		return s;
+	}
+	
 	public String toString() {
 		String s = "Payer: " + payer;
 		s += "\nPayer account ID: " + payerAccountID;

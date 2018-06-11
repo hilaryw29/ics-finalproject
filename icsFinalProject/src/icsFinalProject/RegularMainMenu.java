@@ -38,12 +38,13 @@ public class RegularMainMenu {
 		while (!success) {
 			try {
 				password = sc.nextLine();
-				//try {
-					family = new FamilyBudgetManagement(password); // fix later
-				//} catch (PINNotMatchException | IOException e) {
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
-				//}// MAYBE NOT NEEDED
+					try {
+						family = new FamilyBudgetManagement(password, FileConstant.ENTRANCE);
+					} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
+							| NoSuchPaddingException | IllegalBlockSizeException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				success = true;
 			} catch (PINNotMatchException pinex) {
 				System.out.println("Incorrect password. Enter again.");
@@ -52,6 +53,8 @@ public class RegularMainMenu {
 			} catch (FileNotFoundException foundex) {
 				System.out.println("The save files were not found. Please correct this and run the program again.");
 			} catch (IOException iox) {
+			} catch (BadPaddingException e) {
+				
 			}
 		}
 		

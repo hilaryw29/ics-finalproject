@@ -16,8 +16,7 @@ public class TransactionList{
 	private int numOfTransaction;
 	private int lastID;
 	private final static int DEFAULTNUMOFTRANSACTION = 100;
-	private final static byte[] a = "Nfwernxnfuinouie".getBytes(StandardCharsets.UTF_8);
-	private String PIN;
+	private byte[] PIN;
 	private ArrayList<Transaction> sortedTransaction;
 	private ArrayList<Transaction> unsortedTransaction;
 	
@@ -41,16 +40,21 @@ public class TransactionList{
 	}
 	
 	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException{
-/*		this.PIN = PIN;
-		byte[]  = Files.readAllBytes(Paths.get(FileConstant.TRANSACTIONS));
-		byte[]  = Encryption.decrypt(a, m);
-*/		
+		this.PIN = MD5.getMd5(PIN);
+		byte[] text = Files.readAllBytes(Paths.get(FileConstant.TRANSACTIONS));
+		byte[] plainText = Encryption.decrypt(this.PIN, text);
+
+		for (byte i: plainText) {
+			line += 
+		}
+		
 	}
 	
 	public TransactionList(String PIN){
-		this.PIN = PIN;
+		this.PIN = MD5.getMd5(PIN);
 		sortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
 		unsortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
+		lastID = 0;
 	}
 	
 	public void insertTransactionByAmount(Transaction t){
@@ -80,17 +84,24 @@ public class TransactionList{
 		return lastID;
 
 	}
-	public void writeFile(){
-/*		try{
-			BufferedWriter out = new BufferedWriter(new FileWriter(filename));
-			Iterator listInterator = unsortedTransaction.iterator();
-	 		while (listInterator.hasNext()) {
-				Transaction current = (Transaction) listInterator.next();
-				out.write(
+	public void writeToFile(){
+		try {
+			FileOutputStream out = new 	FileOutputStream(FileConstant.TRANSACTIONS);
+			String num = ""+numOfTransaction;
+			byte[] m = Encryption.encrypt(PIN, num.getBytes(StandardCharsets.UTF_8));
+			out.write(m);
+			String lastID = ""+this.lastID;
+			byte[] id = Encryption.encrypt(PIN, lastID.getBytes(StandardCharsets.UTF_8));
+			out.write(id);
+			for (Transaction i:unsortedTransaction) {
+				byte[] text = Encryption.encrypt(PIN, i.toString().getBytes(StandardCharsets.UTF_8));
+				out.write(text);
 			}
-		}			out.close();
+		} catch (InvalidKeyException | NoSuchAlgorithmException | NoSuchPaddingException
+				| IllegalBlockSizeException | BadPaddingException | IOException e){
+			
 		}
-*/	}
+	}
 	public LinkedList<Transaction> listTransaction(String name){
 		LinkedList<Transaction> person = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
@@ -160,14 +171,11 @@ public class TransactionList{
 		}
 		return result2;
 	}
-	public void readFile(){
-		
-	}
 	
 	public boolean changePassword(String old, String newPass){
-		if (old == PIN) {
-			PIN = newPass;
-			writeFile();
+		if (MD5.getMd5(old) == PIN) {
+			PIN = MD5.getMd5(newPass);
+			writeToFile();
 			return true;
 		} else
 			return false;
