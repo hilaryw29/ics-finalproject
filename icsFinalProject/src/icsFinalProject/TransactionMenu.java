@@ -41,7 +41,15 @@ public class TransactionMenu extends Submenu {
 	private void viewByFamilyMembers() {
 		System.out.print("Please enter the desired family member: ");
 		String member = UserInput.intakeName();
-		System.out.println("mei xie wan")
+		LinkedList <Transaction> found = family.listTransaction(member);	
+		
+		if (found == null) {
+			System.out.println("No transactions were found for the specified date");
+		} else {
+			for(Transaction i:found) {
+				System.out.println(i);
+			}
+		}
 		displayMenu();
 	}
 	
@@ -51,14 +59,23 @@ public class TransactionMenu extends Submenu {
 		System.out.println("Finding transactions by amount");
 		System.out.println("Enter the amount you are looking for: ");
 		amount = Math.abs(UserInput.intakeDouble());
-		System.out.println("mei xie wan");
+		
+		LinkedList <Transaction> found = family.findTransactionEqual(amount);
+		
+		if (found.size() == 0) {
+			System.out.println("No transactions were found for this amount");
+		} else {
+			for(Transaction i:found) {
+				System.out.println(i);
+			}
+		}
 		displayMenu();
 	}
 	
 	private void addTransaction () {
 		System.out.print("Please enter the following information:");
 		System.out.print("The name of the family member who paid the transaction: ");
-		String payer = UserInput.intakeName(password);
+		String payer = UserInput.intakeName();
 		System.out.print("The name of the family member or organization who receied the transaction. ");
 		String payee = UserInput.intakeString();
 		System.out.print("The account ID Of the payer: ");
@@ -91,7 +108,7 @@ public class TransactionMenu extends Submenu {
 	private void findByDate () {
 		LinkedList <Transaction> found;
 		System.out.println("Searching transactions by date");
-		found = family.findTransaction(intakeDate());
+		found = family.findTransaction(UserInput.intakeDate());
 		
 		if (found == null) {
 			System.out.println("No transactions were found for the specified date");
