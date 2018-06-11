@@ -38,13 +38,12 @@ public class RegularMainMenu {
 		while (!success) {
 			try {
 				password = sc.nextLine();
-				try {
-					family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
-				} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
-						| NoSuchPaddingException | IllegalBlockSizeException | BadPaddingException e) {
+				//try {
+					family = new FamilyBudgetManagement(password); // fix later
+				//} catch (PINNotMatchException | IOException e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}// MAYBE NOT NEEDED
+					//e.printStackTrace();
+				//}// MAYBE NOT NEEDED
 				success = true;
 			} catch (PINNotMatchException pinex) {
 				System.out.println("Incorrect password. Enter again.");
@@ -95,7 +94,7 @@ public class RegularMainMenu {
 		choice = UserInput.intakeChoice(6);
 		
 		if (choice == 1) {
-			
+			System.out.println("fix");
 		} else if (choice == 2) {
 			TransactionMenu transmenu = new TransactionMenu(password);
 		} else if (choice == 3){

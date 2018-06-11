@@ -44,7 +44,7 @@ public class FirstMainMenu {
 		numMember = UserInput.intakeInt();
 		
 		// Family member info is entered
-		System.out.println("Please enter the name of their role in the family. Enter 'a' for adult or 'c' for child: ");
+		System.out.println("Enter 'a' for adult or 'c' for child: ");
 		String role = UserInput.intakeType("a", "c");
 		
 		
@@ -54,6 +54,7 @@ public class FirstMainMenu {
 			} else {
 				family.addFamilyMember(new Child(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
 			}
+			sc.nextLine();
 		}
 		
 		
@@ -65,7 +66,12 @@ public class FirstMainMenu {
 		// Prompts user for pin and writes it to file
 		System.out.println("Please choose a password: ");
 		pin = sc.nextLine();
-		family = new FamilyBudgetManagement(pin);
+		try {
+			family = new FamilyBudgetManagement(pin);
+		} catch (PINNotMatchException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	private String intakeRole() {
