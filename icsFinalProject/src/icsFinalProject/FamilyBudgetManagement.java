@@ -2,9 +2,14 @@ package icsFinalProject;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 public class FamilyBudgetManagement {
 	private double houseHoldBalance;
@@ -37,7 +42,7 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
-	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException {
+	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		BufferedReader read = new BufferedReader(new FileReader(fileName));
 		String line;
 		while ((line = read.readLine()) != null) {
@@ -119,7 +124,6 @@ public class FamilyBudgetManagement {
 		return memberlist.listAccount();
 	}
 	
-	public 
 	
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
