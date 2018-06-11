@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 public class MD5{
 	private static final String ALGORITHM ="MD5";
 	
-	private static String getMD5(String fileName) {
+	public static String getMD5(String fileName) {
 		try {
 			byte[] read = Files.readAllBytes(Paths.get(fileName));
 			byte[] hash = MessageDigest.getInstance(ALGORITHM).digest(read);
@@ -26,7 +26,7 @@ public class MD5{
 	}
 	
 	public static boolean compareMD5(String fileName, String md5) {
-		return md5==getMD5(fileName) ? true : false;
+		return md5.equals(getMD5(fileName)) ? true : false;
 	}
 	
 	public static byte[] getMd5(String pin) {

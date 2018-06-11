@@ -25,6 +25,7 @@ public class RecurringBillsList implements Serializable{
 	
 	public RecurringBillsList() {
 		billList = new TreeSet<>();
+		numOfBills = 0;
 	}
 	
 	public void addBill(RecurringBill bill) {
@@ -60,8 +61,10 @@ public class RecurringBillsList implements Serializable{
 			Iterator<RecurringBill> listInterator = billList.iterator();
 			BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.BILLS));
 			out.write(numOfBills);
+			out.newLine();
   			while(listInterator.hasNext()){  
-   				out.write(listInterator.next().toString());  	
+   				out.write(listInterator.next().toString());  
+   				out.newLine();
 			}
 			out.close();
 		}

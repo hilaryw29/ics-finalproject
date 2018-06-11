@@ -22,7 +22,7 @@ public class FamilyBudgetManagement {
 	private RecurringBillsList billList;
 	private byte[] PIN;
 	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
-		BufferedReader read = new BufferedReader(new FileReader(fileName));
+		BufferedReader read = new BufferedReader(new FileReader(FileConstant.ENTRANCE));
 		String line;
 		while ((line = read.readLine()) != null) {
 			String md5 = read.readLine();
@@ -56,9 +56,25 @@ public class FamilyBudgetManagement {
         billList.writeFile();
         OutputStream objectOut = new FileOutputStream(FileConstant.TRANSACTIONS);
         Encryption.encrypt(transactionList, objectOut, PIN);
+        
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FileConstant.ENTRANCE));
+        writer.write(FileConstant.MEMBERINFO);
+        writer.newLine();
+        writer.write(MD5.getMD5(FileConstant.MEMBERINFO));
+        writer.newLine();
+        writer.write(FileConstant.BILLS);
+        writer.newLine();
+        writer.write(MD5.getMD5(FileConstant.BILLS));
+        writer.newLine();
+        writer.write(FileConstant.TRANSACTIONS);
+        writer.newLine();
+        writer.write(MD5.getMD5(FileConstant.TRANSACTIONS));
+        writer.close();
+        
 	}
 	
 	public FamilyBudgetManagement(String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
+		this.PIN = MD5.getMd5(PIN);
 		transactionList = new TransactionList(PIN);
 		memberlist = new FamilyMemberList();
 		billList = new RecurringBillsList();

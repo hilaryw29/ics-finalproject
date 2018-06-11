@@ -149,7 +149,11 @@ public class FirstMainMenu {
 	}
 	
 	public boolean isFirstRun () {
-		try {
+		
+	File file = new File(FileConstant.ENTRANCE);
+	return !file.exists();
+	}
+/*		try {
 			BufferedReader in = new BufferedReader(new FileReader (FileConstant.MEMBERINFO));
 			return (in.readLine() == null);
 		} catch (IOException e) {
@@ -157,5 +161,6 @@ public class FirstMainMenu {
 		}
 		return false;
 	}
+*/
 }
 
