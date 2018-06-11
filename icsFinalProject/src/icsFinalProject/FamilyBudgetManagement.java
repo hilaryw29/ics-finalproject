@@ -120,11 +120,21 @@ public class FamilyBudgetManagement {
 		return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MAX_VALUE);
 	}
 	
-	public LinkedList<Account> listAccount(){
-		return memberlist.listAccount();
+	// FIX LATER
+	public LinkedList<Account> listAccount(String s){
+		//return memberlist.listAccount();
+		return null;
 	}
 	
+	public int addAccount(Account account, String name) throws AccountException {
+		return memberlist.addAccount(account, name);
+	}
 	
+	// FIX LATER
+	public int delAccount() {
+		return Integer.MAX_VALUE;
+	}
+
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
 		updateHoldBalance();
@@ -220,5 +230,10 @@ public class FamilyBudgetManagement {
 
 	public void setHouseHoldBalance(double houseHoldBalance) {
 		this.houseHoldBalance = houseHoldBalance;
+	}
+	// fix later
+	public boolean removeAccount(String name, int id) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

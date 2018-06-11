@@ -68,9 +68,19 @@ public class BankAccountMenu extends Submenu {
 		double amount = UserInput.intakeDouble();
 		
 		if (type.equalsIgnoreCase("c")) {
-			family.addAccount(new Account("Chequing", amount));
+			try {
+				family.addAccount(new Account("Chequing", amount), name);
+			} catch (AccountException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
-			family.addAccount(new Account("Saving", amount));
+			try {
+				family.addAccount(new Account("Saving", amount), name);
+			} catch (AccountException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		System.out.println("Your account was succesfully added.");
 		displayMenu();
@@ -84,17 +94,17 @@ public class BankAccountMenu extends Submenu {
 		
 		boolean success = false;
 		while (!success) {			
-			try {
-				selected = family.listAccount("Family").get(choice);
+			//try {
+				//selected = family.listAccount("Family").get(choice);
 				success = true;
-			} catch (IndexOutOfBoundsException ix) {
+			//} catch (IndexOutOfBoundsException ix) {
 				System.out.println("Invalid choice. Try again.");
 				choice = UserInput.intakeInt();
-			}
+			//}
 		}
 		
-		System.out.println("Account " + selected.getId() + " is selected");
-		editAccountMenu(selected);
+		//System.out.println("Account " + selected.getId() + " is selected");
+		//editAccountMenu(selected);
 	}
 
 	private void editAccountMenu(Account selected) {
@@ -115,7 +125,7 @@ public class BankAccountMenu extends Submenu {
 	}
 
 	private void editAccountType(Account selected) {
-		System.out.println("The current account " + selected.getId()) + " is of type: " + selected.getAccountType());
+		System.out.println("The current account " + selected.getId() + " is of type: " + selected.getAccountType());
 		System.out.println("To change this account to savings, enter 's'. To change this account to chequing, enter 'c'");
 		String choice = UserInput.intakeType("s", "c");
 		
@@ -132,10 +142,10 @@ public class BankAccountMenu extends Submenu {
 		String name = UserInput.intakeName();
 		
 		LinkedList <Account> found;
-		try {
+		//try {
 			found = family.listAccount(name);
-		} catch (AccountException ax) {
-		}
+		//} catch (AccountException ax) {
+		//}
 		
 		for(Account i:found) {
 			System.out.println(i); 
@@ -147,10 +157,10 @@ public class BankAccountMenu extends Submenu {
 		LinkedList <Account> found;
 		System.out.println("Listing all accounts");
 		
-		try {
+		//try {
 			found = family.listAccount("Family");
-		} catch (AccountException ax) {
-		}
+		//} catch (AccountException ax) {
+		//}
 		
 		int idx = 0;
 		for(Account i:found) {
