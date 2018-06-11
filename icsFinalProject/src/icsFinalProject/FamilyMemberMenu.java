@@ -62,9 +62,8 @@ public class FamilyMemberMenu extends Submenu {
 		displayMenu();
 	}
 	
-	private void listMembers () {
-		// NEED TO GET A LIST/ARRAY OF MEMBERS SO THAT WE CAN HAVE AN ID...
-		// ...IN FRONT OF EACH MEMBER AS AN OPTION
+	private ArrayList <Member> listMembers () {
+		return family.listMember();
 	}
 	
 	private void selectMember () {
@@ -72,12 +71,12 @@ public class FamilyMemberMenu extends Submenu {
 		
 		System.out.println("Please enter the number associated with the member you'd like to select: ");
 		int choice = UserInput.intakeInt();
-		Member selected;
+		Member selected = null;
 		
 		boolean success = false;
 		while (!success) {			
 			try {
-				selected = family.listMembers().get(choice);
+				selected = (Member) family.listMember().get(choice);
 				success = true;
 			} catch (IndexOutOfBoundsException ix) {
 				System.out.println("Invalid choice. Try again.");
