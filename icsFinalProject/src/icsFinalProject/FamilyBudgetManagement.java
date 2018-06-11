@@ -138,7 +138,7 @@ public class FamilyBudgetManagement {
 		memberlist.updateBalance(transaction);
 	}
 	
-	private void updateHoldBalance() {
+	private void updateHoldBalance() { 
 		houseHoldBalance=memberlist.getTotalBalance();
 	}
 	
