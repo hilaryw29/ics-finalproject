@@ -28,7 +28,7 @@ public class FamilyMemberMenu extends Submenu {
 		} else if (choice == SORT_EXPENSE) {
 			sortByExpense();
 		} else if (choice == ADD_MEMBER) {
-			
+			addMember();
 		} else if (choice == SELECT_MEMBER) {
 			selectMember();
 		} else {
