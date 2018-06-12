@@ -52,9 +52,9 @@ public class UserInput {
 			try {
 				input = sc.nextLine();
 				if (input.length() == 10 && input.charAt(4) == '/' && input.charAt(7) == '/') {
-					Integer.parseInt(input,3);
-					Integer.parseInt(input.substring(5), 1);
-					Integer.parseInt(input.substring(8), 1);
+					Integer.parseInt(input.substring(0,3));
+					Integer.parseInt(input.substring(5,6));
+					Integer.parseInt(input.substring(8,9));
 					valid = true;
 				} else {
 					System.out.println("Invalid input. Enter the date in the format yyyy/mm/dd");
