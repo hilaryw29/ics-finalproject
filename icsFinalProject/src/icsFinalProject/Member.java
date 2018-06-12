@@ -103,7 +103,7 @@ public abstract class Member implements Serializable {
 	}
 
 	public boolean equalTo(String name) {
-		return this.name == name;
+		return this.name.equals(name);
 	}
 	
 	public boolean checkAccountBalance (String name, int accountId, double lowestBalance) throws AccountException {
