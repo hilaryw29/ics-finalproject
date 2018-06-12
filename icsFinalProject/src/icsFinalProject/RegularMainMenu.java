@@ -96,7 +96,20 @@ public class RegularMainMenu {
 		}
 		
 		choice = UserInput.intakeChoice(6);
-		
+		if (choice == 1) {
+			System.out.println("fix");
+		} else if (choice == 2) {
+			TransactionMenu transmenu = new TransactionMenu(family);
+		} else if (choice == 3){
+			GeneralFamilyInfo faminfo = new GeneralFamilyInfo(family);
+		} else if (choice == 4) {
+			BankAccountMenu bankmenu = new BankAccountMenu(family);
+		} else if (choice == 5) {
+			FamilyMemberMenu fammenu = new FamilyMemberMenu(family);
+		} else if (choice == 6) {
+			BillsMenu billmenu = new BillsMenu(family);
+		}
+		/*
 		if (choice == 1) {
 			System.out.println("fix");
 		} else if (choice == 2) {
@@ -110,6 +123,7 @@ public class RegularMainMenu {
 		} else if (choice == 6) {
 			BillsMenu billmenu = new BillsMenu(password);
 		}
+		*/
 	}
 
 	

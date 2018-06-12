@@ -3,8 +3,8 @@ package icsFinalProject;
 import java.util.LinkedList;
 
 public class BankAccountMenu extends Submenu {
-	public BankAccountMenu (String password) { 
-		super(password);
+	public BankAccountMenu (FamilyBudgetManagement family) { 
+		super(family);
 		displayMenu();
 	}
 	

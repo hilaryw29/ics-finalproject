@@ -7,7 +7,7 @@ public class FamilyMemberMenu extends Submenu {
 	final int ADD_MEMBER = 3;
 	final int SELECT_MEMBER = 4;
 	
-	public FamilyMemberMenu (String pass) {
+	public FamilyMemberMenu (FamilyBudgetManagement pass) {
 		super(pass);
 		displayMenu();
 	}

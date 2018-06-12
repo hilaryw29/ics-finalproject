@@ -4,7 +4,7 @@ public class BillsMenu extends Submenu {
 	final int ADD_BILL = 1;
 	final int DISPLAY_BILL = 2;
 	
-	public BillsMenu (String pass) {
+	public BillsMenu (FamilyBudgetManagement pass) {
 		super(pass);
 		displayMenu();
 	}

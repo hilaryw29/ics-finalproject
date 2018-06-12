@@ -9,7 +9,7 @@ public class TransactionMenu extends Submenu {
 	final int VIEWBYFAM = 4;
 	final int GOBACK = 5;
 	
-	public TransactionMenu(String pass) {
+	public TransactionMenu(FamilyBudgetManagement pass) {
 		super(pass);
 		displayMenu();
 	}
