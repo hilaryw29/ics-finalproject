@@ -27,8 +27,7 @@ public class GeneralFamilyInfo extends Submenu {
 		if (choice == DISPLAY_FAMILY_INFO) {
 			displayFamilyInfo();
 		} else if (choice == VIEW_LOW_BALANCE) {
-			System.out.print("The current minimum household balance is: $");
-			System.out.println(family.getMinHouseHoldBalance());
+			displayLowBalance();
 		} else if (choice == EDIT_LOW_BALANCE) {
 			editLowBalance();
 		} else if (choice == EDIT_PIN) {
@@ -39,6 +38,11 @@ public class GeneralFamilyInfo extends Submenu {
 
 	}
 	
+	public void displayLowBalance () {
+		System.out.print("The current minimum household balance is: $");
+		System.out.println(family.getMinHouseHoldBalance());
+		displayMenu();
+	}
 
 	public void displayFamilyInfo() {	
 		System.out.println("Here is the family info: ");
