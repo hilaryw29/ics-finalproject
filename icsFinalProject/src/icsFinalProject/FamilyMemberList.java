@@ -104,7 +104,7 @@ public class FamilyMemberList implements Serializable{
 	}
 	
 	public Member[] sortMemberByIncome(){
-		Member[] member = (Member[]) family.toArray();
+		Member[] member = (Member[]) family.toArray(new Member[numOfMember]);
 		for(int i = numOfMember - 1; i >=0; i --){
 			int maxIndex = 0; 
 			for(int j = 0; j < i; j ++){
@@ -119,7 +119,7 @@ public class FamilyMemberList implements Serializable{
 		return member;
 	}
 	public Member[] sortMemberByExpense(){
-		Member[] member = (Member[]) family.toArray();
+		Member[] member = (Member[]) family.toArray(new Member[numOfMember]);
         for (int i = 0; i < numOfMember-1; i++){
             for (int j = 0; j < numOfMember-i-1; j++){
                 if (member[j].compareToExpense(member[j+1]) > 0){
