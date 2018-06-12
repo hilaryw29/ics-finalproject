@@ -84,6 +84,10 @@ public class FamilyBudgetManagement {
 	}
 	
 	public boolean assignBudgets(String name, double amount) {
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
 		return memberlist.assignBudget(name, amount);
 	}
 	
@@ -93,10 +97,18 @@ public class FamilyBudgetManagement {
 	
 	public void setGoal(String name, Goal goal) throws GoalException{
 		memberlist.setGoal(goal, name);
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
 	}
 	
 	public void setMinHouseHoldBalance(double minHouseHoldBalance) {
 		this.minHouseHoldBalance = Math.abs(minHouseHoldBalance); 
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
 	}
 	
 	public double getMinHouseHoldBalance() {
@@ -110,6 +122,10 @@ public class FamilyBudgetManagement {
 	public boolean addMonthlyBill(RecurringBill bill) {
 		if (checkIfAccountExisted(bill) == true) {
 			billList.addBill(bill);
+			try {
+				writeToFile();
+			} catch (IOException e) {
+			}
 			return true;
 		} else {
 			return false;
@@ -127,7 +143,12 @@ public class FamilyBudgetManagement {
 	}
 	
 	public int addAccount(Account account, String name) throws AccountException {
-		return memberlist.addAccount(account, name);
+		int i = memberlist.addAccount(account, name);
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
+		return i;
 	}
 	
 	// FIX LATER
@@ -141,11 +162,21 @@ public class FamilyBudgetManagement {
 		if (isHouseHoldBalanceLow()) {
 			System.out.println("House Hold Balance is low now!");
 		}
-		return transactionList.addTransaction(transaction);
+		int i = transactionList.addTransaction(transaction);
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
+		return i;
+		
 	}
 	
 	private void updateBalance(Transaction transaction) throws AccountException {
 		memberlist.updateBalance(transaction);
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
 	}
 	
 	private void updateHoldBalance() { 
@@ -219,11 +250,19 @@ public class FamilyBudgetManagement {
 	
 	public void allocateIncome(String name,int id, int percentage) throws AccountException{
 		memberlist.allocateIncome(name,id,percentage);
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
 	}
 	
 	
 	public boolean addFamilyMember(Member m) {
 		memberlist.addFamilyMember(m);
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
 		return true;
 	}
 	
@@ -232,7 +271,12 @@ public class FamilyBudgetManagement {
 	}
 	
 	public boolean delBill(int id) {
-		return billList.delBill(id);
+		boolean b = billList.delBill(id);
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
+		return b;
 	}
 	
 	public String displayFamilyInfo() {
@@ -245,6 +289,10 @@ public class FamilyBudgetManagement {
 
 	public void setHouseHoldBalance(double houseHoldBalance) {
 		this.houseHoldBalance = houseHoldBalance;
+		try {
+			writeToFile();
+		} catch (IOException e) {
+		}
 	}
 	// fix later
 	public boolean removeAccount(String name, int id) {
