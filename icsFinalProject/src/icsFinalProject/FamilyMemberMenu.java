@@ -105,6 +105,7 @@ public class FamilyMemberMenu extends Submenu {
 		System.out.println("Please enter the percentage of your income you'd like to devote to your monthly budget: ");
 		percentage = UserInput.intakeDouble()/100;
 		System.out.println("Are you an adult? (Please enter yes or no");
+		UserInput.flush();
 		isAdult = UserInput.intakeString();
 		
 		if (isAdult.equalsIgnoreCase("yes")) {
