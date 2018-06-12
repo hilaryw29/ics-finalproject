@@ -60,7 +60,7 @@ public class RecurringBillsList implements Serializable{
 		try{
 			Iterator<RecurringBill> listInterator = billList.iterator();
 			BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.BILLS));
-			out.write(numOfBills);
+			out.write(""+numOfBills);
 			out.newLine();
   			while(listInterator.hasNext()){  
    				out.write(listInterator.next().toString());  

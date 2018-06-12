@@ -31,7 +31,13 @@ public class MD5{
 	
 	public static byte[] getMd5(String pin) {
 		try {
-			return MessageDigest.getInstance(ALGORITHM).digest(pin.getBytes(StandardCharsets.UTF_8));
+			 byte[] hash = MessageDigest.getInstance(ALGORITHM).digest(pin.getBytes(StandardCharsets.UTF_8));
+			 StringBuffer value = new StringBuffer();
+			 for (int i = 0; i < hash.length; i++) {
+				 value.append(Integer.toString((hash[i] & 0xff) + 0x100, 16).substring(1));
+			 }
+			 System.out.println(value.toString());
+			return value.toString().getBytes(StandardCharsets.UTF_8);
 		}catch (NoSuchAlgorithmException e) {
 			return null;
 		}

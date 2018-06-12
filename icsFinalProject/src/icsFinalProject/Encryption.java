@@ -1,5 +1,7 @@
 package icsFinalProject;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -19,11 +21,11 @@ import javax.crypto.SealedObject;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Encryption {
-	private static final String ALGORITHM = "AES";
+	private static final String ALGORITHM = "AES/ECB/PKCS5Padding";
 	
 	public static void encrypt(Serializable o, OutputStream out, byte[] password) throws IOException {
 	    try {
-	        SecretKeySpec key = new SecretKeySpec(password, ALGORITHM);
+	        SecretKeySpec key = new SecretKeySpec(password, "AES");
 	        Cipher cipher = Cipher.getInstance(ALGORITHM);
 	        cipher.init(Cipher.ENCRYPT_MODE, key);
 	        SealedObject sealedObject = new SealedObject(o, cipher);
@@ -32,22 +34,27 @@ public class Encryption {
 	        objectOut.writeObject(sealedObject);
 	        objectOut.close();
 	    } catch (IllegalBlockSizeException | NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException e) {
+	    	System.out.println("en");
 	    }
 	}
 
 	public static TransactionList decrypt(InputStream in, byte[] password) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
-	    SecretKeySpec key = new SecretKeySpec(password, ALGORITHM);
+		SecretKeySpec key = new SecretKeySpec(password, "AES");
 	    Cipher cipher = Cipher.getInstance(ALGORITHM);
 	    cipher.init(Cipher.DECRYPT_MODE, key);
 	    CipherInputStream cipherIn = new CipherInputStream(in, cipher);
-	    ObjectInputStream objectIn = new ObjectInputStream(cipherIn);
-	    SealedObject sealedObject;
 	    try {
+	    	ObjectInputStream objectIn = new ObjectInputStream(cipherIn);
+	    SealedObject sealedObject;
 	        sealedObject = (SealedObject) objectIn.readObject();
 	        objectIn.close();
 	        return (TransactionList) sealedObject.getObject(cipher);
+	    } catch (FileNotFoundException e) {
+	    	System.out.println("123");
+	    	return null;
 	    } catch (ClassNotFoundException | IllegalBlockSizeException | BadPaddingException e) {
-	        return null;
+	        System.out.println("en2");
+	    	return null;
 	    }
 	}
 }
