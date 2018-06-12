@@ -53,7 +53,7 @@ public class RegularMainMenu {
 			} catch (FileNotFoundException foundex) {
 				System.out.println("The save files were not found. Please correct this and run the program again.");
 			} catch (IOException iox) {
-				System.out.println("IO");
+				System.out.println("Incorrect password. Enter again.");
 			} catch (BadPaddingException e) {
 				
 			}

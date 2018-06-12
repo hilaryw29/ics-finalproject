@@ -36,7 +36,7 @@ public class MD5{
 			 for (int i = 0; i < hash.length; i++) {
 				 value.append(Integer.toString((hash[i] & 0xff) + 0x100, 16).substring(1));
 			 }
-			 System.out.println(value.toString());
+		//	 System.out.println(value.toString());
 			return value.toString().getBytes(StandardCharsets.UTF_8);
 		}catch (NoSuchAlgorithmException e) {
 			return null;
