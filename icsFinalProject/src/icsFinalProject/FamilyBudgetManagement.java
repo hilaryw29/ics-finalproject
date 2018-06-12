@@ -21,7 +21,7 @@ public class FamilyBudgetManagement {
 	private TransactionList transactionList;
 	private RecurringBillsList billList;
 	private byte[] PIN;
-	public FamilyBudgetManagement(String fileName, String PIN) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
+	public FamilyBudgetManagement(String PIN, String fileName) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		BufferedReader read = new BufferedReader(new FileReader(FileConstant.ENTRANCE));
 		String line;
 		while ((line = read.readLine()) != null) {

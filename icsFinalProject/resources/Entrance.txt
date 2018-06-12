@@ -3,4 +3,4 @@ f22cd510f6d1fe84d327f0fcdab3b58d
 .\resources\Bills.txt
 21438ef4b9ad4fc266b6129a2f60de29
 .\resources\Transactions.txt
-8766f76795c55b07298eddf25640245b
+47f75b284ea50201fa5e336363918aca

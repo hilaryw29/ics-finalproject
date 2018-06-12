@@ -22,10 +22,11 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Encryption {
 	private static final String ALGORITHM = "AES/ECB/PKCS5Padding";
+	private static final String ALGORITHM1 = "AES";
 	
 	public static void encrypt(Serializable o, OutputStream out, byte[] password) throws IOException {
 	    try {
-	        SecretKeySpec key = new SecretKeySpec(password, "AES");
+	        SecretKeySpec key = new SecretKeySpec(password, ALGORITHM1);
 	        Cipher cipher = Cipher.getInstance(ALGORITHM);
 	        cipher.init(Cipher.ENCRYPT_MODE, key);
 	        SealedObject sealedObject = new SealedObject(o, cipher);
@@ -39,7 +40,7 @@ public class Encryption {
 	}
 
 	public static TransactionList decrypt(InputStream in, byte[] password) throws IOException, NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException {
-		SecretKeySpec key = new SecretKeySpec(password, "AES");
+		SecretKeySpec key = new SecretKeySpec(password, ALGORITHM1);
 	    Cipher cipher = Cipher.getInstance(ALGORITHM);
 	    cipher.init(Cipher.DECRYPT_MODE, key);
 	    CipherInputStream cipherIn = new CipherInputStream(in, cipher);
