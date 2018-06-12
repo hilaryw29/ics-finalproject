@@ -221,6 +221,7 @@ public class FamilyBudgetManagement {
 		memberlist.allocateIncome(name,id,percentage);
 	}
 	
+	
 	public boolean addFamilyMember(Member m) {
 		memberlist.addFamilyMember(m);
 		return true;
