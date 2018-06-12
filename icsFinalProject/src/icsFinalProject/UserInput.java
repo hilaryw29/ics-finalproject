@@ -115,4 +115,9 @@ public class UserInput {
 		return input;
 	}
 
+	public static void flush() {
+		// TODO Auto-generated method stub
+		sc.nextLine();
+	}
+
 }
