@@ -18,6 +18,10 @@ public abstract class Member implements Serializable {
 		this.income = income;
 		this.budget = budget;
 		this.percentage = percentage;
+		accountList = new LinkedList<>();
+		goal = null;
+		expense = 0;
+		balance = 0;
 	}
 
 	public Account findAccount(int accountId) {
@@ -117,11 +121,20 @@ public abstract class Member implements Serializable {
 	public int addAccount (Account account) { 
 		int id = accountList.getLast().id+1;
 		accountList.add(new Account(account, id));
+		setBalance();
 		return id;
 	}
 	
 	public LinkedList<Account> listAccount (){
 		return accountList;
+	}
+
+	public void setBalance() {
+		double balance = 0;
+		for (Account i:accountList) {
+			balance += i.getBalance();
+		}
+		this.balance = balance;
 	}
 	
 	public abstract void writeFile ();

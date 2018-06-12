@@ -204,7 +204,7 @@ public class FamilyBudgetManagement {
 	}
 	
 	public boolean changePassword(String old, String newPass) {
-		if (MD5.getMd5(old) == PIN) {
+		if (new String(MD5.getMd5(old)).equals(new String(PIN))) {
 			PIN = MD5.getMd5(newPass);
 			try {
 				writeToFile();
