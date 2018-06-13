@@ -15,7 +15,7 @@ public class GeneralFamilyInfo extends Submenu {
 
 	public void displayMenu() {
 		int choice;
-		System.out.println("GENERAL FAMILY INFO MENU");
+		System.out.println("\n\nGENERAL FAMILY INFO MENU");
 		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
 		System.out.println("1. View low balance threshold");
 		System.out.println("2. Edit low balance threshold");
@@ -46,7 +46,7 @@ public class GeneralFamilyInfo extends Submenu {
 
 	public void displayFamilyInfo() {	
 		System.out.println("Here is the family info: ");
-		System.out.print(family.displayFamilyInfo());
+		System.out.print(family.displayFamilyInfo());		// Remember to write the toString
 		displayMenu();
 	}
 

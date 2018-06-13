@@ -79,7 +79,7 @@ public class RegularMainMenu {
 
 	public void displayMenu() {
 		int choice;
-		System.out.println("Welcome. Please enter a number 1-3 that corresponds to the following choices: ");
+		System.out.println("\n\nWelcome. Please enter a number 1-3 that corresponds to the following choices: ");
 		System.out.println("1. Generate previous montly report");
 		System.out.println("2. Transanctions menu");
 		System.out.println("3. General Family Info");

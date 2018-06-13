@@ -69,7 +69,7 @@ public class BankAccountMenu extends Submenu {
 		
 		if (type.equalsIgnoreCase("c")) {
 			try {
-				family.addAccount(new Account("Chequing", amount), name);
+				family.addAccount(new Account("Chequing", amount), name); // no such element exception
 			} catch (AccountException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

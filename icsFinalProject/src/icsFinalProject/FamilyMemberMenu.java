@@ -62,29 +62,18 @@ public class FamilyMemberMenu extends Submenu {
 		displayMenu();
 	}
 	
-	private ArrayList <Member> listMembers () {
+	private ArrayList <Member> listMembers () { /////// NOT NEEDED????
 		return family.listMember();
 	}
 	
 	private void selectMember () {
-		// List members doesn't show list?
 		listMembers();
 		
-		System.out.println("Please enter the number associated with the member you'd like to select: ");
-		int choice = UserInput.intakeInt();
-		Member selected = null;
+		System.out.println("Please enter the name of the member you'd like to select: ");
+		String name = UserInput.intakeName();
+		Member selected = family.searchMember(name);
 		
-		boolean success = false;
-		while (!success) {			
-			try {
-				selected = (Member) family.listMember().get(choice);
-				success = true;
-			} catch (IndexOutOfBoundsException ix) {
-				System.out.println("Invalid choice. Try again.");
-				choice = UserInput.intakeInt();
-			}
-		}
-		
+				
 		System.out.println("Member " + selected.getName() + " is selected");
 		editFamMemberMenu(selected);
 		
@@ -133,7 +122,7 @@ public class FamilyMemberMenu extends Submenu {
 		System.out.println("4. Delete goal");
 		System.out.println("5. Go back to main menu");
 		
-		int choice = UserInput.intakeChoice(3);
+		int choice = UserInput.intakeChoice(5);
 		
 		if (choice == EDIT_INCOME) {
 			changeIncome(person);
@@ -176,6 +165,7 @@ public class FamilyMemberMenu extends Submenu {
 				}
 			}
 		}
+		editFamMemberMenu(person);
 	}
 
 	private void changeIncome (Member person) {
@@ -183,6 +173,7 @@ public class FamilyMemberMenu extends Submenu {
 		double income = Math.abs(UserInput.intakeDouble());
 		
 		person.setIncome(income);
+		editFamMemberMenu(person);
 	}
 	
 	private void changeBudget (Member person) {
@@ -190,6 +181,7 @@ public class FamilyMemberMenu extends Submenu {
 		double budget = Math.abs(UserInput.intakeDouble());
 		
 		person.setBudget(budget);
+		editFamMemberMenu(person);
 	}
 	
 	

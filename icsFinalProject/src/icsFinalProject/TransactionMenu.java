@@ -16,7 +16,7 @@ public class TransactionMenu extends Submenu {
 	
 	public void displayMenu() {
 		int choice;
-		System.out.println("TRANSACTION MENU");
+		System.out.println("\n\nTRANSACTION MENU");
 		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
 		System.out.println("1. Find transaction by date");
 		System.out.println("2. Add a new transaction");
@@ -43,8 +43,8 @@ public class TransactionMenu extends Submenu {
 		String member = UserInput.intakeName();
 		LinkedList <Transaction> found = family.listTransaction(member);	
 		
-		if (found == null) {
-			System.out.println("No transactions were found for the specified date");
+		if (found.size() == 0) {
+			System.out.println("No transactions were found for this user");
 		} else {
 			for(Transaction i:found) {
 				System.out.println(i);
@@ -87,6 +87,7 @@ public class TransactionMenu extends Submenu {
 		System.out.print("Enter the date of the transaction: ");
 		String date = UserInput.intakeDate();
 		System.out.print("Enter transaction description (optional):");
+		UserInput.flush();
 		String description = UserInput.intakeString();
 		
 		boolean success = false;
