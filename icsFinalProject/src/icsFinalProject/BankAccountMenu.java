@@ -139,6 +139,7 @@ public class BankAccountMenu extends Submenu {
 
 	private void listAccountsMember() {
 		System.out.print("Enter the name of the family member: ");
+		//UserInput.flush();
 		String name = UserInput.intakeName();
 		
 		LinkedList <Account> found;
@@ -146,12 +147,16 @@ public class BankAccountMenu extends Submenu {
 			found = family.listAccount(name);
 		//} catch (AccountException ax) {
 		//}
-		try {
-			for(Account i:found) {
-				System.out.println(i); 
-			}
-		} catch (NullPointerException e) {
+		if (found == null) {
 			System.out.println("Currently there is no account.");
+		} else {
+			try {
+				for(Account i:found) {
+					System.out.println(i); 
+				}
+			} catch (NullPointerException e) {
+				System.out.println("Currently there is no account.");
+			}
 		}
 		displayMenu();
 	}
@@ -161,11 +166,11 @@ public class BankAccountMenu extends Submenu {
 		System.out.println("Listing all accounts");
 		
 		//try {
-			found = family.listAccount("Family");
+			found = family.listAccount();
 		//} catch (AccountException ax) {
 		//}
 		
-		int idx = 0;
+		int idx = 1;
 		try {
 			for(Account i:found) {
 				System.out.print((idx++) + ". ");

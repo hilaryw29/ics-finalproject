@@ -44,7 +44,7 @@ public class BillsMenu extends Submenu {
 		System.out.println("Please enter the amount of the recurring bill:");
 		amount = UserInput.intakeDouble();
 		System.out.println("Please enter the date when the bill will be deducted each month (e.g. an integer from 1-30)");
-		date = UserInput.intakeDate();																							// Shouldn't this be an int
+		date = ""+UserInput.intakeChoice(30);																							// Shouldn't this be an int
 		System.out.println("Please enter the ID of the account where the money will be withdrawn from:");
 		id = UserInput.intakeInt();
 		

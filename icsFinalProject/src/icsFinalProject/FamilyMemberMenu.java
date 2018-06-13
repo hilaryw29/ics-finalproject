@@ -62,13 +62,7 @@ public class FamilyMemberMenu extends Submenu {
 		displayMenu();
 	}
 	
-	private ArrayList <Member> listMembers () { /////// NOT NEEDED????
-		return family.listMember();
-	}
-	
-	private void selectMember () {
-		listMembers();
-		
+	private void selectMember () {		
 		System.out.println("Please enter the name of the member you'd like to select: ");
 		String name = UserInput.intakeName();
 		Member selected = family.searchMember(name);
@@ -94,15 +88,16 @@ public class FamilyMemberMenu extends Submenu {
 		budget = UserInput.intakeDouble();
 		System.out.println("Please enter the percentage of your income you'd like to devote to your monthly budget: ");
 		percentage = UserInput.intakeDouble()/100;
-		System.out.println("Are you an adult? (Please enter yes or no");
+		System.out.println("Are you a child or an adult? (Please enter 'c' for child or 'a' for adult)");
 		UserInput.flush();
-		isAdult = UserInput.intakeString();
+		isAdult = UserInput.intakeType("a", "c");
 		
-		if (isAdult.equalsIgnoreCase("yes")) {
+		if (isAdult.equalsIgnoreCase("a")) {
 			family.addFamilyMember(new Adult (name, income, budget, percentage));
 		} else {
 			family.addFamilyMember(new Child (name, income, budget, percentage));
 		}
+		System.out.println("Bank account created");
 		
 		displayMenu();
 	}
