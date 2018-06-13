@@ -94,7 +94,11 @@ public class FamilyMemberList implements Serializable{
 	public LinkedList<Account> listAccount(){
 		LinkedList<Account> account = new LinkedList<>();
 		for (Member i: family) {
-			account.addAll(i.getAccountList());
+			for (Account j: i.getAccountList()) {
+				if (j != null) {
+					account.add(j);
+				}
+			}
 		}
 		return account;
 	}
