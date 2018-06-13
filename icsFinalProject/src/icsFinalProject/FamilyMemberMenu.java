@@ -140,7 +140,7 @@ public class FamilyMemberMenu extends Submenu {
 	private void deleteGoal(Member person) {
 		// How to delete goal 
 		System.out.println("Goal was successfully deleted");
-		
+		editFamMemberMenu(person);
 	}
 
 	// Something wrong with setGoal, goal entered but no output/response 
