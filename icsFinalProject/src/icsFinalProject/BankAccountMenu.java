@@ -148,7 +148,7 @@ public class BankAccountMenu extends Submenu {
 		//} catch (AccountException ax) {
 		//}
 		if (found.size() == 0) {
-			System.out.println("Currently there is no account.");
+			System.out.println("\nCurrently there is no account.\n");
 		} else {
 			try {
 				for(Account i:found) {
