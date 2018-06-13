@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class BankAccountMenu extends Submenu {
 	public BankAccountMenu (FamilyBudgetManagement family) { 
-		super(family);
+		super(family); 
 		displayMenu();
 	}
 	
