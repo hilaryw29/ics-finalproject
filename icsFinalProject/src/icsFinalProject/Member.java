@@ -122,6 +122,7 @@ public abstract class Member implements Serializable {
 	
 	public int addAccount (Account account) { 
 		int id = lastAccountID+1;
+		lastAccountID++;
 		accountList.add(new Account(account, id));
 		setBalance();
 		return id;
