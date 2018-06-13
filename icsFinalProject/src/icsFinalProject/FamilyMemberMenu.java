@@ -67,6 +67,7 @@ public class FamilyMemberMenu extends Submenu {
 	}
 	
 	private void selectMember () {
+		// List members doesn't show list?
 		listMembers();
 		
 		System.out.println("Please enter the number associated with the member you'd like to select: ");
@@ -153,6 +154,7 @@ public class FamilyMemberMenu extends Submenu {
 		
 	}
 
+	// Something wrong with setGoal, goal entered but no output/response 
 	private void setGoal(Member person) {
 		System.out.println("Enter the goal description: ");
 		String desc = UserInput.intakeString();
