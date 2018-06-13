@@ -161,7 +161,7 @@ public class BankAccountMenu extends Submenu {
 		System.out.println("Listing all accounts");
 		
 		//try {
-			found = family.listAccount("Family");
+			found = family.listAccount();
 		//} catch (AccountException ax) {
 		//}
 		

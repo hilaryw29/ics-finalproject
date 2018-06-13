@@ -150,8 +150,11 @@ public class FamilyBudgetManagement {
 	
 	// FIX LATER
 	public LinkedList<Account> listAccount(String s){
-		//return memberlist.listAccount();
-		return null;
+		return memberlist.listAccount(s);
+	}
+	
+	public LinkedList<Account> listAccount(){
+		return memberlist.listAccount();
 	}
 	
 	public int addAccount(Account account, String name) throws AccountException {

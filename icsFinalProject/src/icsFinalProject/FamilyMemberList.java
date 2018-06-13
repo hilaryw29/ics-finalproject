@@ -91,16 +91,24 @@ public class FamilyMemberList implements Serializable{
 		}
 		throw new AccountException(true, "Name Not Found");
 	}
+	
 	public LinkedList<Account> listAccount(){
 		LinkedList<Account> account = new LinkedList<>();
 		for (Member i: family) {
-			for (Account j: i.getAccountList()) {
-				if (j != null) {
-					account.add(j);
-				}
-			}
+			account.addAll(i.getAccountList());
 		}
 		return account;
+	}
+	
+	public LinkedList<Account> listAccount(String name){
+		LinkedList<Account> account = new LinkedList<>();
+		for (Member i: family) {
+			if (i.equalTo(name)) {
+				account.addAll(i.getAccountList());
+				return account;
+			}
+		}
+		return null;
 	}
 	
 	public double calculateAveExpense(){
