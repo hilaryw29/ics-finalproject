@@ -42,6 +42,10 @@ public class FamilyBudgetManagement {
 		transactionList = Encryption.decrypt(in, this.PIN);
 		startTheard(this, billList);
 		read.close();
+		read = new BufferedReader(new FileReader(FileConstant.BUDGETMANAGEMENT));
+		houseHoldBalance = Double.parseDouble(read.readLine());
+		minHouseHoldBalance = Double.parseDouble(read.readLine());
+		read.close();
 	}
 	
 	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
@@ -56,8 +60,12 @@ public class FamilyBudgetManagement {
         billList.writeFile();
         OutputStream objectOut = new FileOutputStream(FileConstant.TRANSACTIONS);
         Encryption.encrypt(transactionList, objectOut, PIN);
-        
-        BufferedWriter writer = new BufferedWriter(new FileWriter(FileConstant.ENTRANCE));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(FileConstant.BUDGETMANAGEMENT));
+        writer.write(""+houseHoldBalance);
+        writer.newLine();
+        writer.write(""+minHouseHoldBalance);
+        writer.close();
+        writer = new BufferedWriter(new FileWriter(FileConstant.ENTRANCE));
         writer.write(FileConstant.MEMBERINFO);
         writer.newLine();
         writer.write(MD5.getMD5(FileConstant.MEMBERINFO));
@@ -69,6 +77,10 @@ public class FamilyBudgetManagement {
         writer.write(FileConstant.TRANSACTIONS);
         writer.newLine();
         writer.write(MD5.getMD5(FileConstant.TRANSACTIONS));
+        writer.newLine();
+        writer.write(FileConstant.BUDGETMANAGEMENT);
+        writer.newLine();
+        writer.write(MD5.getMD5(FileConstant.BUDGETMANAGEMENT));
         writer.close();
         
 	}

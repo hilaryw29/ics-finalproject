@@ -12,6 +12,7 @@ public abstract class Member implements Serializable {
 	protected LinkedList<Account> accountList;
 	protected double percentage;
 	protected Goal goal;	
+	protected int lastAccountID;
 
 	public Member(String name, double income, double budget, double percentage) {
 		this.name = name;
@@ -22,6 +23,7 @@ public abstract class Member implements Serializable {
 		goal = null;
 		expense = 0;
 		balance = 0;
+		lastAccountID = 0;
 	}
 
 	public Account findAccount(int accountId) {
@@ -119,7 +121,7 @@ public abstract class Member implements Serializable {
 	}
 	
 	public int addAccount (Account account) { 
-		int id = accountList.getLast().id+1;
+		int id = lastAccountID+1;
 		accountList.add(new Account(account, id));
 		setBalance();
 		return id;

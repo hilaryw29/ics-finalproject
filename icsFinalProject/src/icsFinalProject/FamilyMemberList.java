@@ -85,7 +85,7 @@ public class FamilyMemberList implements Serializable{
 	}
 	public int addAccount(Account account, String name) throws AccountException{
 		for(int i = 0; i < numOfMember; i ++){
-			if((family.get(i).getName()).equals(name)){
+			if((family.get(i).equalTo(name))){
 				return(family.get(i).addAccount(account));
 			}
 		}
