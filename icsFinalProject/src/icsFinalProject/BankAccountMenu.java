@@ -147,7 +147,7 @@ public class BankAccountMenu extends Submenu {
 			found = family.listAccount(name);
 		//} catch (AccountException ax) {
 		//}
-		if (found == null) {
+		if (found.size() == 0) {
 			System.out.println("Currently there is no account.");
 		} else {
 			try {
