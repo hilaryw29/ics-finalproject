@@ -14,7 +14,7 @@ public class FamilyMemberMenu extends Submenu {
 	
 	public void displayMenu () {
 		int choice;
-		System.out.println("FAMILY MEMBER MENU");
+		System.out.println("\n\nFAMILY MEMBER MENU");
 		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
 		System.out.println("1. Sort family member by income");
 		System.out.println("2. Sort family member by expense"); 
