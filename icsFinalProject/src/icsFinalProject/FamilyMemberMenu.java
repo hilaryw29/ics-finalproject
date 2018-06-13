@@ -43,7 +43,7 @@ public class FamilyMemberMenu extends Submenu {
 		
 		for (int i = 0; i < sorted.length; i ++) {
 			System.out.println ("Name: " + sorted [i].getName());
-			System.out.println("Income: "+ sorted[i].getExpense());
+			System.out.println("Income: "+ sorted[i].getIncome());
 			System.out.println ("");
 		}
 		displayMenu();

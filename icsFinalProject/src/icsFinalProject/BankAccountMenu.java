@@ -146,9 +146,12 @@ public class BankAccountMenu extends Submenu {
 			found = family.listAccount(name);
 		//} catch (AccountException ax) {
 		//}
-		
-		for(Account i:found) {
-			System.out.println(i); 
+		try {
+			for(Account i:found) {
+				System.out.println(i); 
+			}
+		} catch (NullPointerException e) {
+			System.out.println("Currently there is no account.");
 		}
 		displayMenu();
 	}
@@ -163,10 +166,14 @@ public class BankAccountMenu extends Submenu {
 		//}
 		
 		int idx = 0;
-		for(Account i:found) {
-			System.out.print((idx++) + ". ");
-			System.out.println(i);
-		}
+		try {
+			for(Account i:found) {
+				System.out.print((idx++) + ". ");
+				System.out.println(i);
+			}
+		} catch (NullPointerException e) {
+			System.out.println("Currently there is no account.");
+		}	
 		displayMenu();
 	}
 	
