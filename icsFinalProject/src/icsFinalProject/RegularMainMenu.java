@@ -90,7 +90,7 @@ public class RegularMainMenu {
 		System.out.println("Your current total family balance: + $" + family.getHouseHoldBalance());
 		
 		if (loadalert()) {
-			System.out.println("ALERT: your current household balance of $" + family.getHouseHoldBalance() + " is lower than your alert threshold of " + family.getMinHouseHoldBalance());
+			System.out.println("ALERT: your current household balance of $" + family.getHouseHoldBalance() + " is lower than your alert threshold of $" + family.getMinHouseHoldBalance());
 		} else {
 			System.out.println("You have no current alerts");
 		}

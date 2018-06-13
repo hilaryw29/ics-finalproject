@@ -143,7 +143,6 @@ public class FamilyMemberMenu extends Submenu {
 		editFamMemberMenu(person);
 	}
 
-	// Something wrong with setGoal, goal entered but no output/response 
 	private void setGoal(Member person) {
 		System.out.println("Enter the goal description: ");
 		String desc = UserInput.intakeString();

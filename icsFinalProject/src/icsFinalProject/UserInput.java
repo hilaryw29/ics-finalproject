@@ -13,10 +13,10 @@ public class UserInput {
 			try {				
 				input = sc.nextDouble();
 				finished = true;
-			} catch (InputMismatchException e) {
-				sc.nextLine();
-				System.out.println("Invalid input. Please try again.");
-			}
+				} catch (InputMismatchException e) {
+					sc.nextLine();
+					System.out.println("Invalid input. Please try again.");
+				}
 		}
 		return input;
 	}
