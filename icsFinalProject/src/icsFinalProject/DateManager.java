@@ -21,7 +21,7 @@ public class DateManager implements Runnable{
 			pay();
 		}
 	}
-	
+	 
 	private int calculateTimeToNextDay() {
 		LocalDateTime rightNow = LocalDateTime.now();
 		int hour = rightNow.getHour();

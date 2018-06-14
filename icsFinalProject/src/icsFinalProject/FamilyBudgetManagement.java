@@ -134,7 +134,7 @@ public class FamilyBudgetManagement {
 	}
 
 	public boolean isHouseHoldBalanceLow() {
-		return houseHoldBalance > minHouseHoldBalance ? true : false;
+		return houseHoldBalance >= minHouseHoldBalance ? false : true;
 	}
 	
 	public boolean addMonthlyBill(RecurringBill bill) {
@@ -165,6 +165,7 @@ public class FamilyBudgetManagement {
 	
 	public int addAccount(Account account, String name) throws AccountException {
 		int i = memberlist.addAccount(account, name);
+		updateHoldBalance();
 		try {
 			writeToFile();
 		} catch (IOException e) {
