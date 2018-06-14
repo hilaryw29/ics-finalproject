@@ -19,12 +19,12 @@ public class FamilyMemberList implements Serializable{
 	public void updateBalance(Transaction t) throws AccountException{
 		for(int i = 0; i < numOfMember; i ++){
 			if ((family.get(i).getName()).equals(t.getPayer())) {
-				if(!family.get(i).updateBalance(t.getId(), (family.get(i).getBalance() - t.getAmount()))){
+				if(!family.get(i).updateBalance(t.getPayerAccountID(), t.getAmount()*(-1))){
 					throw new AccountException(false,"Account Does Not Exist");
 				}
 			}
 			if ((family.get(i).getName()).equals(t.getPayee())) {
-				if(!family.get(i).updateBalance(t.getId(), (family.get(i).getBalance() + t.getAmount()))){
+				if(!family.get(i).updateBalance(t.getPayeeAccountID(), t.getAmount())){
 					throw new AccountException(false,"Account Does Not Exist");
 				}
 			}

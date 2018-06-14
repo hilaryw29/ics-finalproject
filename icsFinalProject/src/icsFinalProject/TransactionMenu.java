@@ -73,6 +73,7 @@ public class TransactionMenu extends Submenu {
 	}
 	
 	private void addTransaction () {
+		UserInput.flush();
 		System.out.print("Please enter the following information:");
 		System.out.print("The name of the family member who paid the transaction: ");
 		String payer = UserInput.intakeString();
@@ -85,6 +86,7 @@ public class TransactionMenu extends Submenu {
 		System.out.print("Enter the amount of the transaction in dollars: $");
 		double amount = UserInput.intakeDouble();
 		System.out.print("Enter the date of the transaction: ");
+		UserInput.flush();
 		String date = UserInput.intakeDate();
 		System.out.print("Enter transaction description (optional):");
 		UserInput.flush();
