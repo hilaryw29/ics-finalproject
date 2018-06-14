@@ -4,7 +4,8 @@ import java.util.*;
 import java.time.LocalDateTime; 
 import java.io.*;
 
-//Class description: 
+//Class description: a class that have a list of monthly bills and performs adding, 
+//displaying information, displaying unpaid bills and other functionalities.
 public class RecurringBillsList implements Serializable{
 	int numOfBills;
 	TreeSet<RecurringBill> billList;
