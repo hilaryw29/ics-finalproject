@@ -70,10 +70,12 @@ public class FamilyMemberList implements Serializable{
 		}
 		return false;
 	}
-	public void displayInfo(){
+	public String displayInfo(){
+		String s = "";
 		for(int i = 0; i < numOfMember; i ++){
-			System.out.println(family.get(i));
+			s += family.get(i) + "\n";
 		}
+		return s;
 	}
 	public void setGoal(Goal goal, String name) throws GoalException{
 		for(int i = 0; i < numOfMember; i ++){
@@ -186,6 +188,10 @@ public class FamilyMemberList implements Serializable{
 			
 		}
 		
+	}
+	
+	public String toString() {
+		return displayInfo();
 	}
 	
 }
