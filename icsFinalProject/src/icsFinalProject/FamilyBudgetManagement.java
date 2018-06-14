@@ -159,6 +159,7 @@ public class FamilyBudgetManagement {
 	
 	public int addAccount(Account account, String name) throws AccountException {
 		int i = memberlist.addAccount(account, name);
+		updateHoldBalance();
 		try {
 			writeToFile();
 		} catch (IOException e) {
