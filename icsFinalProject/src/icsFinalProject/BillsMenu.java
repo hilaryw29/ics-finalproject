@@ -1,16 +1,19 @@
 package icsFinalProject;
 
+//Class Description: a class that creates a menu that deal with bills
 public class BillsMenu extends Submenu {
 	final int ADD_BILL = 1;
 	final int DISPLAY_BILL = 2;
 	
-	//Constructor - initializes BillsMenu and goes to the menu options in displayMenu
+
+	//constructor that creates a new menu managing bills
 	public BillsMenu (FamilyBudgetManagement pass) {
 		super(pass);
 		displayMenu();
 	}
 	
-	//Displays options avaliable for the bills menu
+
+	//the method displays options available for the bills menu
 	public void displayMenu () {
 		int choice;
 		System.out.println("BILLS MENU");
