@@ -34,6 +34,7 @@ public class FirstMainMenu {
 		
 		// Family member info is entered
 		System.out.println("Enter 'a' for adult or 'c' for child: ");
+		UserInput.flush();
 		String role = UserInput.intakeType("a", "c");
 		
 		
@@ -43,7 +44,7 @@ public class FirstMainMenu {
 			} else {
 				family.addFamilyMember(new Child(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
 			}
-			sc.nextLine();
+			//sc.nextLine();
 		}
 		
 		

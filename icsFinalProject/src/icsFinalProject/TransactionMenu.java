@@ -89,7 +89,6 @@ public class TransactionMenu extends Submenu {
 		UserInput.flush();
 		String date = UserInput.intakeDate();
 		System.out.print("Enter transaction description (optional):");
-		UserInput.flush();
 		String description = UserInput.intakeString();
 		
 		boolean success = false;
