@@ -2,12 +2,16 @@ package icsFinalProject;
 
 import java.util.LinkedList;
 
+//Class Description: the class displays menu that deals with bank accounts
 public class BankAccountMenu extends Submenu {
+	
+	//
 	public BankAccountMenu (FamilyBudgetManagement family) { 
 		super(family); 
 		displayMenu();
 	}
-	 
+	
+	//the method displays the menu and give choices for user to choose
 	public void displayMenu() {
 		final int LIST_ALL = 1;
 		final int LIST_BY_MEMBER = 2;
@@ -44,6 +48,7 @@ public class BankAccountMenu extends Submenu {
 		}
 	}
 	
+	//the private method is used to select an account to delete
 	private void deleteAccount() {
 		listAccountsOnly();
 		System.out.print("Enter the ID of the account you want to delete: ");
@@ -64,7 +69,8 @@ public class BankAccountMenu extends Submenu {
 		}
 		displayMenu();
 	}
-
+	
+	//the method takes in an account to add
 	private void addAccount() {
 		System.out.print("Enter the name of the owner of the new account: ");
 		UserInput.flush();
@@ -88,7 +94,8 @@ public class BankAccountMenu extends Submenu {
 		System.out.println("Your account was succesfully added.");
 		displayMenu();
 	}
-
+	
+	//the method intakes information and adds a new bank account
 	private void selectAccount() {
 		listAccountsOnly();
 		
@@ -110,7 +117,8 @@ public class BankAccountMenu extends Submenu {
 		System.out.println("Account " + selected.getId() + " is selected");
 		editAccountMenu(selected);
 	}
-
+	
+	//
 	private void editAccountMenu(Account selected) {
 		int choice;
 		
@@ -127,7 +135,8 @@ public class BankAccountMenu extends Submenu {
 			goBack();
 		}
 	}
-
+	
+	//
 	private void editAccountType(Account selected) {
 		System.out.println("The current account " + selected.getId() + " is of type: " + selected.getAccountType());
 		System.out.println("To change this account to savings, enter 's'. To change this account to chequing, enter 'c'");
@@ -143,6 +152,7 @@ public class BankAccountMenu extends Submenu {
 		displayMenu();
 	}
 
+	//
 	private void listAccountsMember() {
 		System.out.print("Enter the name of the family member: ");
 		String name = UserInput.intakeName();
@@ -165,7 +175,8 @@ public class BankAccountMenu extends Submenu {
 		}
 		displayMenu();
 	}
-
+	
+	//
 	private void listAccounts() {
 		listAccountsOnly();
 		displayMenu();
