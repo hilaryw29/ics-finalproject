@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.Calendar;  
 import java.util.Date;  
 
+//Class description: the class keeps track of all the information for the monthly bill.
 public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 	private double amount;
 	private String name;
@@ -10,6 +11,9 @@ public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 	private boolean isFailed;
 	private int ID;
 	private int accountID;
+	
+	//Creates a RecurringBill object given the amount of the recurring bill, name, 
+	//date, and ID of the account where the money for the bill will be deducted from
 	public RecurringBill(double amount, String name, String date, int accountID) {
 		this.accountID = accountID;
 		this.date = date;
@@ -18,6 +22,7 @@ public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 		isFailed = false;
 	}
 	
+	//Creates a recurring bill intaking a RecurringBill object and an id that is automatically assigned
 	public RecurringBill(RecurringBill bill, int ID) {
 		this.accountID = bill.accountID;
 		this.date = bill.date;
@@ -27,6 +32,7 @@ public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 		this.ID = ID;
 	}
 	
+	//
 	public Transaction generateTransaction() {
 		Calendar c = Calendar.getInstance();  
 	    c.setTime(new Date());  
@@ -34,18 +40,22 @@ public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 		return new Transaction(amount,accountID,-1,name,"N/A","RecurringBill",month+"/"+date);
 	}
 	
+	//compares the bill IDs between two bills
 	public int compareTo(RecurringBill other) {
 		return ID - other.ID;
 	}
 	
+	//return whether the paying is failed
 	public boolean isFailed() {
 		return isFailed;
 	}
 
+	//set the whether the payment is failed or not to the given result
 	public void setFailed(boolean isFailed) {
 		this.isFailed = isFailed;
 	}
 
+	//Accessors
 	public double getAmount() {
 		return amount;
 	}
