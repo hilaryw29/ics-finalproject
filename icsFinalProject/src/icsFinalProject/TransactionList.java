@@ -58,7 +58,7 @@ public class TransactionList implements Serializable {
 */
 	}
 	
-	//
+	//the constructor creates a transaction list intaking a PIN
 	public TransactionList(String PIN){
 		this.PIN = MD5.getMd5(PIN);
 		sortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
@@ -67,6 +67,7 @@ public class TransactionList implements Serializable {
 		numOfTransaction = 0;
 	}
 	
+	//the method inserts the given transaction to the correct place in the order of amount
 	public void insertTransactionByAmount(Transaction t){
 		for (int i = 0;i < numOfTransaction && numOfTransaction != 1 ;i++) {
 			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
@@ -77,6 +78,7 @@ public class TransactionList implements Serializable {
 		sortedTransaction.add(t);
 	}
 
+	//the method inserts the given transaction to the correct place in the order of time
 	public void insertTransactionByDate(Transaction t) {
 		for (int i = 0;i < numOfTransaction && numOfTransaction != 1;i++) {
 			if (t.equalDate(unsortedTransaction.get(i).getDate()) >= 0) {
@@ -87,7 +89,7 @@ public class TransactionList implements Serializable {
 		unsortedTransaction.add(t);
 	}
 	
-	
+	//intakes a transaction and adds to the transaction list
 	public int addTransaction(Transaction t){
 		Transaction tWithId = new Transaction(t,numOfTransaction);
 //		lastID++;
@@ -196,7 +198,7 @@ public class TransactionList implements Serializable {
 		return result2;
 	}
 	
-	//
+	//the method do the process of changing password
 	public boolean changePassword(String old, String newPass){
 		if (MD5.getMd5(old) == PIN) {
 			PIN = MD5.getMd5(newPass);
