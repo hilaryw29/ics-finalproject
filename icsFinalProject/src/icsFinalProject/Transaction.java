@@ -2,6 +2,7 @@ package icsFinalProject;
 
 import java.io.Serializable;
 
+//
 public class Transaction implements Serializable{
 	private double amount;
 	private String payer, payee;
@@ -9,6 +10,7 @@ public class Transaction implements Serializable{
 	private String description, date;
 	private int id;
 	
+	//creates an Transaction object with the input
 	public Transaction(double amount, int payerAccountID, int payeeAccountID, String payer, String payee, String description, String date){
 		this.amount = amount;
 		this.payerAccountID = payerAccountID;
@@ -19,6 +21,7 @@ public class Transaction implements Serializable{
 		this.date = date;
 	}
 	
+	//creates a transaction intaking the Transaction object and the id that is automatically assigned
 	public Transaction(Transaction t1, int id){
 		this.amount = t1.amount;
 		this.payerAccountID = t1.payerAccountID;
@@ -30,6 +33,7 @@ public class Transaction implements Serializable{
 		this.id = id;
 	}
 	
+	//check whether the two transactions have the same amount
 	public boolean equals(Transaction other) {
 		if (amount == other.amount)
 			return true;
@@ -37,10 +41,12 @@ public class Transaction implements Serializable{
 			return false;
 	}
 	
+	//check whether the transaction have the same id with the id given
 	public boolean equals(int id) {
 		return this.id == id;
 	}
 	
+	//writes the transaction to file
 	public String writeToFile() {
 		String s = "";
 		s+="<ID>"+id+"</ID>";
@@ -64,14 +70,19 @@ public class Transaction implements Serializable{
 		return s;
 	}
 	
+	//gives the time inteval between the given date and the transaction date
+	//and compare whether the date is the same
 	public int equalDate(String date) {
 		return this.date.compareTo(date);
 	}
 	
+	//gives the difference between the amount of two transactions to compare
+	//which one has a greater amount
 	public double compareTo(Transaction other) {
 		return amount - other.amount;
 	}
 
+	//Accessors
 	public double getAmount() {
 		return amount;
 	}
