@@ -65,26 +65,28 @@ public class TransactionList implements Serializable {
 	}
 	
 	public void insertTransactionByAmount(Transaction t){
-		for (int i = 0;i < numOfTransaction;i++) {
+		for (int i = 0;i < numOfTransaction && numOfTransaction != 1 ;i++) {
 			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
 				sortedTransaction.add(i,t);
 				return;
 			}
 		}
+		sortedTransaction.add(t);
 	}
 
 	public void insertTransactionByDate(Transaction t) {
-		for (int i = 0;i < numOfTransaction;i++) {
-			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
-				sortedTransaction.add(i,t);
+		for (int i = 0;i < numOfTransaction && numOfTransaction != 1;i++) {
+			if (t.equalDate(unsortedTransaction.get(i).getDate()) >= 0) {
+				unsortedTransaction.add(i,t);
 				return;
 			}
 		}
+		unsortedTransaction.add(t);
 	}
 	
 	
 	public int addTransaction(Transaction t){
-		Transaction tWithId = new Transaction(t,lastID);
+		Transaction tWithId = new Transaction(t,numOfTransaction);
 //		lastID++;
 		numOfTransaction++;
 		insertTransactionByAmount(tWithId);
@@ -98,7 +100,7 @@ public class TransactionList implements Serializable {
 			String num = ""+numOfTransaction;
 			byte[] m = Encryption.encrypt(PIN, num.getBytes(StandardCharsets.UTF_8));
 			out.write(m);
-			String lastID = ""+this.lastID;
+			String lastID = ""+this.numOfTransaction;
 			byte[] id = Encryption.encrypt(PIN, lastID.getBytes(StandardCharsets.UTF_8));
 			out.write(id);
 			for (Transaction i:unsortedTransaction) {
