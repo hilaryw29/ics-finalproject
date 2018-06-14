@@ -21,6 +21,8 @@ public class FamilyBudgetManagement {
 	private TransactionList transactionList;
 	private RecurringBillsList billList;
 	private byte[] PIN;
+	
+	
 	public FamilyBudgetManagement(String PIN, String fileName) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException, ClassNotFoundException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException {
 		BufferedReader read = new BufferedReader(new FileReader(FileConstant.ENTRANCE));
 		String line;
@@ -48,11 +50,15 @@ public class FamilyBudgetManagement {
 		read.close();
 	}
 	
+	// Starts a new thread to keep track of the new generated recurring bill. It takes...
+	//... in the FamilyBudgetManagement object and a RecurringBillList object.
 	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
 		dateManager = new DateManager(billList,this);
 		new Thread(dateManager).start();
 	}
 	
+	//Write transactions, household information or monthly report to a file taking in a filename... 
+	//... and throws an IOException if there’s problem writing to the file.
 	public void writeToFile() throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FileConstant.MEMBERINFO));
         out.writeObject(memberlist);

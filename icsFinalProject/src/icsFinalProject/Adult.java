@@ -3,12 +3,15 @@ package icsFinalProject;
 import java.io.*;
 
 public class Adult extends Member implements Serializable{
-
+	
+	//Constructor for Adult, creates new Adult object given name, income, budget, and percentage
 	public Adult(String name, double income, double budget, double percentage) {
 		super(name, income, budget, percentage);
 		// TODO Auto-generated constructor stub
 	}
 	
+	//Takes in a goal object and return a boolean indicating whether the goal is set successfully...
+	//... or not or throws a GoalException if the goal already exists
 	public boolean setGoal (Goal adultGoal) throws GoalException {
 		if (goal == null) {
 			goal = adultGoal;
@@ -18,7 +21,7 @@ public class Adult extends Member implements Serializable{
 		}
 	}
 	
-	
+	//Writes information of adult to file
 	@Override
 	public void writeFile() {
 		try {

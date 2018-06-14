@@ -4,11 +4,13 @@ public class BillsMenu extends Submenu {
 	final int ADD_BILL = 1;
 	final int DISPLAY_BILL = 2;
 	
+	//Constructor - initializes BillsMenu and goes to the menu options in displayMenu
 	public BillsMenu (FamilyBudgetManagement pass) {
 		super(pass);
 		displayMenu();
 	}
 	
+	//Displays options avaliable for the bills menu
 	public void displayMenu () {
 		int choice;
 		System.out.println("BILLS MENU");
@@ -27,18 +29,21 @@ public class BillsMenu extends Submenu {
 		}
 	}
 	
+	//Displays a list of all the current bills
 	public void displayBills () {
 		System.out.println("Here are the current bills: ");
 		System.out.println(family.displayMonthlyBills());
 		displayMenu();
 	}
 	
+	//Intakes info to add a new bill
 	public void addBill () {
 		String name; 
 		double amount;
 		String date;
 		int id;
 		
+		//Prompts the user to enter the necessary info to add a new bill
 		System.out.println("Please enter the name of the recurring monthly expense you'd like to add:");
 		name = UserInput.intakeString();
 		System.out.println("Please enter the amount of the recurring bill:");
@@ -48,7 +53,8 @@ public class BillsMenu extends Submenu {
 		System.out.println("Please enter the ID of the account where the money will be withdrawn from:");
 		id = UserInput.intakeInt();
 		
-		// Will never be successful
+		//Attempts to use the info given to add a new monthly bill, if an error occurs, prompts user to...
+		//... re-enter the info which may have caused the error
 		boolean success = false;
 		while (!success) {
 			success = family.addMonthlyBill(new RecurringBill (amount, name, date, id));
