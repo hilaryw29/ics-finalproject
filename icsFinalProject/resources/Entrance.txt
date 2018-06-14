@@ -1,6 +1,8 @@
 .\resources\FamilyMembersInfo.txt
-0879142377c3e9d688076fbd23a2ea55
+f22cd510f6d1fe84d327f0fcdab3b58d
 .\resources\Bills.txt
 21438ef4b9ad4fc266b6129a2f60de29
 .\resources\Transactions.txt
 47f75b284ea50201fa5e336363918aca
+.\resources\FamilyBudgetManagement.txt
+91142eec838fe7c785c690bd08f3ed62
