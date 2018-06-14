@@ -14,7 +14,7 @@ import java.nio.file.Paths;
 
 public class TransactionList implements Serializable {
 	private int numOfTransaction;
-	private int lastID;
+//	private int lastID;
 	private final static int DEFAULTNUMOFTRANSACTION = 100;
 	private byte[] PIN;
 	private ArrayList<Transaction> sortedTransaction;
@@ -60,7 +60,8 @@ public class TransactionList implements Serializable {
 		this.PIN = MD5.getMd5(PIN);
 		sortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
 		unsortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
-		lastID = 0;
+//		lastID = 0;
+		numOfTransaction = 0;
 	}
 	
 	public void insertTransactionByAmount(Transaction t){
@@ -83,11 +84,12 @@ public class TransactionList implements Serializable {
 	
 	
 	public int addTransaction(Transaction t){
-		lastID++;
 		Transaction tWithId = new Transaction(t,lastID);
+//		lastID++;
+		numOfTransaction++;
 		insertTransactionByAmount(tWithId);
 		insertTransactionByDate(tWithId);
-		return lastID;
+		return numOfTransaction;
 
 	}
 	public void writeToFile(){
