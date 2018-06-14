@@ -32,7 +32,7 @@ public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 		this.ID = ID;
 	}
 	
-	//
+	//the method generates a transaction for the payment of bills
 	public Transaction generateTransaction() {
 		Calendar c = Calendar.getInstance();  
 	    c.setTime(new Date());  
