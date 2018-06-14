@@ -128,7 +128,7 @@ public class FamilyBudgetManagement {
 	}
 
 	public boolean isHouseHoldBalanceLow() {
-		return houseHoldBalance > minHouseHoldBalance ? false : true;
+		return houseHoldBalance >= minHouseHoldBalance ? false : true;
 	}
 	
 	public boolean addMonthlyBill(RecurringBill bill) {
