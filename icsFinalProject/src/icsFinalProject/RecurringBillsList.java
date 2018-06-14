@@ -10,7 +10,7 @@ public class RecurringBillsList implements Serializable{
 	TreeSet<RecurringBill> billList;
 	
 	//contructs a RecurringBill object by intaking the information from the given file
-	//and throw    
+	//and throw 
 	public RecurringBillsList(String fileName) throws IOException, FileNotFoundException, FileModifiedException {
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
 		numOfBills = Integer.parseInt(in.readLine());
