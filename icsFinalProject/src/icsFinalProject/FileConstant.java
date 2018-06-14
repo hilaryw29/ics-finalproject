@@ -1,5 +1,7 @@
 package icsFinalProject;
 
+//Class Description: the class gives all the file constants, which is the path to
+//the place where the files are stored
 public class FileConstant {
 	public static final String MEMBERINFO = ".\\resources\\FamilyMembersInfo.txt";
 //	public static final String ACCOUNTS = ".\\resources\\Accounts.txt";
