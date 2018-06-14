@@ -12,6 +12,8 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+//Class description: the class stores all the transactions within the database and 
+//provides methods to search for, sort, and manipulate past transactions.
 public class TransactionList implements Serializable {
 	private int numOfTransaction;
 //	private int lastID;
@@ -56,6 +58,7 @@ public class TransactionList implements Serializable {
 */
 	}
 	
+	//
 	public TransactionList(String PIN){
 		this.PIN = MD5.getMd5(PIN);
 		sortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
@@ -113,6 +116,7 @@ public class TransactionList implements Serializable {
 		}
 */	}
 	
+	//Return all transactions that involves the entered family member
 	public LinkedList<Transaction> listTransaction(String name){
 		LinkedList<Transaction> person = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
@@ -122,31 +126,35 @@ public class TransactionList implements Serializable {
 		}
 		return person;
 	}
+	
+	//Return all transaction that occurred on the date given
 	public LinkedList<Transaction> findTransaction(String date){
 		LinkedList<Transaction> transactions = new LinkedList<>();
 		int l = 0, r = unsortedTransaction.size() - 1;
-        while (l <= r)
-        {
-            int m = l + (r-l)/2;
-            if (unsortedTransaction.get(m).equalDate(date) == 0) {
-            	r = m + 1;
-            	l = m - 1;
-            	while (unsortedTransaction.get(r).equalDate(date) == 0){
-            		transactions.add(unsortedTransaction.get(r));
-            		r++;
-            	}
-            	while (unsortedTransaction.get(l).equalDate(date) == 0){
-            		transactions.add(unsortedTransaction.get(l));
-            		l++;
-            	}
-            	return transactions;
-            } else if (unsortedTransaction.get(m).equalDate(date) < 0)
-                l = m + 1;
-            else
-                r = m - 1;
-        }
-        return null;
+		while (l <= r)
+		{
+		    int m = l + (r-l)/2;
+		    if (unsortedTransaction.get(m).equalDate(date) == 0) {
+			r = m + 1;
+			l = m - 1;
+			while (unsortedTransaction.get(r).equalDate(date) == 0){
+				transactions.add(unsortedTransaction.get(r));
+				r++;
+			}
+			while (unsortedTransaction.get(l).equalDate(date) == 0){
+				transactions.add(unsortedTransaction.get(l));
+				l++;
+			}
+			return transactions;
+		    } else if (unsortedTransaction.get(m).equalDate(date) < 0)
+			l = m + 1;
+		    else
+			r = m - 1;
+		}
+		return null;
 	}
+	
+	//Return the transaction that matches the ID
 	public Transaction findTransaction(int id){
 		for (int i = 0; i < numOfTransaction ; i++) {
 			if (unsortedTransaction.get(i).equals(id))
@@ -155,6 +163,7 @@ public class TransactionList implements Serializable {
 		return null;
 	}
 	
+	//Return a list of transactions whose amounts are larger than given
 	public LinkedList<Transaction> findTransactionLarger(double amount){
 		LinkedList<Transaction> result0 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
@@ -164,6 +173,8 @@ public class TransactionList implements Serializable {
 		}	
 		return result0;
 	}
+	
+	//Return a list of transactions whose amounts are smaller to given
 	public LinkedList<Transaction> findTransactionSmaller(double amount){
 		LinkedList<Transaction> result1 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
@@ -173,6 +184,8 @@ public class TransactionList implements Serializable {
 		}
 		return result1;
 	}
+	
+	//Return the list of transaction whose amounts are equal to given
 	public LinkedList<Transaction> findTransactionEqual(double amount){
 		LinkedList<Transaction> result2 = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
@@ -183,6 +196,7 @@ public class TransactionList implements Serializable {
 		return result2;
 	}
 	
+	//
 	public boolean changePassword(String old, String newPass){
 		if (MD5.getMd5(old) == PIN) {
 			PIN = MD5.getMd5(newPass);
