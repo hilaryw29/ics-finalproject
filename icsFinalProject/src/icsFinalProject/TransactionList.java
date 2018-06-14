@@ -112,6 +112,7 @@ public class TransactionList implements Serializable {
 			
 		}
 */	}
+	
 	public LinkedList<Transaction> listTransaction(String name){
 		LinkedList<Transaction> person = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
