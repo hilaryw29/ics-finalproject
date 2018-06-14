@@ -4,9 +4,13 @@ import java.util.*;
 import java.time.LocalDateTime; 
 import java.io.*;
 
+//Class description: 
 public class RecurringBillsList implements Serializable{
 	int numOfBills;
 	TreeSet<RecurringBill> billList;
+	
+	//contructs a RecurringBill object by intaking the information from the given file
+	//and throw 
 	public RecurringBillsList(String fileName) throws IOException, FileNotFoundException, FileModifiedException {
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
 		numOfBills = Integer.parseInt(in.readLine());
@@ -23,15 +27,19 @@ public class RecurringBillsList implements Serializable{
 		in.close();		
 	}
 	
+	//
 	public RecurringBillsList() {
 		billList = new TreeSet<>();
 		numOfBills = 0;
 	}
 	
+	//intakes a bill and adds to the recurring bill list
 	public void addBill(RecurringBill bill) {
 		int ID = billList.last().getID()+1;
 		billList.add(new RecurringBill(bill, ID));
 	}
+	
+	//
 	public LinkedList<RecurringBill> getBillList() {
 		LocalDateTime now = LocalDateTime.now();
 		int day = now.getDayOfMonth();
@@ -44,6 +52,7 @@ public class RecurringBillsList implements Serializable{
 		return list;
 	}
 
+	//
 	public LinkedList<RecurringBill> getUnpaidList() {
 		Iterator listInterator = billList.iterator();
 		LinkedList<RecurringBill> unpaidList = new LinkedList<>();
@@ -56,6 +65,7 @@ public class RecurringBillsList implements Serializable{
 		return unpaidList;
 	}
 
+	//writes all the bills to file
 	public void writeFile() {
 		try{
 			Iterator<RecurringBill> listInterator = billList.iterator();
@@ -72,10 +82,13 @@ public class RecurringBillsList implements Serializable{
 			return;
 		}
 	}
+	
+	//deletes a recurring bill given the id of the bill
 	public boolean delBill(int id) {
 		return billList.remove(new RecurringBill(new RecurringBill(0,"0","0",0), id));
 	}
 
+	//displays the bills for the month
 	public String displayMonthlyBills() {
 		String s = "";
 		for (RecurringBill i: billList) {
