@@ -2,7 +2,8 @@ package icsFinalProject;
 
 import java.io.Serializable;
 
-//
+//Class description: the class inputs or removes money from the database and give general
+//concept of the characteristics of a transaction.
 public class Transaction implements Serializable{
 	private double amount;
 	private String payer, payee;
