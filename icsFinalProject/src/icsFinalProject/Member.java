@@ -3,6 +3,7 @@ package icsFinalProject;
 import java.util.*;
 import java.io.*;
 
+//Class Description: the class gives a general concept of the family members’ characteristic
 public abstract class Member implements Serializable {
 	protected String name;
 	protected double income;
@@ -14,6 +15,7 @@ public abstract class Member implements Serializable {
 	protected Goal goal;	
 	protected int lastAccountID;
 
+	// constructor that takes in a name, income, budget and a percentage to construct a member
 	public Member(String name, double income, double budget, double percentage) {
 		this.name = name;
 		this.income = income;
@@ -25,7 +27,8 @@ public abstract class Member implements Serializable {
 		balance = 0;
 		lastAccountID = 0;
 	}
-
+	
+	//the method finds the account with the given id
 	public Account findAccount(int accountId) {
 		int bottom = 0;
 		int top = accountList.size()-1;
@@ -43,13 +46,15 @@ public abstract class Member implements Serializable {
 			}
 
 		}
-		return null;
+		return null; 		//binary search is used
 	}
 	
+	//the method compares the balances between the two members
 	public Member compareTo(Member other) {
 		return balance - other.balance > 0 ? this : other;
 	}
 	
+	//the method finds the index of the account given the account id
 	private int findAccountIndex (int accountId) {
 		int bottom = 0;
 		int top = accountList.size()-1;
@@ -67,11 +72,15 @@ public abstract class Member implements Serializable {
 			}
 
 		}
-		return -1;
+		return -1;			//binary search
 	}
 	
+	//abstract method that takes in a Goal object and return a boolean for 
+	//whether success or not or throw a GoalException
 	abstract boolean setGoal (Goal goal) throws GoalException;
 
+	//Takes in an amount and an account id to update the balance and 
+	//return a boolean for whether success or not
 	public boolean updateBalance(int accountId, double newBalance) {
 		Account account = findAccount(accountId);
 		if (account != null) {
@@ -81,9 +90,8 @@ public abstract class Member implements Serializable {
 			return false;
 		}
 	}
-	
-	//Aren't the methods listed in the section below all getters and setters?
-	//Isn't this just like a setter? Why do we need to return a boolean? (When would it be false?)
+
+	//accessor and mutator for budget
 	public void setBudget (double newBudget) {
 		budget = newBudget;
 	}
@@ -92,22 +100,28 @@ public abstract class Member implements Serializable {
 		return budget;
 	}
 	
+	//the method updates the total balnce of the member
 	public void updateBalance (double amount) {
 		balance =balance + amount;
 	}
 	
+	//the method compares the income between two members
 	public double compareToIncome(Member other) {
 		return this.income - other.income;
 	}
 	
+	//the method compares the expenses between the two members
 	public double compareToExpense(Member other) {
 		return this.expense - other.expense;
 	}
 
+	//the method checks whether the name of the member is the same with the given name
 	public boolean equalTo(String name) {
 		return this.name.equals(name);
 	}
 	
+	//the method takes in the name of the account holder, the account id and an amount to
+	//check whether the account have a higher amount than the given amount and return a boolean
 	public boolean checkAccountBalance (String name, int accountId, double lowestBalance) throws AccountException {
 		Account account = findAccount (accountId);
 		if (account != null) {
@@ -117,9 +131,11 @@ public abstract class Member implements Serializable {
 				return false;
 			}
 		}
-		throw new AccountException(false, name);
+		throw new AccountException(false, name); 
+		// throw exception when the account does not exist or name does not match
 	}
 	
+	//the method takes in an account object and returns an account id
 	public int addAccount (Account account) { 
 		int id = lastAccountID;
 		lastAccountID++;
@@ -128,10 +144,12 @@ public abstract class Member implements Serializable {
 		return id;
 	}
 	
+	//the method list all the accounts
 	public LinkedList<Account> listAccount (){
 		return accountList;
 	}
 
+	//set the balance of the member
 	public void setBalance() {
 		double balance = 0;
 		for (Account i:accountList) {
@@ -140,8 +158,10 @@ public abstract class Member implements Serializable {
 		this.balance = balance;
 	}
 	
+	//The abstract method writes all the information of the member to a file
 	public abstract void writeFile ();
 
+	//accessors an mutators
 	public String getName() {
 		return name;
 	}
@@ -172,5 +192,9 @@ public abstract class Member implements Serializable {
 	
 	public void setIncome (double money) {
 		income = money;
+	}
+	
+	public String toString(){
+		return"Name: " + name +"\nIncome: " + income + "\nBudget: " + budget + "\nExpense: "+ expense + "\nBalance: " + balance + "Accounts: " + accountList + "Goal: " + goal + "Percentage of income allocation: " + percentage;
 	}
 }
