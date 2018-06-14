@@ -1,14 +1,17 @@
 package icsFinalProject;
 
+//Class Description: a class that creates a menu that deal with bills
 public class BillsMenu extends Submenu {
 	final int ADD_BILL = 1;
 	final int DISPLAY_BILL = 2;
 	
+	//constructor that creates a new menu managing bills
 	public BillsMenu (FamilyBudgetManagement pass) {
 		super(pass);
 		displayMenu();
 	}
 	
+	//the method displays options available for the bills menu
 	public void displayMenu () {
 		int choice;
 		System.out.println("BILLS MENU");
@@ -27,12 +30,14 @@ public class BillsMenu extends Submenu {
 		}
 	}
 	
+	//displays a list of all the current bills
 	public void displayBills () {
 		System.out.println("Here are the current bills: ");
 		System.out.println(family.displayMonthlyBills());
 		displayMenu();
 	}
 	
+	//Intakes info to add a new bill
 	public void addBill () {
 		String name; 
 		double amount;
@@ -48,7 +53,6 @@ public class BillsMenu extends Submenu {
 		System.out.println("Please enter the ID of the account where the money will be withdrawn from:");
 		id = UserInput.intakeInt();
 		
-		// Will never be successful
 		boolean success = false;
 		while (!success) {
 			success = family.addMonthlyBill(new RecurringBill (amount, name, date, id));
