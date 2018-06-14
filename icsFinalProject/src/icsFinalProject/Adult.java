@@ -2,6 +2,7 @@ package icsFinalProject;
 
 import java.io.*;
 
+//Class Description: the class inherits the characteristics of a member and creates a new object
 public class Adult extends Member implements Serializable{
 	
 	//Takes in a name, income, budget and a percentage to construct an adult object
