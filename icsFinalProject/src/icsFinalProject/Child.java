@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 
-//
+//Class Description: the class inherits the characteristics of a member and creates a new object
 public class Child extends Member implements Serializable{
 	private final double MAX_GOAL_AMOUNT = 5000;
 	
@@ -29,7 +29,8 @@ public class Child extends Member implements Serializable{
 		}
 	}
 
-	@Override
+	//the method inherits the member class's method and writes out the info of
+	//a child member's information to a file
 	public void writeFile() {
 		// TODO Auto-generated method stub
 		try {
