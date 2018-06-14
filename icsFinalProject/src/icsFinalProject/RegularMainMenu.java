@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class RegularMainMenu {
 	Scanner sc = new Scanner(System.in);
-	public static FamilyBudgetManagement family; // IS THIS A BAD IDEAAAA
+	public static FamilyBudgetManagement family; 
 	String password;
 
 	public RegularMainMenu() {		
@@ -30,9 +30,9 @@ public class RegularMainMenu {
 	}
 	
 	private void intakePin() {
-		String input, answer;
 		boolean success = false;
-		
+		System.out.println("~~~Family Budget Management~~~");
+		System.out.println("By: Marvin, Carol, Lefu, Hilary");
 		System.out.println("Please enter password: ");
 		
 		while (!success) {
@@ -42,8 +42,6 @@ public class RegularMainMenu {
 						family = new FamilyBudgetManagement(password, FileConstant.ENTRANCE);
 					} catch (InvalidKeyException | ClassNotFoundException | NoSuchAlgorithmException
 							| NoSuchPaddingException | IllegalBlockSizeException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
 					}
 				success = true;
 			} catch (PINNotMatchException pinex) {
@@ -59,26 +57,20 @@ public class RegularMainMenu {
 			}
 		}
 		
-		System.out.println("Password verified");
+		System.out.println("\n\n**********Password verified**********");
 
 		displayMenu();
-		/*try {
-			BufferedReader in = new BufferedReader(new FileReader(FileConstant.PIN));
-			
-			answer = in.readLine();
-			input = sc.nextLine();
-			
-			while (!input.equals(answer)) {
-				System.out.println("Incorrect. Please try again.");
-				input = sc.nextLine();
-			}
-			
-		} catch (IOException iox) {
-		}*/
 	}
 
 	public void displayMenu() {
-		int choice;
+		final int GEN_REP = 1;
+		final int TRANS_MENU = 2;
+		final int GEN_INFO = 3;
+		final int BANK_MENU = 4;
+		final int FAM_MEMBER = 5;
+		final int BILLS_MENU = 6;
+		
+
 		System.out.println("\n\nWelcome. Please enter a number 1-6 that corresponds to the following choices: ");
 		System.out.println("1. Generate previous montly report");
 		System.out.println("2. Transanctions menu");
@@ -95,59 +87,20 @@ public class RegularMainMenu {
 			System.out.println("You have no current alerts");
 		}
 		
-		choice = UserInput.intakeChoice(6);
-		if (choice == 1) {
+		int choice = UserInput.intakeChoice(6);
+		if (choice == GEN_REP) {
 			System.out.println("fix");
-		} else if (choice == 2) {
+		} else if (choice == TRANS_MENU) {
 			TransactionMenu transmenu = new TransactionMenu(family);
-		} else if (choice == 3){
+		} else if (choice == GEN_INFO){
 			GeneralFamilyInfo faminfo = new GeneralFamilyInfo(family);
-		} else if (choice == 4) {
+		} else if (choice == BANK_MENU) {
 			BankAccountMenu bankmenu = new BankAccountMenu(family);
-		} else if (choice == 5) {
+		} else if (choice == FAM_MEMBER) {
 			FamilyMemberMenu fammenu = new FamilyMemberMenu(family);
-		} else if (choice == 6) {
+		} else if (choice == BILLS_MENU) {
 			BillsMenu billmenu = new BillsMenu(family);
 		}
-		/*
-		if (choice == 1) {
-			System.out.println("fix");
-		} else if (choice == 2) {
-			TransactionMenu transmenu = new TransactionMenu(password);
-		} else if (choice == 3){
-			GeneralFamilyInfo faminfo = new GeneralFamilyInfo(password);
-		} else if (choice == 4) {
-			BankAccountMenu bankmenu = new BankAccountMenu(password);
-		} else if (choice == 5) {
-			FamilyMemberMenu fammenu = new FamilyMemberMenu(password);
-		} else if (choice == 6) {
-			BillsMenu billmenu = new BillsMenu(password);
-		}
-		*/
-	}
-
-	
-	// DEPRECATE THIS
-	private int intakeChoice() {
-		int input;
-		boolean success = false;
-		
-		
-		input = sc.nextInt();
-		while (!success) {
-			try {
-				input = sc.nextInt();
-				if (!(input >= 1 && input <= 3)) {
-					success = true;
-				} else {
-					System.out.println("Invlaid choice. Please enter again.");
-				}
-			} catch (InputMismatchException inpx) {
-				sc.nextLine();
-				System.out.println("Invlaid choice. Please enter again.");
-			}
-		}
-		return input;
 	}
 	
 	private boolean loadalert() {

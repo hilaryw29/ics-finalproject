@@ -30,17 +30,6 @@ public class FirstMainMenu {
 
 		System.out.print("Please enter the number of family members: ");
 		
-		// Prompts user to enter number of family members
-		/*while (!finished) {
-			try {
-				numMember = sc.nextInt();
-				sc.nextLine();
-				finished = true;
-			} catch (InputMismatchException e) {
-				sc.nextLine();
-				System.out.println("Invalid entry. Please enter again.");
-			}
-		}*/
 		numMember = UserInput.intakeInt();
 		
 		// Family member info is entered
@@ -69,8 +58,6 @@ public class FirstMainMenu {
 		try {
 			family = new FamilyBudgetManagement(pin);
 		} catch (PINNotMatchException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 	
@@ -88,21 +75,6 @@ public class FirstMainMenu {
 		return input;
 	}
 	
-	private void writeDefaults() {
-		// Writes default values for each member
-		try {
-			BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.MEMBERINFO, true));
-			out.write("-1");
-			out.newLine();
-			out.write("0");
-			out.newLine();
-			out.write("0");				// wtf is balance lol
-			out.newLine();
-			out.close();
-		} catch (IOException iox) {
-		}
-	}
-	
 	private String intakeName () {
 		// Prompts user for member name
 		System.out.println("Enter the name of family member: ");
@@ -111,56 +83,31 @@ public class FirstMainMenu {
 	
 	private double intakeIncome() {
 		System.out.print("Enter their monthly income in dollars: ");
-		return intakeDouble();
+		return UserInput.intakeDouble();
 	}
 	
 	private double intakeBudget () {
 		System.out.print("Enter their monthly budget in dollars: ");
-		return intakeDouble();
+		return UserInput.intakeDouble();
 	}
 	
 	private double intakePercentage () {
 		double input;
 		System.out.print("Enter the percentage of income that is to be allocated to savings automatically: ");
-		input = intakeDouble();
+		input = UserInput.intakeDouble();
 		
 		while (input > 100) {
 			System.out.println("Invalid input. Enter a number under 100.");
-			input = intakeDouble();
+			input = UserInput.intakeDouble();
 		}
 		return input;
 	}
 	
-	// DEPRECATE
-	private double intakeDouble() {
-		boolean finished = false; 
-		double input = 0;
-		
-		while (!finished) {
-			try {				
-				input = sc.nextDouble();
-				finished = true;
-			} catch (InputMismatchException e) {
-				sc.nextLine();
-				System.out.println("Invalid input. Please try again.");
-			}
-		}
-		return input;
-	}
 	
 	public boolean isFirstRun () {
 		
 	File file = new File(FileConstant.ENTRANCE);
 	return !file.exists();
 	}
-/*		try {
-			BufferedReader in = new BufferedReader(new FileReader (FileConstant.MEMBERINFO));
-			return (in.readLine() == null);
-		} catch (IOException e) {
-			System.out.println("Yikes");
-		}
-		return false;
-	}
-*/
 }
 

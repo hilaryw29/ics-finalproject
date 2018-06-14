@@ -22,7 +22,6 @@ public class UserInput {
 	}
 	
 	public static int intakeChoice (int upper) {
-		Scanner sc = new Scanner(System.in);
 		int input = 0;
 		boolean finished = false;
 		
@@ -43,7 +42,6 @@ public class UserInput {
 	}
 
 	public static String intakeDate () {
-		Scanner sc = new Scanner(System.in);
 		String input = null;
 		boolean valid = false;
 		
@@ -66,8 +64,7 @@ public class UserInput {
 		return input;
 	}
 	
-	// GIVE THIS A TRY SEE IF IT WORKS YIKES YIKES YIKES YIKES 
-	public static String intakeName (/*String pin*/) {
+	public static String intakeName () {
 		String input = null;
 		boolean found = false;
 		
@@ -110,13 +107,14 @@ public class UserInput {
 		while (!finished) {
 			if ((input = sc.nextLine()).equalsIgnoreCase(a) || input.equalsIgnoreCase(b)) {
 				finished = true;
+			} else {
+				System.out.print("Invalid. Please enter " + a + " or " + b);
 			}
 		}
 		return input;
 	}
 
 	public static void flush() {
-		// TODO Auto-generated method stub
 		sc.nextLine();
 	}
 

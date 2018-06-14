@@ -5,26 +5,11 @@ import java.util.*;
 public class Submenu {
 	String password;
 	protected FamilyBudgetManagement family;
+	
 	public Submenu (FamilyBudgetManagement family) {
 		this.family = family;
-		/*
-		try {
-			family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
-		} catch (Exception e) {
-			System.out.println("124");
-		}
-		*/
 	}
-	/*
-	public Submenu (String pass) {
-		password = pass;
-		try {
-			family = new FamilyBudgetManagement(password, FileConstant.MEMBERINFO);
-		} catch (Exception e) {
-			System.out.println("124");
-		}
-	}
-	*/
+	
 	public int intakeChoice (int upper) {
 		Scanner sc = new Scanner(System.in);
 		int input = 0;
