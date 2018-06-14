@@ -2,16 +2,18 @@ package icsFinalProject;
 
 import java.io.*;
 
+//Class Description: the class inherits the characteristics of a member and creates a new object
 public class Adult extends Member implements Serializable{
 	
 	//Constructor for Adult, creates new Adult object given name, income, budget, and percentage
+	//Takes in a name, income, budget and a percentage to construct an adult object
 	public Adult(String name, double income, double budget, double percentage) {
 		super(name, income, budget, percentage);
-		// TODO Auto-generated constructor stub
 	}
 	
-	//Takes in a goal object and return a boolean indicating whether the goal is set successfully...
-	//... or not or throws a GoalException if the goal already exists
+
+	//Takes in a goal object and return a boolean indicating whether the goal is
+	//set successfully or not or throws a GoalException if the goal already exists
 	public boolean setGoal (Goal adultGoal) throws GoalException {
 		if (goal == null) {
 			goal = adultGoal;
@@ -21,8 +23,9 @@ public class Adult extends Member implements Serializable{
 		}
 	}
 	
-	//Writes information of adult to file
-	@Override
+
+	//the method inherits the member class's method and writes out the info of
+	// an adult member's information to a file
 	public void writeFile() {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.MEMBERINFO));
@@ -34,7 +37,7 @@ public class Adult extends Member implements Serializable{
 			out.newLine();
 			out.write("<Expense>0</Expense>");
 			out.newLine();
-			out.write("<Balance>0</Balance>");				// wtf is balance lol
+			out.write("<Balance>0</Balance>");				
 			out.newLine();
 			out.write("<Role>a</Role>");
 			out.newLine();

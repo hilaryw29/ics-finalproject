@@ -57,7 +57,7 @@ public class FamilyBudgetManagement {
 		new Thread(dateManager).start();
 	}
 	
-	//Write transactions, household information or monthly report to a file taking in a filename... 
+	//Write transactions, household information, bills etc. to a file... 
 	//... and throws an IOException if there’s problem writing to the file.
 	public void writeToFile() throws IOException {
         ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(FileConstant.MEMBERINFO));
@@ -101,7 +101,10 @@ public class FamilyBudgetManagement {
 		writeToFile();
 	}
 	
+	//Takes in a name and an amount and assigns a budget for that person for...
+	//... the given amount and return a boolean indicating success or not
 	public boolean assignBudgets(String name, double amount) {
+		//Writes the info to file
 		try {
 			writeToFile();
 		} catch (IOException e) {
@@ -109,18 +112,27 @@ public class FamilyBudgetManagement {
 		return memberlist.assignBudget(name, amount);
 	}
 	
-	public double checkDudgets(String name, double amount) {
+	//Takes in a name and an amount and returns the left amount of the budget or... 
+	//... -1 if the person is not found
+	public double checkBudgets(String name, double amount) {
 		return memberlist.checkBudget(name);
 	}
 	
+	// Takes in a name of the adult and a Goal object and sets a goal; 
+	//... exceptions are thrown when the goal already exists or the person setting the goal is a child
 	public void setGoal(String name, Goal goal) throws GoalException{
 		memberlist.setGoal(goal, name);
+		
+		//Writes the info to file
 		try {
 			writeToFile();
 		} catch (IOException e) {
 		}
 	}
 	
+	//Takes in an amount as the minimum household balance and sets the...
+	//... minimum household balance to the amount given. If the amount given is negative (not valid)...
+	//... the min balance is set to the absolute value of the negative amount given
 	public void setMinHouseHoldBalance(double minHouseHoldBalance) {
 		this.minHouseHoldBalance = Math.abs(minHouseHoldBalance); 
 		try {
@@ -128,6 +140,7 @@ public class FamilyBudgetManagement {
 		} catch (IOException e) {
 		}
 	}
+	
 	
 	public double getMinHouseHoldBalance() {
 		return minHouseHoldBalance;

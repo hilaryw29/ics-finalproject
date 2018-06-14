@@ -14,13 +14,13 @@ import java.nio.file.Paths;
 
 public class TransactionList implements Serializable {
 	private int numOfTransaction;
-	private int lastID;
+//	private int lastID;
 	private final static int DEFAULTNUMOFTRANSACTION = 100;
 	private byte[] PIN;
 	private ArrayList<Transaction> sortedTransaction;
 	private ArrayList<Transaction> unsortedTransaction;
 	
-	static class Encryption{
+/*	static class Encryption{
 		 private static final String ALGORITHM = "AES";
 		 
 		 static byte[] encrypt(byte[] PIN, byte[] text) throws NoSuchAlgorithmException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
@@ -38,7 +38,7 @@ public class TransactionList implements Serializable {
 		     return cipher.doFinal(text);
 		 }
 	}
-	
+*/	
 	public TransactionList(String PIN, String fileName) throws FileModifiedException, PINNotMatchException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException{
 /*		this.PIN = MD5.getMd5(PIN);
 		byte[] text = Files.readAllBytes(Paths.get(FileConstant.TRANSACTIONS));
@@ -60,43 +60,47 @@ public class TransactionList implements Serializable {
 		this.PIN = MD5.getMd5(PIN);
 		sortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
 		unsortedTransaction = new ArrayList<>(DEFAULTNUMOFTRANSACTION);
-		lastID = 0;
+//		lastID = 0;
+		numOfTransaction = 0;
 	}
 	
 	public void insertTransactionByAmount(Transaction t){
-		for (int i = 0;i < numOfTransaction;i++) {
+		for (int i = 0;i < numOfTransaction && numOfTransaction != 1 ;i++) {
 			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
 				sortedTransaction.add(i,t);
 				return;
 			}
 		}
+		sortedTransaction.add(t);
 	}
 
 	public void insertTransactionByDate(Transaction t) {
-		for (int i = 0;i < numOfTransaction;i++) {
-			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
-				sortedTransaction.add(i,t);
+		for (int i = 0;i < numOfTransaction && numOfTransaction != 1;i++) {
+			if (t.equalDate(unsortedTransaction.get(i).getDate()) >= 0) {
+				unsortedTransaction.add(i,t);
 				return;
 			}
 		}
+		unsortedTransaction.add(t);
 	}
 	
 	
 	public int addTransaction(Transaction t){
-		lastID++;
-		Transaction tWithId = new Transaction(t,lastID);
+		Transaction tWithId = new Transaction(t,numOfTransaction);
+//		lastID++;
+		numOfTransaction++;
 		insertTransactionByAmount(tWithId);
 		insertTransactionByDate(tWithId);
-		return lastID;
+		return numOfTransaction;
 
 	}
 	public void writeToFile(){
-		try {
+/*		try {
 			FileOutputStream out = new 	FileOutputStream(FileConstant.TRANSACTIONS);
 			String num = ""+numOfTransaction;
 			byte[] m = Encryption.encrypt(PIN, num.getBytes(StandardCharsets.UTF_8));
 			out.write(m);
-			String lastID = ""+this.lastID;
+			String lastID = ""+this.numOfTransaction;
 			byte[] id = Encryption.encrypt(PIN, lastID.getBytes(StandardCharsets.UTF_8));
 			out.write(id);
 			for (Transaction i:unsortedTransaction) {
@@ -107,7 +111,8 @@ public class TransactionList implements Serializable {
 				| IllegalBlockSizeException | BadPaddingException | IOException e){
 			
 		}
-	}
+*/	}
+	
 	public LinkedList<Transaction> listTransaction(String name){
 		LinkedList<Transaction> person = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
