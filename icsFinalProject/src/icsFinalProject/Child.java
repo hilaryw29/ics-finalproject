@@ -5,14 +5,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 
+//Class Description: the class inherits the characteristics of a member and creates a new object
 public class Child extends Member implements Serializable{
 	private final double MAX_GOAL_AMOUNT = 5000;
-
+	
+	////Takes in a name, income, budget and a percentage to construct a child object
 	public Child(String name, double income, double budget, double percentage) {
 		super(name, income, budget, percentage);
-		// TODO Auto-generated constructor stub
 	}
 	
+	//Takes in a goal object and and returns a boolean indicating whether the goal
+	//is set successfully or not, if unsuccessful, the method will return a GoalException
 	public boolean setGoal (Goal childGoal) throws GoalException {
 		if (goal == null) {
 			if (childGoal.getAmount() <= MAX_GOAL_AMOUNT) {
@@ -26,7 +29,8 @@ public class Child extends Member implements Serializable{
 		}
 	}
 
-	@Override
+	//the method inherits the member class's method and writes out the info of
+	//a child member's information to a file
 	public void writeFile() {
 		// TODO Auto-generated method stub
 		try {
@@ -39,7 +43,7 @@ public class Child extends Member implements Serializable{
 			out.newLine();
 			out.write("<Expense>0</Expense>");
 			out.newLine();
-			out.write("<Balance>0</Balance>");				// wtf is balance lol
+			out.write("<Balance>0</Balance>");				
 			out.newLine();
 			out.write("<Role>c</Role>");
 			out.newLine();
