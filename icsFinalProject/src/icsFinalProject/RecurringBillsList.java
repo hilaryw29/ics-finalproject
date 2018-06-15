@@ -36,8 +36,9 @@ public class RecurringBillsList implements Serializable{
 	
 	//intakes a bill and adds to the recurring bill list
 	public void addBill(RecurringBill bill) {
-		int ID = billList.last().getID()+1;
+		int ID = numOfBills;
 		billList.add(new RecurringBill(bill, ID));
+		numOfBills++;
 	}
 	
 	//

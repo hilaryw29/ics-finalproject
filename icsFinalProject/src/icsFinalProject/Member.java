@@ -85,6 +85,9 @@ public abstract class Member implements Serializable {
 		Account account = findAccount(accountId);
 		if (account != null) {
 			account.setBalance (newBalance);
+			if (newBalance <= 0) {
+				expense += Math.abs(newBalance);
+			}
 			return true;
 		} else {
 			return false;
