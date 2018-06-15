@@ -56,6 +56,11 @@ public class RecurringBillsList{
 		return list;
 	}
 
+	public void resetBills() {
+		for (RecurringBill i:billList) {
+			i.setFailed(false);
+		}
+	}
 	//returns all the unpaid bills in a list
 	public LinkedList<RecurringBill> getUnpaidList() {
 		Iterator listInterator = billList.iterator();

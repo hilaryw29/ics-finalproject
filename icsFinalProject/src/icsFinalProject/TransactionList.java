@@ -129,6 +129,14 @@ public class TransactionList implements Serializable {
 		return person;
 	}
 	
+	public String displayTransaction() {
+		String s="";
+		for (Transaction i: unsortedTransaction) {
+			s+=i.toString();
+		}
+		return s;
+	}
+	
 	//Return all transaction that occurred on the date given
 	public LinkedList<Transaction> findTransaction(String date){
 		LinkedList<Transaction> transactions = new LinkedList<>();

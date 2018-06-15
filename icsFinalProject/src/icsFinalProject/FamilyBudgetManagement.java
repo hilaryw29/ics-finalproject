@@ -16,7 +16,7 @@ import javax.crypto.spec.SecretKeySpec;
 public class FamilyBudgetManagement {
 	private double houseHoldBalance;
 	private double minHouseHoldBalance;
-	private DateManager dateManager;
+	private Thread dateManager;
 	private FamilyMemberList memberlist;
 	private TransactionList transactionList;
 	private RecurringBillsList billList;
@@ -53,8 +53,8 @@ public class FamilyBudgetManagement {
 	// Starts a new thread to keep track of the new generated recurring bill. It takes...
 	//... in the FamilyBudgetManagement object and a RecurringBillList object.
 	private void startTheard(FamilyBudgetManagement manager, RecurringBillsList billList) throws PINNotMatchException, FileNotFoundException, FileModifiedException, IOException {
-		dateManager = new DateManager(billList,this);
-		new Thread(dateManager).start();
+		this.dateManager = new Thread(new DateManager(billList,this));
+		this.dateManager.start();
 	}
 	
 	//Write transactions, household information, bills etc. to a file... 
@@ -200,7 +200,12 @@ public class FamilyBudgetManagement {
 	public int delAccount() {
 		return Integer.MAX_VALUE;
 	}
-
+	
+	public void exit() {
+		dateManager.interrupt();
+		System.exit(0);
+	}
+	
 	//Adds a transaction to the ongoing transaction list
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
@@ -279,6 +284,9 @@ public class FamilyBudgetManagement {
 		return billList.displayMonthlyBills();
 	}
 
+	public String displayTransaction() {
+		return transactionList.displayTransaction();
+	}
 	//Sorts all existing family members by income and returns the sorted list in a Member array
 	public Member[] sortMemberByIncome() {
 		return memberlist.sortMemberByIncome();
@@ -368,6 +376,24 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
+	
+	public void displayLastMonthlyReport() {
+		File file = new File(FileConstant.MONTHLYREPORT);
+		if (file.exists()) {
+			System.out.println("Here is the report: ");
+			try{
+				BufferedReader in = new BufferedReader(new FileReader(FileConstant.MONTHLYREPORT));
+				String s;
+				while ((s = in.readLine()) != null) {
+					System.out.println(s);
+				}
+			} catch (IOException e) {
+				
+			}
+		} else {
+			System.out.println("There is no report for last month");
+		}
+	}
 	//Removes an existing bank account given the accout holder's name and the account id
 	// fix later
 	public boolean removeAccount(String name, int id) {

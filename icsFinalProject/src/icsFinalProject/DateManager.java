@@ -1,5 +1,6 @@
 package icsFinalProject;
 
+import java.io.*;
 //import java.time.LocalDate; 
 import java.time.LocalDateTime; 
 import java.util.*;
@@ -21,9 +22,18 @@ public class DateManager implements Runnable{
 	
 	//
 	public void run() {
-		while (true) {
+		while (!Thread.currentThread().isInterrupted()) {
+			int month = getMonth();
 			int time = calculateTimeToNextDay();
-			sleep(time);
+			try {
+				sleep(time);
+			} catch (InterruptedException e) {
+				System.exit(0);
+			}
+			if (getMonth() != month) {
+				generateMonthlyReport();
+				resetBills();
+			}
 			pay();
 		}
 	}
@@ -36,15 +46,35 @@ public class DateManager implements Runnable{
 		return ((23 - hour) * 60 + (60 - minute))*60*1000;
 	}
 	
-	//the thread is given the order to sleep
-	private void sleep(int time){
-		try {
-			//Thread.sleep(5);
-			Thread.sleep(time);
-		} catch (InterruptedException e) {
-		}
+	private int getMonth() {
+		Calendar c = Calendar.getInstance();  
+	    c.setTime(new Date());  
+	    int month = c.get(Calendar.MONTH);
+	    return month;
 	}
-
+	//the thread is given the order to sleep
+	private void sleep(int time) throws InterruptedException{
+		Thread.sleep(time);
+	}
+	
+	private void resetBills() {
+		billList.resetBills();
+	}
+	
+	private void generateMonthlyReport() {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(FileConstant.MONTHLYREPORT,false));
+			out.write(manager.displayFamilyInfo());
+			out.newLine();
+			out.write(manager.displayTransaction());
+			out.newLine();
+			out.write(manager.displayMonthlyBills());
+			out.close();
+		} catch(IOException e) {
+			
+		}	
+	}
+	
 	private void pay() {
 		LinkedList<RecurringBill> bills = billList.getBillList();
 		for (RecurringBill i: bills) {

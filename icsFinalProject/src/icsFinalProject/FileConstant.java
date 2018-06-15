@@ -11,4 +11,5 @@ public class FileConstant {
 	public static final String FILEMODIFED = "File Modified";
 	public static final String BILLS = ".\\resources\\Bills.txt";
 	public static final String BUDGETMANAGEMENT = ".\\resources\\FamilyBudgetManagement.txt";
+	public static final String MONTHLYREPORT = ".\\resources\\MonthlyReport.txt";
 }
