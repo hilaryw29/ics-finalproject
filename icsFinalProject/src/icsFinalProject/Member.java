@@ -161,7 +161,8 @@ public abstract class Member implements Serializable {
 	//The abstract method writes all the information of the member to a file
 	public abstract void writeFile ();
 
-	//accessors an mutators
+	//*****FOR ALL METHODS BELOW*****//
+	//accessors and mutators
 	public String getName() {
 		return name;
 	}
@@ -193,6 +194,7 @@ public abstract class Member implements Serializable {
 	public void setIncome (double money) {
 		income = money;
 	}
+	//*************************//
 	
 	//Returns all the important information in member in a single String
 	public String toString(){
