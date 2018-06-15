@@ -80,7 +80,7 @@ public class GeneralFamilyInfo extends Submenu {
 				changed = family.changePassword (oldPin, newPin);
 			}
 		}
-		System.out.println("password changed");
+		System.out.println("Password changed");
 		displayMenu();
 	}
 
