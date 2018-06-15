@@ -16,8 +16,8 @@ public class FamilyMemberMenu extends Submenu {
 		int choice;
 		System.out.println("\n\nFAMILY MEMBER MENU");
 		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
-		System.out.println("1. Sort family member by income");
-		System.out.println("2. Sort family member by expense"); 
+		System.out.println("1. Sort family member by highest to lowest income");
+		System.out.println("2. Sort family member by highest to lowest expense"); 
 		System.out.println("3. Add family member");
 		System.out.println("4. Select family member");
 		System.out.println("5. Back to main menu");
@@ -38,7 +38,7 @@ public class FamilyMemberMenu extends Submenu {
 	
 	private void sortByIncome () {
 		Member [] sorted;
-		System.out.print("List of family members sorted by income: ");
+		System.out.println("List of family members sorted by income: ");
 		sorted = family.sortMemberByIncome ();
 		
 		for (int i = 0; i < sorted.length; i ++) {
@@ -64,6 +64,7 @@ public class FamilyMemberMenu extends Submenu {
 	
 	private void selectMember () {		
 		System.out.println("Please enter the name of the member you'd like to select: ");
+		UserInput.flush();
 		String name = UserInput.intakeName();
 		Member selected = family.searchMember(name);
 		
@@ -110,7 +111,7 @@ public class FamilyMemberMenu extends Submenu {
 		final int DELETE_GOAL = 4;
 		final int GOBACK = 5;
 		
-		System.out.println("EDIT FAMILY MEMBER MENU");
+		System.out.println("\n\nEDIT FAMILY MEMBER MENU");
 		System.out.println("Please enter a number 1-3 that corresponds to one of the following choices: ");
 		System.out.println("1. Edit income");
 		System.out.println("2. Edit monthly budget");
@@ -141,8 +142,9 @@ public class FamilyMemberMenu extends Submenu {
 
 	private void setGoal(Member person) {
 		System.out.println("Enter the goal description: ");
+		UserInput.flush();
 		String desc = UserInput.intakeString();
-		System.out.println("Enter the amout for the goal: $");
+		System.out.println("Enter the amount for the goal: $");
 		double amount = Math.abs(UserInput.intakeDouble());
 		
 		boolean success = false;
@@ -150,6 +152,7 @@ public class FamilyMemberMenu extends Submenu {
 			try {
 				person.setGoal(new Goal(amount, desc));
 				success = true;
+				System.out.println("Goal successfully set.");
 			} catch (GoalException e) {
 				if (e.getIfReachChildrenLimit()) {
 					System.out.println("You have hit the maximum child goal limit. Please enter amount again");
@@ -160,6 +163,7 @@ public class FamilyMemberMenu extends Submenu {
 				}
 			}
 		}
+		
 		editFamMemberMenu(person);
 	}
 
@@ -168,6 +172,7 @@ public class FamilyMemberMenu extends Submenu {
 		double income = Math.abs(UserInput.intakeDouble());
 		
 		person.setIncome(income);
+		System.out.println("Income changed.");
 		editFamMemberMenu(person);
 	}
 	
@@ -176,6 +181,8 @@ public class FamilyMemberMenu extends Submenu {
 		double budget = Math.abs(UserInput.intakeDouble());
 		
 		person.setBudget(budget);
+		System.out.println("Budget changed.");
+		
 		editFamMemberMenu(person);
 	}
 	
