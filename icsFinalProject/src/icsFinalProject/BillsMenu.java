@@ -48,6 +48,7 @@ public class BillsMenu extends Submenu {
 		
 		//Prompts the user to enter the necessary info to add a new bill
 		System.out.println("Please enter the name of the recurring monthly expense you'd like to add:");
+		UserInput.flush();
 		name = UserInput.intakeString();
 		System.out.println("Please enter the amount of the recurring bill:");
 		amount = UserInput.intakeDouble();
@@ -60,11 +61,12 @@ public class BillsMenu extends Submenu {
 		//... re-enter the info which may have caused the error
 		boolean success = false;
 		while (!success) {
+			date = "0000/00/00";
 			success = family.addMonthlyBill(new RecurringBill (amount, name, date, id));
 			if (!success) {
 				System.out.println("Error");
 				System.out.println("Please enter the date of deduction again: ");
-				date = UserInput.intakeDate();
+				date = "" + UserInput.intakeChoice(30);
 				System.out.println("Please enter the ID of the account where the money will be deducted from again: ");
 				id = UserInput.intakeInt();
 			}
