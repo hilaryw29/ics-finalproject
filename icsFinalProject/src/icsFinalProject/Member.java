@@ -54,6 +54,15 @@ public abstract class Member implements Serializable {
 		return balance - other.balance > 0 ? this : other;
 	}
 	
+	
+	public boolean deleteGoal() {
+		if (goal == null) {
+			return false;
+		} else {
+			goal = null;
+			return true;
+		}
+	}
 	//the method finds the index of the account given the account id
 	private int findAccountIndex (int accountId) {
 		int bottom = 0;

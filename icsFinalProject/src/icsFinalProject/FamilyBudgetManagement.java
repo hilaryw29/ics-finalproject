@@ -370,4 +370,8 @@ public class FamilyBudgetManagement {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	public boolean delGoal(String name) {
+		return memberlist.deleteGoal(name);
+	}
 }

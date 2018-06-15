@@ -24,6 +24,15 @@ public class FamilyMemberList implements Serializable{
 		numOfMember++;
 	}
 	
+	
+	public boolean deleteGoal(String name) {
+		for (Member i: family) {
+			if (i.equalTo(name)) {
+				return i.deleteGoal();
+			}
+		}
+		return false;
+	}
 	//intakes a transaction and update the balance
 	public void updateBalance(Transaction t) throws AccountException{
 		for(int i = 0; i < numOfMember; i ++){
