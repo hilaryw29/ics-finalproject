@@ -72,8 +72,8 @@ public class RegularMainMenu {
 		
 
 		System.out.println("\n\nWelcome. Please enter a number 1-6 that corresponds to the following choices: ");
-		System.out.println("1. Generate previous montly report");
-		System.out.println("2. Transanctions menu");
+		System.out.println("1. Generate previous monthly report");
+		System.out.println("2. Transactions menu");
 		System.out.println("3. General Family Info");
 		System.out.println("4. Bank accounts menu");
 		System.out.println("5. Family member menu");
