@@ -371,7 +371,7 @@ public class FamilyBudgetManagement {
 		return false;
 	}
 	
-	public boolean delGoal(Member member) {
+	public boolean deleteGoal(Member member) {
 		return memberlist.deleteGoal(member);
 	}
 }
