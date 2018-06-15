@@ -25,7 +25,7 @@ public class BankAccountMenu extends Submenu {
 		System.out.println("\n\nBANK ACCOUNT MENU");
 		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
 		System.out.println("1. List all bank accounts in the family");
-		System.out.println("2. List all bank accouts under a certain family member's name");
+		System.out.println("2. List all bank accounts under a certain family member's name");
 		System.out.println("3. Select a bank account");
 		System.out.println("4. Add a new bank account");
 		System.out.println("5. Delete a bank account");
@@ -103,7 +103,7 @@ public class BankAccountMenu extends Submenu {
 		listAccountsOnly();
 		
 		System.out.println("Enter the number associated with the bank account you want to select");
-		int choice = UserInput.intakeInt();
+		int choice = UserInput.intakeInt() - 1;
 		Account selected = null;
 		
 		boolean success = false;
@@ -117,7 +117,7 @@ public class BankAccountMenu extends Submenu {
 			}
 		}
 		
-		System.out.println("Account " + selected.getId() + " is selected");
+		System.out.println("Account " + (choice + 1) + " is selected");
 		editAccountMenu(selected);
 	}
 	
@@ -126,7 +126,7 @@ public class BankAccountMenu extends Submenu {
 	private void editAccountMenu(Account selected) {
 		int choice;
 		
-		System.out.println("BANK ACCOUNT MENU");
+		System.out.println("EDIT BANK ACCOUNT MENU");
 		System.out.println("Please enter a number 1-2 that corresponds to one of the following choices: ");
 		System.out.println("1. Edit account type");
 		System.out.println("2. Back to main menu");
@@ -142,7 +142,7 @@ public class BankAccountMenu extends Submenu {
 	
 	//Allows the user to edit the type of a specific account (e.g. chequing or savings)
 	private void editAccountType(Account selected) {
-		System.out.println("The current account " + selected.getId() + " is of type: " + selected.getAccountType());
+		System.out.println("The current account (ID:" + selected.getId() + ") is of type: " + selected.getAccountType());
 		System.out.println("To change this account to savings, enter 's'. To change this account to chequing, enter 'c'");
 		UserInput.flush();
 		String choice = UserInput.intakeType("s", "c");
@@ -160,7 +160,7 @@ public class BankAccountMenu extends Submenu {
 	private void listAccountsMember() {
 		System.out.print("Enter the name of the family member: ");
 		String name = UserInput.intakeName();
-		
+		UserInput.flush();
 		LinkedList <Account> found;
 		//try {
 			found = family.listAccount(name);
