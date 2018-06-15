@@ -9,11 +9,14 @@ public class TransactionMenu extends Submenu {
 	final int VIEWBYFAM = 4;
 	final int GOBACK = 5;
 	
+	//Constructor - creates new TransactionMenu object
 	public TransactionMenu(FamilyBudgetManagement pass) {
 		super(pass);
 		displayMenu();
 	}
 	
+	//Displays the options for TransactionMenu, intakes choice from user and takes/performs...
+	//... the function(s) the user selects
 	public void displayMenu() {
 		int choice;
 		System.out.println("\n\nTRANSACTION MENU");
@@ -38,6 +41,7 @@ public class TransactionMenu extends Submenu {
 		}
 	}
 	
+	//Displays all transactions made by a specific family member
 	private void viewByFamilyMembers() {
 		System.out.print("Please enter the desired family member: ");
 		String member = UserInput.intakeName();
@@ -53,6 +57,7 @@ public class TransactionMenu extends Submenu {
 		displayMenu();
 	}
 	
+	//Searches for transactions by the amount (of money) processed for that transaction
 	private void findByAmount () {
 		double amount;
 		
@@ -72,8 +77,10 @@ public class TransactionMenu extends Submenu {
 		displayMenu();
 	}
 	
+	//Adds a new transaction
 	private void addTransaction () {
 		UserInput.flush();
+		//Prompts the user for the necessary info the add a new transaction
 		System.out.println("Please enter the following information:");
 		System.out.print("The name of the family member who paid the transaction: ");
 		String payer = UserInput.intakeString();
@@ -91,6 +98,9 @@ public class TransactionMenu extends Submenu {
 		System.out.print("Enter transaction description (optional):");
 		String description = UserInput.intakeString();
 		
+		//Attempts to add a new transaction using the info given above, if an error...
+		//... occurs, the user is prompted to keep re-entering the possible error-causing...
+		//... info until a transaction can be created (the error is resolved)
 		boolean success = false;
 		while (!success) {
 			try {
@@ -107,6 +117,7 @@ public class TransactionMenu extends Submenu {
 		displayMenu();
 	}
 	
+	//Searches transactions by date processed/made
 	private void findByDate () {
 		LinkedList <Transaction> found;
 		System.out.println("Searching transactions by date");

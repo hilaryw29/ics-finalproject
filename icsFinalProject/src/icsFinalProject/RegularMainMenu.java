@@ -15,6 +15,7 @@ public class RegularMainMenu {
 	public static FamilyBudgetManagement family; 
 	String password;
 
+	//Constructors - creates RegularMainMenu objects *************//
 	public RegularMainMenu() {		
 		intakePin();
 	}
@@ -28,7 +29,9 @@ public class RegularMainMenu {
 		}
 		displayMenu();
 	}
+	//*****************************************//
 	
+	//Intakes pin for to access info on database
 	private void intakePin() {
 		boolean success = false;
 		System.out.println("~~~Family Budget Management~~~");
@@ -44,10 +47,12 @@ public class RegularMainMenu {
 							| NoSuchPaddingException | IllegalBlockSizeException e) {
 					}
 				success = true;
+			//Catches possible errors/exceptions which may have occurred
+			//Outputs appropriate responses for possible errors
 			} catch (PINNotMatchException pinex) {
 				System.out.println("Incorrect password. Enter again.");
 			} catch (FileModifiedException modex) {
-				System.out.println("The save files were modified. PLease correct this and run the program again.");
+				System.out.println("The save files were modified. Please correct this and run the program again.");
 			} catch (FileNotFoundException foundex) {
 				System.out.println("The save files were not found. Please correct this and run the program again.");
 			} catch (IOException iox) {
@@ -62,6 +67,8 @@ public class RegularMainMenu {
 		displayMenu();
 	}
 
+	//First main menu the user sees upon entering the program
+	//Outputs options for the user and prompts for a choice to take the user to another menu
 	public void displayMenu() {
 		final int GEN_REP = 1;
 		final int TRANS_MENU = 2;
@@ -79,6 +86,7 @@ public class RegularMainMenu {
 		System.out.println("5. Family member menu");
 		System.out.println("6. Bills menu\n");
 		
+		//Displays current family balance and alerts
 		System.out.println("Your current total family balance: + $" + family.getHouseHoldBalance());
 		
 		if (family.isHouseHoldBalanceLow()) {
@@ -87,6 +95,7 @@ public class RegularMainMenu {
 			System.out.println("You have no current alerts");
 		}
 		
+		//Intakes user choice and directs them to the menu they've chosen
 		int choice = UserInput.intakeChoice(6);
 		if (choice == GEN_REP) {
 			System.out.println("fix");

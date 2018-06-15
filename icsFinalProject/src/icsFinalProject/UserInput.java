@@ -5,6 +5,7 @@ import java.util.*;
 public class UserInput {
 	static Scanner sc = new Scanner(System.in);
 	
+	//Intakes a double and error-checks to ensure that the input is valid
 	public static double intakeDouble() {
 		boolean finished = false; 
 		double input = 0;
@@ -21,6 +22,8 @@ public class UserInput {
 		return input;
 	}
 	
+	//Intakes choice as an integer and ensures that the input is less than the upper bound...
+	//... specified (passed in the parameter)
 	public static int intakeChoice (int upper) {
 		int input = 0;
 		boolean finished = false;
@@ -41,6 +44,8 @@ public class UserInput {
 		return input;
 	}
 
+	//Intakes a date in the format of a String and error-checks to ensure that the input...
+	//... is valid
 	public static String intakeDate () {
 		String input = null;
 		boolean valid = false;
@@ -64,6 +69,8 @@ public class UserInput {
 		return input;
 	}
 	
+	//Intakes a String input for a family member's name and error-checks to ensure...
+	//... that the name entered actually correlates to a member in the family
 	public static String intakeName () {
 		String input = null;
 		boolean found = false;
@@ -79,10 +86,12 @@ public class UserInput {
 		return input;
 	}
 	
+	//Intakes a String input
 	public static String intakeString () {
 		return sc.nextLine();
 	}
 	
+	//Intakes an integer user response and error-checks to ensure the input is valid
 	public static int intakeInt() {
 		boolean success = false;
 		int input = 0;
@@ -99,6 +108,8 @@ public class UserInput {
 		return input;
 	}
 	
+	//Intakes a String user response and error-checks to make sure that what the user entered...
+	//... is within the (two) available options
 	public static String intakeType(String a, String b) {
 		boolean finished = false;
 		String input = null;
@@ -114,6 +125,7 @@ public class UserInput {
 		return input;
 	}
 
+	//Flushes line to allow for input
 	public static void flush() {
 		sc.nextLine();
 	}

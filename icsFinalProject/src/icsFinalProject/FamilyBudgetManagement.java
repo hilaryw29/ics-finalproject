@@ -141,15 +141,17 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
-	
+	//Gets the current minimum household balance
 	public double getMinHouseHoldBalance() {
 		return minHouseHoldBalance;
 	}
-
+	
+	//Checks if the current household balance is below the min household balance
 	public boolean isHouseHoldBalanceLow() {
 		return houseHoldBalance >= minHouseHoldBalance ? false : true;
 	}
 	
+	//Adds a recurring monthly bill
 	public boolean addMonthlyBill(RecurringBill bill) {
 		if (checkIfAccountExisted(bill) == true) {
 			billList.addBill(bill);
@@ -163,19 +165,22 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
+	//Verify if a certain account exists
 	private boolean checkIfAccountExisted(RecurringBill bill) {
 		return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MAX_VALUE);
 	}
 	
-	// FIX LATER
+	// FIX LATER *********COMMENT AS WELL*********
 	public LinkedList<Account> listAccount(String s){
 		return memberlist.listAccount(s);
 	}
 	
+	//Returns a list of all current accounts in a linkedlist
 	public LinkedList<Account> listAccount(){
 		return memberlist.listAccount();
 	}
 	
+	//Adds a new account to a specific family member
 	public int addAccount(Account account, String name) throws AccountException {
 		int i = memberlist.addAccount(account, name);
 		updateHoldBalance();
@@ -186,14 +191,17 @@ public class FamilyBudgetManagement {
 		return i;
 	}
 	
+	//Deletes a bank account from a specific family member
 	// FIX LATER
 	public int delAccount() {
 		return Integer.MAX_VALUE;
 	}
 
+	//Adds a transaction to the ongoing transaction list
 	public int addTransaction(Transaction transaction) throws AccountException {
 		updateBalance(transaction);
 		updateHoldBalance();
+		//Checks if the updated household balance is below the min household balance
 		if (isHouseHoldBalanceLow()) {
 			System.out.println("House Hold Balance is low now!");
 		}
@@ -206,6 +214,7 @@ public class FamilyBudgetManagement {
 		
 	}
 	
+	//Update the household balance following a new/recent transaction
 	private void updateBalance(Transaction transaction) throws AccountException {
 		memberlist.updateBalance(transaction);
 		try {
@@ -214,61 +223,80 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
+	//Updates household balance
 	private void updateHoldBalance() { 
 		houseHoldBalance=memberlist.getTotalBalance();
 	}
 	
+	//Returns all transactions under a certain family member in a linkedlist
 	public LinkedList<Transaction> listTransaction(String name){
 		return transactionList.listTransaction(name);	
 	}
 	
+	//Returns all transactions under a certain date in a linkedlist
 	public LinkedList<Transaction> findTransaction(String date){
 		return transactionList.findTransaction(date);	
 	} 
 	
+	//Finds a transaction based on its id
 	public Transaction findTransaction(int id){
 		return transactionList.findTransaction(id);	
 	}
 	
+	//Finds all transactions larger than the specified amount and returns those transactions...
+	//... in a linkedlist
 	public LinkedList<Transaction> findTransactionLarger(double amount){
 		return transactionList.findTransactionLarger(amount);	
 	}
 	
+	//Finds all transactions equals to a specified amount and returns those transactions...
+	//... in a linkedlist
 	public LinkedList<Transaction> findTransactionEqual(double amount){
 		return transactionList.findTransactionEqual(amount);	
 	}
 	
+	//Finds all transactions smaller than a specified amount and returns those transactions in a linkedlist
 	public LinkedList<Transaction> findTransactionSmaller(double amount){
 		return transactionList.findTransactionSmaller(amount);	
 	}
 	
+	//Find the member with the lowest balance in the entire family
 	public Member findLowestBalance() {
 		return memberlist.findLowestBalance();
 	}
 	
+	//Finds the average expense per member for the entire family
 	public double avgExpensePerMember() {
 		return memberlist.calculateAveExpense();
 	}
 	
+	//Displays all existing monthly bills/recurring bills in a string format
 	public String displayMonthlyBills() {
 		return billList.displayMonthlyBills();
 	}
 
+	//Sorts all existing family members by income and returns the sorted list in a Member array
 	public Member[] sortMemberByIncome() {
 		return memberlist.sortMemberByIncome();
 	}
 	
+	//Sorts all existing family members by the total sum of their expenses and returns...
+	//... the sorted list in a Member array
 	public Member[] sortMemberByExpense() {
 		return memberlist.sortMemberByExpense();
 	}
 	
+	//Lists all existing family members in an ArrayList
 	public ArrayList<Member> listMember() {
 		return memberlist.listMember();
 	}
+	
+	//Searches for a specific member given their name
 	public Member searchMember(String name) {
 		return memberlist.searchMember(name);
 	}
 	
+	//Attempts to change the login password, returns a boolean indicating success or fail
 	public boolean changePassword(String old, String newPass) {
 		if (new String(MD5.getMd5(old)).equals(new String(PIN))) {
 			PIN = MD5.getMd5(newPass);
@@ -283,6 +311,7 @@ public class FamilyBudgetManagement {
 			return false;
 	}
 	
+	//Allocates an indicated percentage of a family member's income to their savings account
 	public void allocateIncome(String name,int id, int percentage) throws AccountException{
 		memberlist.allocateIncome(name,id,percentage);
 		try {
@@ -291,7 +320,7 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
-	
+	//Adds a new family member
 	public boolean addFamilyMember(Member m) {
 		memberlist.addFamilyMember(m);
 		try {
@@ -301,10 +330,12 @@ public class FamilyBudgetManagement {
 		return true;
 	}
 	
+	//Tries to pay for a recurring bill expense
 	public boolean tryPay(String name, int id, double amount) {
 		return memberlist.checkAccountBalance(name, id, amount);
 	}
 	
+	//Deletes a recurring bill
 	public boolean delBill(int id) {
 		boolean b = billList.delBill(id);
 		try {
@@ -314,14 +345,17 @@ public class FamilyBudgetManagement {
 		return b;
 	}
 	
+	//Returns information about the family in a String format
 	public String displayFamilyInfo() {
 		return memberlist.toString();
 	}
 
+	//Returns the current household balance
 	public double getHouseHoldBalance() {
 		return houseHoldBalance;
 	}
 
+	//Sets/updates the current household balance
 	public void setHouseHoldBalance(double houseHoldBalance) {
 		this.houseHoldBalance = houseHoldBalance;
 		try {
@@ -329,6 +363,8 @@ public class FamilyBudgetManagement {
 		} catch (IOException e) {
 		}
 	}
+	
+	//Removes an existing bank account given the accout holder's name and the account id
 	// fix later
 	public boolean removeAccount(String name, int id) {
 		// TODO Auto-generated method stub

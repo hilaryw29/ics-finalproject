@@ -6,10 +6,12 @@ public class Submenu {
 	String password;
 	protected FamilyBudgetManagement family;
 	
+	//Constructor - creates new Submenu object
 	public Submenu (FamilyBudgetManagement family) {
 		this.family = family;
 	}
 	
+	//Intakes choice for submenus
 	public int intakeChoice (int upper) {
 		Scanner sc = new Scanner(System.in);
 		int input = 0;
@@ -31,6 +33,7 @@ public class Submenu {
 		return input;
 	}
 
+	//Returns to the main menu
 	public void goBack() {
 		RegularMainMenu regMenu  = new RegularMainMenu (password);
 	}
