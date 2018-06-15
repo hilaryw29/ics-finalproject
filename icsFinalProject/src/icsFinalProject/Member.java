@@ -196,6 +196,6 @@ public abstract class Member implements Serializable {
 	
 	//Returns all the important information in member in a single String
 	public String toString(){
-		return"Name: " + name +"\nIncome: " + income + "\nBudget: " + budget + "\nExpense: "+ expense + "\nBalance: " + balance + "Accounts: " + accountList + "Goal: " + goal + "Percentage of income allocation: " + percentage;
+		return"Name: " + name +"\nIncome: " + income + "\nBudget: " + budget + "\nExpense: "+ expense + "\nBalance: " + balance + "\nAccounts: " + accountList + "\nGoal: " + goal + "\nPercentage of income allocation: " + percentage + "\n";
 	}
 }
