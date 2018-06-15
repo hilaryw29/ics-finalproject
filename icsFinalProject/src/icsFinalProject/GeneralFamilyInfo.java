@@ -65,6 +65,7 @@ public class GeneralFamilyInfo extends Submenu {
 		boolean changed;
 		
 		System.out.println("Please enter your old password:");
+		UserInput.flush();
 		oldPin = UserInput.intakeString();
 		System.out.println("Please enter a new password: "); 
 		newPin = UserInput.intakeString();
