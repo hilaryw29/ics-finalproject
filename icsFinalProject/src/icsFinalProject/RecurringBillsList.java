@@ -6,7 +6,7 @@ import java.io.*;
 
 //Class description: a class that have a list of monthly bills and performs adding, 
 //displaying information, displaying unpaid bills and other functionalities.
-public class RecurringBillsList implements Serializable{
+public class RecurringBillsList{
 	int numOfBills;
 	TreeSet<RecurringBill> billList;
 	
@@ -16,13 +16,16 @@ public class RecurringBillsList implements Serializable{
 		numOfBills = Integer.parseInt(in.readLine());
 		billList = new TreeSet<>();
 		for(int i = 0; i < numOfBills; i ++){
-			double amount = Double.parseDouble(in.readLine());
-			String name = in.readLine();
-			String date = in.readLine();
-			int accountID = Integer.parseInt(in.readLine());
-			int ID = Integer.parseInt(in.readLine());
+			int ID = Integer.parseInt(in.readLine().substring(4));
+			int accountID = Integer.parseInt(in.readLine().substring(12));
+			double amount = Double.parseDouble(in.readLine().substring(8));
+			String name = in.readLine().substring(6);
+			String date = in.readLine().substring(8);
+			boolean isFailed = Boolean.parseBoolean(in.readLine().substring(24));
 			RecurringBill bill = new RecurringBill(amount, name, date, accountID);
-			billList.add(new RecurringBill(bill, ID));
+			bill = new RecurringBill(bill, ID);
+			bill.setFailed(isFailed);
+			billList.add(bill);
 		}
 		in.close();		
 	}
