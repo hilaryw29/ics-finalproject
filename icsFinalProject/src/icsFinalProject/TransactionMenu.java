@@ -20,7 +20,7 @@ public class TransactionMenu extends Submenu {
 		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
 		System.out.println("1. Find transaction by date");
 		System.out.println("2. Add a new transaction");
-		System.out.println("3. FInd transaction by amount");
+		System.out.println("3. Find transaction by amount");
 		System.out.println("4. View transactions by family member");
 		System.out.println("5. Back to main menu");
 		choice = intakeChoice(5);

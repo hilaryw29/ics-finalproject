@@ -81,6 +81,7 @@ public class FamilyMemberMenu extends Submenu {
 		String isAdult;
 		
 		System.out.println ("Please enter the name of the family member you'd like to add : ");
+		UserInput.flush();
 		name = UserInput.intakeString();
 		System.out.println("Please enter your monthly income: ");
 		income = UserInput.intakeDouble();
