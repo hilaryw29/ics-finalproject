@@ -98,7 +98,7 @@ public class FamilyMemberMenu extends Submenu {
 		} else {
 			family.addFamilyMember(new Child (name, income, budget, percentage));
 		}
-		System.out.println("Bank account created");
+		System.out.println("Family member added.");
 		
 		displayMenu();
 	}

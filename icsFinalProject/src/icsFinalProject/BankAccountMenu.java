@@ -156,7 +156,7 @@ public class BankAccountMenu extends Submenu {
 	private void listAccountsMember() {
 		System.out.print("Enter the name of the family member: ");
 		String name = UserInput.intakeName();
-		
+		UserInput.flush();
 		LinkedList <Account> found;
 		//try {
 			found = family.listAccount(name);

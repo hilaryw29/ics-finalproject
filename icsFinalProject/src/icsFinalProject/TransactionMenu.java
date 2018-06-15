@@ -77,7 +77,7 @@ public class TransactionMenu extends Submenu {
 		System.out.println("Please enter the following information:");
 		System.out.print("The name of the family member who paid the transaction: ");
 		String payer = UserInput.intakeString();
-		System.out.print("The name of the family member or organization who receied the transaction. ");
+		System.out.print("The name of the family member or organization who received the transaction. ");
 		String payee = UserInput.intakeString();
 		System.out.print("The account ID Of the payer: ");
 		int payerID = UserInput.intakeInt();
