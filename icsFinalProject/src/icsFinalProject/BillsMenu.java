@@ -45,7 +45,7 @@ public class BillsMenu extends Submenu {
 		double amount;
 		String date;
 		int id;
-		
+		 
 		//Prompts the user to enter the necessary info to add a new bill
 		System.out.println("Please enter the name of the recurring monthly expense you'd like to add:");
 		UserInput.flush();
