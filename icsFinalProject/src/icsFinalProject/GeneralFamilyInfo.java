@@ -19,7 +19,7 @@ public class GeneralFamilyInfo extends Submenu {
 		System.out.println("Please enter a number 1-5 that corresponds to one of the following choices: ");
 		System.out.println("1. View low balance threshold");
 		System.out.println("2. Edit low balance threshold");
-		System.out.println("3. Edit pin");
+		System.out.println("3. Edit passwword");
 		System.out.println("4. Display family info");
 		System.out.println("5. Back to main menu");
 		choice = intakeChoice(5);
@@ -64,22 +64,22 @@ public class GeneralFamilyInfo extends Submenu {
 		String newPin;
 		boolean changed;
 		
-		System.out.println("Please enter your old pin:");
+		System.out.println("Please enter your old password:");
 		oldPin = UserInput.intakeString();
-		System.out.println("Please enter a new pin: "); 
+		System.out.println("Please enter a new password: "); 
 		newPin = UserInput.intakeString();
 		changed = family.changePassword (oldPin, newPin);
 		
 		if (changed == false) {
 			while (family.changePassword(oldPin, newPin) == false) {
-				System.out.println("Unable to update pin, please re-enter your old pin:");
+				System.out.println("Unable to update password, please re-enter your old password:");
 				oldPin = UserInput.intakeString();
-				System.out.println("Please re-enter a new pin:");
+				System.out.println("Please re-enter a new password:");
 				newPin = UserInput.intakeString();
 				changed = family.changePassword (oldPin, newPin);
 			}
 		}
-		System.out.println("Pin changed");
+		System.out.println("password changed");
 		displayMenu();
 	}
 
