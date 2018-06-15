@@ -149,6 +149,7 @@ public class FamilyMemberMenu extends Submenu {
 	//Deletes the goal of a specific family member
 	private void deleteGoal(Member person) {
 		// How to delete goal 
+		family.deleteGoal(person);
 		System.out.println("Goal was successfully deleted");
 		editFamMemberMenu(person);
 	}
@@ -186,7 +187,7 @@ public class FamilyMemberMenu extends Submenu {
 	//Changes the income of a specific family member
 	private void changeIncome (Member person) {
 		System.out.print("Enter the new income of the family member: $");
-		double income = Math.abs(UserInput.intakeDouble());
+		double income = Math.abs(UserInput.intakeDouble());	
 		
 		person.setIncome(income);
 		System.out.println("Income changed.");

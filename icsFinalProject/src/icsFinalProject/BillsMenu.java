@@ -72,8 +72,7 @@ public class BillsMenu extends Submenu {
 				System.out.println("Bill successfully added");
 			}
 		}
-		displayMenu();
-		
+		displayMenu();	
 	}
 	
 }
