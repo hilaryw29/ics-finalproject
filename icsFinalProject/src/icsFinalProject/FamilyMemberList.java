@@ -154,7 +154,7 @@ public class FamilyMemberList implements Serializable{
 	public Member[] sortMemberByIncome(){
 		Member[] member = (Member[]) family.toArray(new Member[numOfMember]);
 		for(int i = numOfMember - 1; i >=0; i --){
-			int maxIndex = 0; 
+			int maxIndex = i; 
 			for(int j = 0; j < i; j ++){
 				if(member[j].compareToIncome(member[maxIndex]) > 0){
 					maxIndex = j;
