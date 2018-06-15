@@ -371,7 +371,7 @@ public class FamilyBudgetManagement {
 		return false;
 	}
 	
-	public boolean delGoal(String name) {
-		return memberlist.deleteGoal(name);
+	public boolean delGoal(Member member) {
+		return memberlist.deleteGoal(member);
 	}
 }

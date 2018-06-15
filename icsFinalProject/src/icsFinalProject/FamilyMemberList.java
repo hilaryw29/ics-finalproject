@@ -25,7 +25,8 @@ public class FamilyMemberList implements Serializable{
 	}
 	
 	
-	public boolean deleteGoal(String name) {
+	public boolean deleteGoal(Member member) {
+		String name = member.getName();
 		for (Member i: family) {
 			if (i.equalTo(name)) {
 				return i.deleteGoal();

@@ -54,7 +54,7 @@ public abstract class Member implements Serializable {
 		return balance - other.balance > 0 ? this : other;
 	}
 	
-	
+	//the method deletes an existed goal
 	public boolean deleteGoal() {
 		if (goal == null) {
 			return false;
