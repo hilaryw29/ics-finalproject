@@ -8,6 +8,7 @@ public class FirstMainMenu {
 	String pin;
 	FamilyBudgetManagement family;
 	
+	//Constructor - creates a new FirstMainMenu object
 	public FirstMainMenu () {
 		if (isFirstRun()) {
 			displayMenu();	// Displays the info intake menu
@@ -52,6 +53,7 @@ public class FirstMainMenu {
 		RegularMainMenu regMenu = new RegularMainMenu();
 	}
 	
+	//Prompts the user to choose a password to protect their information in this program
 	private void intakePassword () {
 		// Prompts user for pin and writes it to file
 		System.out.println("Please choose a password: ");
@@ -83,17 +85,20 @@ public class FirstMainMenu {
 	}
 	
 	private double intakeIncome() {
+		//Prompts user for their monthly income
 		System.out.print("Enter their monthly income in dollars: ");
 		return UserInput.intakeDouble();
 	}
 	
 	private double intakeBudget () {
+		//Prompts user for their monthly budget
 		System.out.print("Enter their monthly budget in dollars: ");
 		return UserInput.intakeDouble();
 	}
 	
 	private double intakePercentage () {
 		double input;
+		//Prompts user for the percentage of their income they'd like to allocate the savings
 		System.out.print("Enter the percentage of income that is to be allocated to savings automatically: ");
 		input = UserInput.intakeDouble();
 		
@@ -104,9 +109,9 @@ public class FirstMainMenu {
 		return input;
 	}
 	
-	
+	//Checks if this is the first run of the program by verifying the existance...
+	//... of the "entrance" file stored in the system
 	public boolean isFirstRun () {
-		
 	File file = new File(FileConstant.ENTRANCE);
 	return !file.exists();
 	}

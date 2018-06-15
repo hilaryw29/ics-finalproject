@@ -5,7 +5,7 @@ import java.util.LinkedList;
 //Class Description: the class displays menu that deals with bank accounts
 public class BankAccountMenu extends Submenu {
 	
-	//
+	//Constructor - creates a new BankAccountMenu object
 	public BankAccountMenu (FamilyBudgetManagement family) { 
 		super(family); 
 		displayMenu();
@@ -33,6 +33,7 @@ public class BankAccountMenu extends Submenu {
 		
 		choice = UserInput.intakeChoice(6);
 		
+		//Takes the user to the function they've selected from the menu options above
 		if (choice == LIST_ALL) {
 			listAccounts();
 		} else if (choice == LIST_BY_MEMBER) {
@@ -80,6 +81,8 @@ public class BankAccountMenu extends Submenu {
 		System.out.print("Enter the amount of money currently in this account: $");
 		double amount = UserInput.intakeDouble();
 		
+		//Creates a new bank account depending on the type of account the user have indicated...
+		//... an interest in opening (e.g. chequing or savings)
 		if (type.equalsIgnoreCase("c")) {
 			try {
 				family.addAccount(new Account("Chequing", amount), name); 
@@ -95,7 +98,7 @@ public class BankAccountMenu extends Submenu {
 		displayMenu();
 	}
 	
-	//the method intakes information and adds a new bank account
+	//Allows user to select a bank account they'd like to edit
 	private void selectAccount() {
 		listAccountsOnly();
 		
@@ -118,7 +121,8 @@ public class BankAccountMenu extends Submenu {
 		editAccountMenu(selected);
 	}
 	
-	//
+	//Menu which gives the user the option to edit a specific account they've selected...
+	//... in the selectAccount method
 	private void editAccountMenu(Account selected) {
 		int choice;
 		
@@ -136,7 +140,7 @@ public class BankAccountMenu extends Submenu {
 		}
 	}
 	
-	//
+	//Allows the user to edit the type of a specific account (e.g. chequing or savings)
 	private void editAccountType(Account selected) {
 		System.out.println("The current account (ID:" + selected.getId() + ") is of type: " + selected.getAccountType());
 		System.out.println("To change this account to savings, enter 's'. To change this account to chequing, enter 'c'");
@@ -152,7 +156,7 @@ public class BankAccountMenu extends Submenu {
 		displayMenu();
 	}
 
-	//
+	//Lists all the existing bank accounts under a specific family member
 	private void listAccountsMember() {
 		System.out.print("Enter the name of the family member: ");
 		String name = UserInput.intakeName();
@@ -176,7 +180,7 @@ public class BankAccountMenu extends Submenu {
 		displayMenu();
 	}
 	
-	//
+	//Lists all the existing bank accounts in the family
 	private void listAccounts() {
 		listAccountsOnly();
 		displayMenu();

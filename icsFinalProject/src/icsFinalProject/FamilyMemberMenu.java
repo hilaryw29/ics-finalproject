@@ -7,11 +7,14 @@ public class FamilyMemberMenu extends Submenu {
 	final int ADD_MEMBER = 3;
 	final int SELECT_MEMBER = 4;
 	
+	//Constructor - creates a new FamilyMemberMenu object
 	public FamilyMemberMenu (FamilyBudgetManagement pass) {
 		super(pass);
 		displayMenu();
 	}
 	
+	//Displays all the choices available in FamilyMemberMenu and allows the user to choose which...
+	//... function they'd like to access
 	public void displayMenu () {
 		int choice;
 		System.out.println("\n\nFAMILY MEMBER MENU");
@@ -23,6 +26,7 @@ public class FamilyMemberMenu extends Submenu {
 		System.out.println("5. Back to main menu");
 		choice = intakeChoice(5);
 		
+		//
 		if (choice == SORT_INCOME) {
 			sortByIncome();
 		} else if (choice == SORT_EXPENSE) {
@@ -36,6 +40,7 @@ public class FamilyMemberMenu extends Submenu {
 		}
 	}
 	
+	//Outputs a list of all family members sorted by income
 	private void sortByIncome () {
 		Member [] sorted;
 		System.out.println("List of family members sorted by income: ");
@@ -49,6 +54,7 @@ public class FamilyMemberMenu extends Submenu {
 		displayMenu();
 	}
 	
+	//Outputs a list of all family members sorted by expense
 	private void sortByExpense () {
 		Member [] sorted;
 		System.out.println("List of family members sorted by expense: ");
@@ -62,6 +68,8 @@ public class FamilyMemberMenu extends Submenu {
 		displayMenu();
 	}
 	
+	//Selects family member takes the user to another menu where they can make changes...
+	//... to the selected family member
 	private void selectMember () {		
 		System.out.println("Please enter the name of the member you'd like to select: ");
 		UserInput.flush();
@@ -74,6 +82,7 @@ public class FamilyMemberMenu extends Submenu {
 		
 	} 
 	
+	//Adds a new family member to the family
 	private void addMember () {
 		String name;
 		double income;
@@ -81,6 +90,7 @@ public class FamilyMemberMenu extends Submenu {
 		double percentage;
 		String isAdult;
 		
+		//Prompts user for all necessary info to create new family member
 		System.out.println ("Please enter the name of the family member you'd like to add : ");
 		UserInput.flush();
 		name = UserInput.intakeString();
@@ -94,6 +104,7 @@ public class FamilyMemberMenu extends Submenu {
 		UserInput.flush();
 		isAdult = UserInput.intakeType("a", "c");
 		
+		//Creates the new family member based on whether they are an adult or child
 		if (isAdult.equalsIgnoreCase("a")) {
 			family.addFamilyMember(new Adult (name, income, budget, percentage));
 		} else {
@@ -104,6 +115,7 @@ public class FamilyMemberMenu extends Submenu {
 		displayMenu();
 	}
 	
+	//Allows the user to make edits to a specific family member they have selected
 	private void editFamMemberMenu(Member person) {
 		final int EDIT_INCOME = 1;
 		final int EDIT_BUDGET = 2;
@@ -134,12 +146,14 @@ public class FamilyMemberMenu extends Submenu {
 		}
 	}
 	
+	//Deletes the goal of a specific family member
 	private void deleteGoal(Member person) {
 		// How to delete goal 
 		System.out.println("Goal was successfully deleted");
 		editFamMemberMenu(person);
 	}
-
+	
+	//Set the goal for a specific family member
 	private void setGoal(Member person) {
 		System.out.println("Enter the goal description: ");
 		UserInput.flush();
@@ -147,6 +161,8 @@ public class FamilyMemberMenu extends Submenu {
 		System.out.println("Enter the amount for the goal: $");
 		double amount = Math.abs(UserInput.intakeDouble());
 		
+		//If the goal is unable to be set, prompts the user to fix the possible issues preventing...
+		//... them from setting a goal
 		boolean success = false;
 		while(!success) {
 			try {
@@ -166,7 +182,8 @@ public class FamilyMemberMenu extends Submenu {
 		
 		editFamMemberMenu(person);
 	}
-
+	
+	//Changes the income of a specific family member
 	private void changeIncome (Member person) {
 		System.out.print("Enter the new income of the family member: $");
 		double income = Math.abs(UserInput.intakeDouble());
@@ -176,8 +193,9 @@ public class FamilyMemberMenu extends Submenu {
 		editFamMemberMenu(person);
 	}
 	
+	//Changes/updates the budget for a specific family member
 	private void changeBudget (Member person) {
-		System.out.print("Enter the new montly budget of the faimly member: ");
+		System.out.print("Enter the new montly budget of the family member: ");
 		double budget = Math.abs(UserInput.intakeDouble());
 		
 		person.setBudget(budget);
