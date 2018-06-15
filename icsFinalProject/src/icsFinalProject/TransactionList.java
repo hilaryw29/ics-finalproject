@@ -70,7 +70,7 @@ public class TransactionList implements Serializable {
 	//the method inserts the given transaction to the correct place in the order of amount
 	public void insertTransactionByAmount(Transaction t){
 		for (int i = 0;i < numOfTransaction && numOfTransaction != 1 ;i++) {
-			if (t.compareTo(sortedTransaction.get(i)) >= 0) {
+			if (t.compareTo(sortedTransaction.get(i)) <= 0) {
 				sortedTransaction.add(i,t);
 				return;
 			}
@@ -81,7 +81,7 @@ public class TransactionList implements Serializable {
 	//the method inserts the given transaction to the correct place in the order of time
 	public void insertTransactionByDate(Transaction t) {
 		for (int i = 0;i < numOfTransaction && numOfTransaction != 1;i++) {
-			if (t.equalDate(unsortedTransaction.get(i).getDate()) >= 0) {
+			if (t.equalDate(unsortedTransaction.get(i).getDate()) <= 0) {
 				unsortedTransaction.add(i,t);
 				return;
 			}
@@ -93,9 +93,9 @@ public class TransactionList implements Serializable {
 	public int addTransaction(Transaction t){
 		Transaction tWithId = new Transaction(t,numOfTransaction);
 //		lastID++;
-		numOfTransaction++;
 		insertTransactionByAmount(tWithId);
 		insertTransactionByDate(tWithId);
+		numOfTransaction++;
 		return numOfTransaction;
 
 	}
@@ -122,7 +122,7 @@ public class TransactionList implements Serializable {
 	public LinkedList<Transaction> listTransaction(String name){
 		LinkedList<Transaction> person = new LinkedList<>();
 		for(int i = 0; i < numOfTransaction; i ++){
-			if((unsortedTransaction.get(i).getPayer()).equals(name)){
+			if((unsortedTransaction.get(i).equalName(name))){
 				person.add(unsortedTransaction.get(i));
 			}
 		}
@@ -137,22 +137,31 @@ public class TransactionList implements Serializable {
 		{
 		    int m = l + (r-l)/2;
 		    if (unsortedTransaction.get(m).equalDate(date) == 0) {
-			r = m + 1;
-			l = m - 1;
-			while (unsortedTransaction.get(r).equalDate(date) == 0){
-				transactions.add(unsortedTransaction.get(r));
-				r++;
-			}
-			while (unsortedTransaction.get(l).equalDate(date) == 0){
-				transactions.add(unsortedTransaction.get(l));
-				l++;
-			}
-			return transactions;
+		    	transactions.add(unsortedTransaction.get(m));
+		    	r = m + 1;
+				l = m - 1;
+				try {
+					while (unsortedTransaction.get(r).equalDate(date) == 0){
+						transactions.add(unsortedTransaction.get(r));
+						r++;
+						}
+				} catch (IndexOutOfBoundsException e) {
+					
+				}
+				try {
+					while (unsortedTransaction.get(l).equalDate(date) == 0){
+						transactions.add(unsortedTransaction.get(l));
+						l++;
+					}
+				}catch (IndexOutOfBoundsException e) {
+					
+				}
+				return transactions;
 		    } else if (unsortedTransaction.get(m).equalDate(date) < 0)
-			l = m + 1;
+		    	l = m + 1;
 		    else
-			r = m - 1;
-		}
+		    	r = m - 1;
+			}
 		return null;
 	}
 	

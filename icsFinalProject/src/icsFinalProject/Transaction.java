@@ -47,6 +47,10 @@ public class Transaction implements Serializable{
 		return this.id == id;
 	}
 	
+	
+	public boolean equalName(String name) {
+		return this.payee.equals(name) || this.payer.equals(name);
+	}
 	//writes the transaction to file
 	public String writeToFile() {
 		String s = "";

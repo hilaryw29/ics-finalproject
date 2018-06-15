@@ -61,7 +61,7 @@ public class BillsMenu extends Submenu {
 		//... re-enter the info which may have caused the error
 		boolean success = false;
 		while (!success) {
-			date = "0000/00/00";
+//			date = "0000/00/00";
 			success = family.addMonthlyBill(new RecurringBill (amount, name, date, id));
 			if (!success) {
 				System.out.println("Error");

@@ -167,7 +167,7 @@ public class FamilyBudgetManagement {
 	
 	//Verify if a certain account exists
 	private boolean checkIfAccountExisted(RecurringBill bill) {
-		return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MAX_VALUE);
+		return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MIN_VALUE);
 	}
 	
 	// FIX LATER *********COMMENT AS WELL*********
