@@ -11,7 +11,6 @@ public class RecurringBillsList implements Serializable{
 	TreeSet<RecurringBill> billList;
 	
 	//contructs a RecurringBill object by intaking the information from the given file
-	//and throw 
 	public RecurringBillsList(String fileName) throws IOException, FileNotFoundException, FileModifiedException {
 		BufferedReader in = new BufferedReader(new FileReader(fileName));
 		numOfBills = Integer.parseInt(in.readLine());
@@ -28,7 +27,7 @@ public class RecurringBillsList implements Serializable{
 		in.close();		
 	}
 	
-	//
+	//constructs a new RecurringBillList
 	public RecurringBillsList() {
 		billList = new TreeSet<>();
 		numOfBills = 0;
@@ -41,7 +40,7 @@ public class RecurringBillsList implements Serializable{
 		numOfBills++;
 	}
 	
-	//
+	//returns all the bills for the current date
 	public LinkedList<RecurringBill> getBillList() {
 		LocalDateTime now = LocalDateTime.now();
 		int day = now.getDayOfMonth();
@@ -54,7 +53,7 @@ public class RecurringBillsList implements Serializable{
 		return list;
 	}
 
-	//
+	//returns all the unpaid bills in a list
 	public LinkedList<RecurringBill> getUnpaidList() {
 		Iterator listInterator = billList.iterator();
 		LinkedList<RecurringBill> unpaidList = new LinkedList<>();
