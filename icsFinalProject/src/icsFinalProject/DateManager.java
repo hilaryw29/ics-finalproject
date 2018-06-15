@@ -59,7 +59,6 @@ public class DateManager implements Runnable{
 				System.out.println(i);
 			}
 		}
-		
 	}
 
 }
