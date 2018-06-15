@@ -100,7 +100,7 @@ public abstract class Member implements Serializable {
 		return budget;
 	}
 	
-	//the method updates the total balnce of the member
+	//the method updates the total balance of the member
 	public void updateBalance (double amount) {
 		balance =balance + amount;
 	}
@@ -194,6 +194,7 @@ public abstract class Member implements Serializable {
 		income = money;
 	}
 	
+	//Returns all the important information in member in a single String
 	public String toString(){
 		return"Name: " + name +"\nIncome: " + income + "\nBudget: " + budget + "\nExpense: "+ expense + "\nBalance: " + balance + "Accounts: " + accountList + "Goal: " + goal + "Percentage of income allocation: " + percentage;
 	}
