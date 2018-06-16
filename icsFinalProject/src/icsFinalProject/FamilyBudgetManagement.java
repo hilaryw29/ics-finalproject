@@ -232,6 +232,10 @@ public class FamilyBudgetManagement {
 		}
 	}
 	
+	public boolean removeAccount(String name, int id) {
+		return memberlist.removeAccount(name,id);
+	}
+	
 	//Updates household balance
 	private void updateHoldBalance() { 
 		houseHoldBalance=memberlist.getTotalBalance();
@@ -396,10 +400,6 @@ public class FamilyBudgetManagement {
 	}
 	//Removes an existing bank account given the accout holder's name and the account id
 	// fix later
-	public boolean removeAccount(String name, int id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 	public boolean deleteGoal(Member member) {
 		return memberlist.deleteGoal(member);

@@ -212,4 +212,14 @@ public abstract class Member implements Serializable {
 	public String toString(){
 		return"Name: " + name +"\nIncome: " + income + "\nBudget: " + budget + "\nExpense: "+ expense + "\nBalance: " + balance + "\nAccounts: " + accountList + "\nGoal: " + goal + "\nPercentage of income allocation: " + percentage + "\n";
 	}
+
+	public boolean removeAccount(int id) {
+		int index = findAccountIndex(id);
+		if (index != -1) {
+			accountList.remove(id);
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

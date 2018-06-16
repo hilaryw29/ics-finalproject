@@ -249,5 +249,14 @@ public class FamilyMemberList implements Serializable{
 	public String toString() {
 		return displayInfo();
 	}
+
+	public boolean removeAccount(String name, int id) {
+		for (Member i:family) {
+			if (i.equalTo(name)) {
+				return i.removeAccount(id);
+			}
+		}
+		return false;
+	}
 	
 }
