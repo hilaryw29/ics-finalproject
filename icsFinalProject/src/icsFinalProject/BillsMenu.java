@@ -64,8 +64,6 @@ public class BillsMenu extends Submenu {
 			success = family.addMonthlyBill(new RecurringBill (amount, name, date, id));
 			if (!success) {
 				System.out.println("Error");
-				System.out.println("Please enter the date of deduction again: ");
-				date = "" + UserInput.intakeChoice(30);
 				System.out.println("Please enter the ID of the account where the money will be deducted from again: ");
 				id = UserInput.intakeInt();
 			} else {

@@ -33,13 +33,13 @@ public class FirstMainMenu {
 		
 		numMember = UserInput.intakeInt();
 		
+		for (int i = 0; i < numMember; i++) {
 		// Family member info is entered
 		System.out.println("Enter 'a' for adult or 'c' for child: ");
 		UserInput.flush();
 		String role = UserInput.intakeType("a", "c");
 		
 		
-		for (int i = 0; i < numMember; i++) {
 			if (role.equalsIgnoreCase("a")) {
 				family.addFamilyMember(new Adult(intakeName(), intakeIncome(), intakeBudget(), intakePercentage()));
 			} else {
