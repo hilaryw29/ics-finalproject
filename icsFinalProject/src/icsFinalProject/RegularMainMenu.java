@@ -98,7 +98,8 @@ public class RegularMainMenu {
 		//Intakes user choice and directs them to the menu they've chosen
 		int choice = UserInput.intakeChoice(6);
 		if (choice == GEN_REP) {
-			System.out.println("fix");
+			family.displayLastMonthlyReport();
+			displayMenu();
 		} else if (choice == TRANS_MENU) {
 			TransactionMenu transmenu = new TransactionMenu(family);
 		} else if (choice == GEN_INFO){
