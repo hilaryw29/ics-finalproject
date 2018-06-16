@@ -23,7 +23,7 @@ public class FirstMainMenu {
 		String roleInput;
 		
 		// Outputs greeting
-		System.out.println("Welcome to first time setup. Please input the following info.");
+		System.out.println("Welcome to first time setup. Please input the following info."); 
 		intakePassword();
 		
 		
