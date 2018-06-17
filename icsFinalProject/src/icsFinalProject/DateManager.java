@@ -39,6 +39,7 @@ public class DateManager implements Runnable{
 	//the thread is given the order to sleep
 	private void sleep(int time){
 		try {
+			//Thread.sleep(5);
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
 		}

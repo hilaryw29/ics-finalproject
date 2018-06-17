@@ -20,7 +20,7 @@ public class RecurringBillsList{
 			int accountID = Integer.parseInt(in.readLine().substring(12));
 			double amount = Double.parseDouble(in.readLine().substring(8));
 			String name = in.readLine().substring(6);
-			String date = in.readLine().substring(8);
+			String date = in.readLine().substring(6);
 			boolean isFailed = Boolean.parseBoolean(in.readLine().substring(24));
 			RecurringBill bill = new RecurringBill(amount, name, date, accountID);
 			bill = new RecurringBill(bill, ID);
@@ -49,7 +49,7 @@ public class RecurringBillsList{
 		int day = now.getDayOfMonth();
 		LinkedList<RecurringBill> list = new LinkedList<>();
 		for (RecurringBill i: billList) {
-			if (Integer.parseInt(i.getDate())==day) {
+			if (Integer.parseInt(i.getDate()) == day) {
 				list.add(i);
 			}
 		}

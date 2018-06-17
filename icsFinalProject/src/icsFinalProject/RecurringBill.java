@@ -37,7 +37,13 @@ public class RecurringBill implements Comparable<RecurringBill>, Serializable{
 		Calendar c = Calendar.getInstance();  
 	    c.setTime(new Date());  
 	    int month = c.get(Calendar.MONTH)+1; 
-		return new Transaction(amount,accountID,-1,name,"N/A","RecurringBill",month+"/"+date);
+	    int year = c.get(Calendar.YEAR);
+	    if (month < 10) {
+	    	return new Transaction(amount,accountID,-1,name,"N/A","RecurringBill",year+"/0"+month+"/"+date);
+	    } else {
+	    	return new Transaction(amount,accountID,-1,name,"N/A","RecurringBill",year+"/"+month+"/"+date);
+	    }
+		
 	}
 	
 	//compares the bill IDs between two bills
