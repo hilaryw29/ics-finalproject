@@ -167,7 +167,11 @@ public class FamilyBudgetManagement {
 	
 	//Verify if a certain account exists
 	private boolean checkIfAccountExisted(RecurringBill bill) {
-		return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MIN_VALUE);
+		try {
+			return memberlist.checkAccountBalance(bill.getName(), bill.getAccountID(), Double.MIN_VALUE);
+		} catch (NullPointerException e) {
+			return false;
+		}
 	}
 	
 	// FIX LATER *********COMMENT AS WELL*********
