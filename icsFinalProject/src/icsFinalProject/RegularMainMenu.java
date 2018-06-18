@@ -76,7 +76,7 @@ public class RegularMainMenu {
 		final int BANK_MENU = 4;
 		final int FAM_MEMBER = 5;
 		final int BILLS_MENU = 6;
-		
+		final int EXIT = 7;
 
 		System.out.println("\n\nWelcome. Please enter a number 1-6 that corresponds to the following choices: ");
 		System.out.println("1. Generate previous monthly report");
@@ -84,8 +84,8 @@ public class RegularMainMenu {
 		System.out.println("3. General Family Info");
 		System.out.println("4. Bank accounts menu");
 		System.out.println("5. Family member menu");
-		System.out.println("6. Bills menu\n");
-		
+		System.out.println("6. Bills menu");
+		System.out.println("7. Exit the program\n");
 		//Displays current family balance and alerts
 		System.out.println("Your current total family balance: + $" + family.getHouseHoldBalance());
 		
@@ -96,7 +96,7 @@ public class RegularMainMenu {
 		}
 		
 		//Intakes user choice and directs them to the menu they've chosen
-		int choice = UserInput.intakeChoice(6);
+		int choice = UserInput.intakeChoice(7);
 		if (choice == GEN_REP) {
 			family.displayLastMonthlyReport();
 			displayMenu();
@@ -110,6 +110,8 @@ public class RegularMainMenu {
 			FamilyMemberMenu fammenu = new FamilyMemberMenu(family);
 		} else if (choice == BILLS_MENU) {
 			BillsMenu billmenu = new BillsMenu(family);
+		} else if (choice == EXIT) {
+			family.exit();
 		}
 	}
 }

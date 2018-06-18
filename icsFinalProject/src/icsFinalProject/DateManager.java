@@ -81,6 +81,7 @@ public class DateManager implements Runnable{
 			if (manager.tryPay(i.getName(), i.getAccountID(), i.getAmount())) {
 				try {
 					manager.addTransaction(i.generateTransaction());
+					i.setFailed(true);
 				} catch (AccountException e) {
 				}
 			} else {
